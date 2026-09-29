@@ -3,157 +3,151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Northeast India Resource Hub - Education, Careers & Heritage</title>
-  <meta name="description" content="A centralized resource portal connecting Northeast India with verified educational repositories, exam notifications, and cultural documentation." />
-  <meta name="keywords" content="Northeast India, Assam resources, career notifications, library repositories, digital archives" />
-  <meta name="author" content="prakashboro1887-max" />
-
-  <!-- Open Graph / Facebook / WhatsApp Preview -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/" />
-  <meta property="og:title" content="Northeast India Resource Hub" />
-  <meta property="og:description" content="A centralized digital hub for opportunities, research repositories, and regional resources across Northeast India." />
-
+  <title>Northeast Mega Portal | Academic, E-Books, Journals & Careers</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome Icons for polished UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
+  <!-- Top Announcement Bar -->
+  <div class="ticker-bar">
+    <span class="ticker-label"><i class="fa-solid fa-bullhorn"></i> DAILY UPDATES:</span>
+    <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+      🔔 SEBA & AHSEC Textbooks & Previous Year Question Papers Available | 📌 APSC & Gauhati University Trainee Recruitment Live | 📚 UGC Care Listed Journals 2024-2026 Deadlines Updated | 📄 Check Direct Result Portals Below!
+    </marquee>
+  </div>
+
+  <!-- Navigation -->
   <header class="navbar">
-    <div class="logo">NERHub</div>
+    <div class="logo"><i class="fa-solid fa-graduation-cap"></i> NE SuperHub</div>
     <nav>
-      <a href="#about">About</a>
-      <a href="#resources">Resources</a>
-      <a href="#contact">Contact</a>
+      <a href="#jobs"><i class="fa-solid fa-briefcase"></i> Jobs</a>
+      <a href="#ebooks"><i class="fa-solid fa-book-open"></i> E-Books & PYQ</a>
+      <a href="#journals"><i class="fa-solid fa-newspaper"></i> Journals</a>
+      <a href="#results"><i class="fa-solid fa-square-poll-vertical"></i> Check Results</a>
+      <a href="#media"><i class="fa-brands fa-youtube"></i> Video Lectures</a>
     </nav>
-    
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <h1>Empowering Northeast India</h1>
-    <p>A multipurpose resource portal designed to connect people with the right opportunities, education, and institutional materials at the right time.</p>
-    <a href="#resources" class="btn">Explore Resources</a>
+    <h1>All-in-One Northeast Digital Academic Portal</h1>
+    <p>Direct access to state board e-textbooks, institutional question banks, UGC journal submission calendars, and daily employment updates.</p>
+    <div class="search-box">
+      <input type="text" id="globalSearch" placeholder="Search by subject, post name, journal title, or exam..." onkeyup="filterAllData()" />
+    </div>
   </section>
 
-<main class="container" id="resources">
-    <div style="text-align: center; margin-bottom: 2rem;">
-      <h2>Directory & Digital Resources</h2>
-      <p style="color: #64748b;">Search or filter regional links, open databases, and official portals.</p>
-      
-      <!-- Search Bar -->
-      <div style="margin-top: 1.5rem;">
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="Search resources by title, state, or topic..." 
-          style="width: 100%; max-width: 500px; padding: 0.75rem 1rem; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 1rem;"
-        />
-      </div>
+  <div class="container">
 
-      <!-- Quick Filter Buttons -->
-      <div style="margin-top: 1rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
-        <button class="filter-btn active" onclick="filterCategory('all')">All</button>
-        <button class="filter-btn" onclick="filterCategory('repositories')">Repositories & Libraries</button>
-        <button class="filter-btn" onclick="filterCategory('careers')">Careers & Exams</button>
-        <button class="filter-btn" onclick="filterCategory('heritage')">Archives & Culture</button>
+    <!-- 1. LIVE JOB VACANCIES SECTION -->
+    <section id="jobs" class="section-block">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-briefcase"></i> Daily Recruitment & Job Vacancies</h2>
+        <span class="badge">Updated Daily</span>
+      </div>
+      <div class="filter-pills">
+        <button class="pill-btn active" onclick="filterJobs('All')">All Categories</button>
+        <button class="pill-btn" onclick="filterJobs('Library & Trainee')">Library & Apprenticeship</button>
+        <button class="pill-btn" onclick="filterJobs('State Govt')">State Govt (Assam/NE)</button>
+        <button class="pill-btn" onclick="filterJobs('Central Govt')">Central & Technical</button>
+      </div>
+      <div class="grid" id="jobsGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- 2. E-BOOKS & QUESTION PAPERS (Categorized Subject-by-Subject) -->
+    <section id="ebooks" class="section-block">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-book-bookmark"></i> Govt E-Textbooks & Question Papers</h2>
+        <span class="badge">In-Site Viewer</span>
+      </div>
+      <div class="filter-pills">
+        <button class="pill-btn active" onclick="filterEbooks('All')">All Subjects</button>
+        <button class="pill-btn" onclick="filterEbooks('SEBA Class 10')">SEBA Class 10</button>
+        <button class="pill-btn" onclick="filterEbooks('AHSEC Class 12')">AHSEC Class 12</button>
+        <button class="pill-btn" onclick="filterEbooks('MLIS / BLIS')">Library Science (Higher Ed)</button>
+        <button class="pill-btn" onclick="filterEbooks('Previous Year QPs')">Previous Year QPs</button>
+      </div>
+      <div class="grid" id="ebooksGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- 3. JOURNALS & UPCOMING CALL FOR PAPERS -->
+    <section id="journals" class="section-block">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-newspaper"></i> Academic Journals & Call for Papers (CFP)</h2>
+        <span class="badge">Publication Schedules</span>
+      </div>
+      <div class="table-responsive">
+        <table class="custom-table" id="journalTable">
+          <thead>
+            <tr>
+              <th>Journal Title / Publisher</th>
+              <th>Indexing / Field</th>
+              <th>Publishing Frequency</th>
+              <th>Upcoming Submission Deadline</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Injected via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 4. IN-SITE RESULT CHECKER -->
+    <section id="results" class="section-block">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-square-poll-vertical"></i> Direct Result Verification Portals</h2>
+        <span class="badge">Official Portals</span>
+      </div>
+      <div class="grid" id="resultsGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <!-- 5. VIDEO REPOSITORY & INTERACTIVE MEDIA -->
+    <section id="media" class="section-block">
+      <div class="section-header">
+        <h2><i class="fa-brands fa-youtube"></i> Educational Video Lectures & Webinars</h2>
+        <span class="badge">Watch In-Site</span>
+      </div>
+      <div class="grid" id="mediaGrid">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+  </div>
+
+  <!-- UNIVERSAL MODAL VIEWER (PDF / DOC / YOUTUBE) -->
+  <div id="mediaModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Document Viewer</h3>
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+      </div>
+      <div class="modal-body" id="modalContainer">
+        <!-- Dynamic Frame -->
       </div>
     </div>
+  </div>
 
-    <!-- Resource Grid -->
-    <div class="grid" id="resourceGrid">
-      
-      <!-- Item 1 -->
-      <div class="card resource-card" data-category="repositories">
-        <span class="tag">Academic Repository</span>
-        <h3>Gauhati University KKHL</h3>
-        <p>Krishna Kanta Handiqui Library digital services, OPAC catalog, and university digital institutional archives.</p>
-        <a href="https://kkhl.gauhati.ac.in/" target="_blank" rel="noopener noreferrer" class="card-link">Visit Portal &rarr;</a>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="card resource-card" data-category="careers">
-        <span class="tag">State Recruitment</span>
-        <h3>Assam Public Service Commission (APSC)</h3>
-        <p>Official notices, syllabus guidelines, and examination portals for state civil services and institutional posts.</p>
-        <a href="https://apsc.nic.in/" target="_blank" rel="noopener noreferrer" class="card-link">Visit Portal &rarr;</a>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="card resource-card" data-category="repositories">
-        <span class="tag">Open Database</span>
-        <h3>Shodhganga Repository</h3>
-        <p>Centralized digital repository of Indian electronic theses and dissertations submitted across northeastern universities.</p>
-        <a href="https://shodhganga.inflibnet.ac.in/" target="_blank" rel="noopener noreferrer" class="card-link">Visit Portal &rarr;</a>
-      </div>
-
-      <!-- Item 4 -->
-      <div class="card resource-card" data-category="careers">
-        <span class="tag">National Portal</span>
-        <h3>National Scholarship Portal (NSP)</h3>
-        <p>Central government scholarship schemes, application tracking, and renewals for post-graduate and regional students.</p>
-        <a href="https://scholarships.gov.in/" target="_blank" rel="noopener noreferrer" class="card-link">Visit Portal &rarr;</a>
-      </div>
-
-      <!-- Item 5 -->
-      <div class="card resource-card" data-category="heritage">
-        <span class="tag">Culture & Records</span>
-        <h3>Assam State Archives</h3>
-        <p>Historical administrative records, regional manuscripts, and archival resources regarding the history of Northeast India.</p>
-        <a href="https://archives.assam.gov.in/" target="_blank" rel="noopener noreferrer" class="card-link">Visit Portal &rarr;</a>
-      </div>
-
-      <!-- Item 6 -->
-      <div class="card resource-card" data-category="repositories">
-        <span class="tag">National Library</span>
-        <h3>National Digital Library of India (NDLI)</h3>
-        <p>Vast virtual repository of learning resources, textbooks, research journals, and audio/video educational content.</p>
-        <a href="https://ndl.iitkgp.ac.in/" target="_blank" rel="noopener noreferrer" class="card-link">Visit Portal &rarr;</a>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- Live Search & Filtering Script -->
-  <script>
-    const searchInput = document.getElementById('searchInput');
-    const cards = document.querySelectorAll('.resource-card');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-
-    let currentCategory = 'all';
-
-    function filterCategory(category) {
-      currentCategory = category;
-      filterButtons.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-      filterCards();
-    }
-
-    function filterCards() {
-      const searchTerm = searchInput.value.toLowerCase();
-
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        const matchesSearch = text.includes(searchTerm);
-        const matchesCategory = currentCategory === 'all' || card.dataset.category === currentCategory;
-
-        if (matchesSearch && matchesCategory) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    searchInput.addEventListener('input', filterCards);
-  </script>
-
-  <footer id="contact">
+  <footer>
     <p style="margin-bottom: 0.75rem;">
-      <a href="about.html" style="color: #0284c7; margin: 0 10px; text-decoration: none;">About</a> |
-      <a href="privacy.html" style="color: #0284c7; margin: 0 10px; text-decoration: none;">Privacy & Policy</a> |
-      <a href="disclaimer.html" style="color: #0284c7; margin: 0 10px; text-decoration: none;">Disclaimer</a>
+      <a href="about.html">About</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="disclaimer.html">Disclaimer</a>
     </p>
     <p>&copy; 2026 Northeast India Resources. Hosted with GitHub Pages.</p>
   </footer>
 
+  <!-- DATA ENGINE SCRIPT -->
+  <script src="portal-data.js"></script>
 </body>
 </html>
