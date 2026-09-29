@@ -3,43 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - Northeast India Resource Hub</title>
+  <title>Northeast India Resource Hub</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header class="navbar">
-    <div class="logo"><a href="index.html" style="color: #fff; text-decoration: none;">NE Resources Hub</a></div>
+    <div class="logo">NE Resources Hub</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="disclaimer.html">Disclaimer</a>
+      <a href="#about">About</a>
+      <a href="#resources">Resources</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main class="container">
-    <article class="card" style="margin-top: 2rem;">
-      <h2>About Northeast India Resource Hub</h2>
-      <p style="margin-top: 1rem;">
-        Welcome to the Northeast India Resource Hub. This platform was established to serve as an accessible, unified digital bridge connecting students, researchers, job seekers, and communities across northeastern India with essential resources.
-      </p>
-      
-      <h3 style="margin-top: 1.5rem;">Our Mission</h3>
-      <p>
-        Finding accurate, centralized information regarding academic research materials, institutional repositories, public notifications, and career opportunities across the region can often be fragmented. Our goal is to curate, organize, and provide easy access to verified digital resources when people need them most.
-      </p>
+  <section class="hero">
+    <h1>Empowering Northeast India</h1>
+    <p>A multipurpose resource portal designed to connect people with the right opportunities, education, and institutional materials at the right time.</p>
+    <a href="#resources" class="btn">Explore Resources</a>
+  </section>
 
-      <h3 style="margin-top: 1.5rem;">What We Offer</h3>
-      <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #64748b;">
-        <li>Centralized links to university libraries, institutional repositories, and open academic literature.</li>
-        <li>Timely notifications, syllabus breakdowns, and preparation guidance for regional career opportunities.</li>
-        <li>Preservation records, digital archives, and documentation of Northeast India's heritage.</li>
-      </ul>
-    </article>
+  <main class="container" id="resources">
+    <h2>Available Categories</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>📚 Education & Research</h3>
+        <p>Curated links for university syllabi, institutional repositories, open access databases, and research materials.</p>
+        <a href="#" class="card-link">View materials &rarr;</a>
+      </div>
+
+      <div class="card">
+        <h3>💼 Career & Notifications</h3>
+        <p>Latest notifications, competitive exam guides, syllabus outlines, and application links across the region.</p>
+        <a href="#" class="card-link">Check updates &rarr;</a>
+      </div>
+
+      <div class="card">
+        <h3>🏛️ Regional Heritage & Culture</h3>
+        <p>Digital archives, folklore preservation, language references, and community-driven regional documentation.</p>
+        <a href="#" class="card-link">Explore archives &rarr;</a>
+      </div>
+    </div>
   </main>
 
-  <footer>
+  <footer id="contact">
     <p>&copy; 2026 Northeast India Resources. Hosted with GitHub Pages.</p>
   </footer>
 
