@@ -65,163 +65,100 @@
   </section>
 
   <!-- 4. MAIN STRUCTURED PORTAL LAYOUT -->
+<!-- 4. MAIN STRUCTURED PORTAL LAYOUT (ALL-GRID FORMAT) -->
   <main class="portal-body">
 
-    <!-- ==========================================
-         SECTION 1: CAREER & RECRUITMENT
-         ========================================== -->
+    <!-- SECTION 1: CAREER & RECRUITMENT -->
     <section id="section-career" class="directory-section">
       <div class="section-title-bar">
         <div class="title-details">
-          <span class="step-num">Step 01</span>
+          <span class="step-num">Category 01</span>
           <h2><i class="fa-solid fa-briefcase"></i> Employment & Career Notifications</h2>
-          <p>Verified daily notifications, apprenticeships, and civil examination announcements.</p>
+          <p>Verified daily recruitment, apprentice programs, and civil examinations across Northeast India.</p>
         </div>
         <div class="filter-controls">
-          <button class="pill-filter active" onclick="filterCareer('All')">All Categories</button>
-          <button class="pill-filter" onclick="filterCareer('Library & Apprentice')">Library Apprenticeship</button>
-          <button class="pill-filter" onclick="filterCareer('State Govt')">Assam / Regional Govt</button>
-          <button class="pill-filter" onclick="filterCareer('Central Govt')">Central Institutions</button>
+          <button class="pill-filter active" onclick="filterCareer('All')">All</button>
+          <button class="pill-filter" onclick="filterCareer('Library & Apprentice')">Library & Apprentice</button>
+          <button class="pill-filter" onclick="filterCareer('State Govt')">State Govt</button>
+          <button class="pill-filter" onclick="filterCareer('Central Govt')">Central Govt</button>
         </div>
       </div>
-
-      <div class="table-card">
-        <table class="data-table" id="careerTable">
-          <thead>
-            <tr>
-              <th style="width: 32%;">Job Title / Position</th>
-              <th style="width: 25%;">Hiring Department / Org</th>
-              <th style="width: 15%;">Published On</th>
-              <th style="width: 15%;">Last Date</th>
-              <th style="width: 13%; text-align: center;">Official Link</th>
-            </tr>
-          </thead>
-          <tbody id="careerTableBody">
-            <!-- Dynamic Data Insertion -->
-          </tbody>
-        </table>
-      </div>
+      <!-- Grid Container -->
+      <div class="grid-layout" id="careerGrid"></div>
     </section>
 
-    <!-- ==========================================
-         SECTION 2: E-BOOKS & SYLLABUS MATERIALS
-         ========================================== -->
+    <!-- SECTION 2: E-BOOKS & TEXTBOOKS -->
     <section id="section-ebooks" class="directory-section">
       <div class="section-title-bar">
         <div class="title-details">
-          <span class="step-num">Step 02</span>
+          <span class="step-num">Category 02</span>
           <h2><i class="fa-solid fa-book-open"></i> E-Books & Institutional Reading Materials</h2>
-          <p>Classified subject-by-subject from secondary boards up to post-graduate studies.</p>
+          <p>Government textbooks and higher education digital repository resources arranged subject-by-subject.</p>
         </div>
         <div class="filter-controls">
-          <button class="pill-filter active" onclick="filterEbooks('All')">All Levels</button>
+          <button class="pill-filter active" onclick="filterEbooks('All')">All</button>
           <button class="pill-filter" onclick="filterEbooks('SEBA Class 10')">SEBA Class 10</button>
           <button class="pill-filter" onclick="filterEbooks('AHSEC Class 12')">AHSEC Class 12</button>
           <button class="pill-filter" onclick="filterEbooks('Higher Ed')">Library Science & Research</button>
         </div>
       </div>
-
-      <div class="grid-layout" id="ebooksGrid">
-        <!-- Dynamic Cards Insertion -->
-      </div>
+      <!-- Grid Container -->
+      <div class="grid-layout" id="ebooksGrid"></div>
     </section>
 
-    <!-- ==========================================
-         SECTION 3: PREVIOUS YEAR QUESTION PAPERS
-         ========================================== -->
+    <!-- SECTION 3: PREVIOUS YEAR QUESTION PAPERS (PYQ) -->
     <section id="section-pyq" class="directory-section">
       <div class="section-title-bar">
         <div class="title-details">
-          <span class="step-num">Step 03</span>
+          <span class="step-num">Category 03</span>
           <h2><i class="fa-solid fa-file-signature"></i> Previous Year Question Papers (PYQ)</h2>
-          <p>Official exam papers for practice and competitive test preparation.</p>
+          <p>Official past papers, solved answers, and examination model tests.</p>
         </div>
       </div>
-
-      <div class="table-card">
-        <table class="data-table" id="pyqTable">
-          <thead>
-            <tr>
-              <th style="width: 35%;">Exam Paper / Subject</th>
-              <th style="width: 20%;">Conducting Body</th>
-              <th style="width: 15%;">Session / Year</th>
-              <th style="width: 15%;">Added Date</th>
-              <th style="width: 15%; text-align: center;">Direct Access</th>
-            </tr>
-          </thead>
-          <tbody id="pyqTableBody">
-            <!-- Dynamic Data Insertion -->
-          </tbody>
-        </table>
-      </div>
+      <!-- Grid Container -->
+      <div class="grid-layout" id="pyqGrid"></div>
     </section>
 
-    <!-- ==========================================
-         SECTION 4: ACADEMIC JOURNALS & CFP
-         ========================================== -->
+    <!-- SECTION 4: JOURNALS & CALL FOR PAPERS (CFP) -->
     <section id="section-journals" class="directory-section">
       <div class="section-title-bar">
         <div class="title-details">
-          <span class="step-num">Step 04</span>
+          <span class="step-num">Category 04</span>
           <h2><i class="fa-solid fa-newspaper"></i> Academic Journals & Call for Papers (CFP)</h2>
-          <p>Publishing schedules, indexing records, and upcoming manuscript submission deadlines.</p>
+          <p>Publishing calendars, UGC-CARE indexing, and upcoming manuscript submission deadlines.</p>
         </div>
       </div>
-
-      <div class="table-card">
-        <table class="data-table" id="journalsTable">
-          <thead>
-            <tr>
-              <th style="width: 30%;">Journal Title</th>
-              <th style="width: 22%;">Indexing & Field</th>
-              <th style="width: 15%;">Frequency</th>
-              <th style="width: 18%;">Submission Deadline</th>
-              <th style="width: 15%; text-align: center;">Portal</th>
-            </tr>
-          </thead>
-          <tbody id="journalsTableBody">
-            <!-- Dynamic Data Insertion -->
-          </tbody>
-        </table>
-      </div>
+      <!-- Grid Container -->
+      <div class="grid-layout" id="journalsGrid"></div>
     </section>
 
-    <!-- ==========================================
-         SECTION 5: LIVE RESULT VERIFICATION
-         ========================================== -->
+    <!-- SECTION 5: RESULT VERIFICATION -->
     <section id="section-results" class="directory-section">
       <div class="section-title-bar">
         <div class="title-details">
-          <span class="step-num">Step 05</span>
+          <span class="step-num">Category 05</span>
           <h2><i class="fa-solid fa-square-poll-vertical"></i> Direct Examination Result Portals</h2>
-          <p>Instant official portals to check semester records, board roll calls, and scorecards.</p>
+          <p>Direct official gateways to verify board records, university semesters, and scholarship lists.</p>
         </div>
       </div>
-
-      <div class="grid-layout results-grid" id="resultsGrid">
-        <!-- Dynamic Cards Insertion -->
-      </div>
+      <!-- Grid Container -->
+      <div class="grid-layout" id="resultsGrid"></div>
     </section>
 
-    <!-- ==========================================
-         SECTION 6: VIDEO LECTURES & WORKSHOPS
-         ========================================== -->
+    <!-- SECTION 6: VIDEO LECTURES & WORKSHOPS -->
     <section id="section-media" class="directory-section">
       <div class="section-title-bar">
         <div class="title-details">
-          <span class="step-num">Step 06</span>
-          <h2><i class="fa-brands fa-youtube"></i> Educational Video Lectures & Archives</h2>
-          <p>Curated technical tutorials on digital repositories, metadata, and research standards.</p>
+          <span class="step-num">Category 06</span>
+          <h2><i class="fa-brands fa-youtube"></i> Educational Video Lectures & Webinars</h2>
+          <p>Step-by-step guides on digital archives, cataloguing standards, and technical tutorials.</p>
         </div>
       </div>
-
-      <div class="grid-layout" id="mediaGrid">
-        <!-- Dynamic Cards Insertion -->
-      </div>
+      <!-- Grid Container -->
+      <div class="grid-layout" id="mediaGrid"></div>
     </section>
 
   </main>
-
   <!-- PROTECTED IN-SITE VIEWER MODAL -->
   <div id="portalModal" class="modal-backdrop">
     <div class="modal-dialog">
