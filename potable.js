@@ -142,3 +142,59 @@ function executeGlobalSearch() {
     r.title.toLowerCase().includes(query) || r.agency.toLowerCase().includes(query)
   ));
 }
+/* ==============================================================
+   THEME TOGGLE (DARK/LIGHT MODE) & SCROLL TO TOP
+   ============================================================== */
+
+// Check saved theme or system preference on startup
+function initTheme() {
+  const savedTheme = localStorage.getItem("portalTheme");
+  const icon = document.getElementById("themeIcon");
+
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    if (icon) {
+      icon.classList.remove("fa-moon");
+      icon.classList.add("fa-sun");
+    }
+  }
+}
+
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.getElementById("themeIcon");
+  
+  body.classList.toggle("dark-mode");
+
+  if (body.classList.contains("dark-mode")) {
+    localStorage.setItem("portalTheme", "dark");
+    icon.classList.remove("fa-moon");
+    icon.classList.add("fa-sun");
+  } else {
+    localStorage.setItem("portalTheme", "light");
+    icon.classList.remove("fa-sun");
+    icon.classList.add("fa-moon");
+  }
+}
+
+// Show/Hide Floating Back-to-Top Button
+window.addEventListener("scroll", () => {
+  const topBtn = document.getElementById("backToTopBtn");
+  if (topBtn) {
+    if (window.scrollY > 300) {
+      topBtn.style.display = "flex";
+    } else {
+      topBtn.style.display = "none";
+    }
+  }
+});
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+// Initialize theme when DOM is loaded
+initTheme();
