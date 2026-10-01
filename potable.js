@@ -1,3 +1,60 @@
+// Replace with your published Google Sheet CSV link
+const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0y4e3_-teBXQcNZXKbXNca_bzYGi5wF-klG2pJnkHIKOA5TizIZjSRvqhd5ewrCk8wb6EH9xUGESy/pub?gid=0&single=true&output=csv";
+
+// Fetch and Parse Google Sheet Data Automatically
+async function fetchSheetData() {
+  if (GOOGLE_SHEET_CSV_URL === "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0y4e3_-teBXQcNZXKbXNca_bzYGi5wF-klG2pJnkHIKOA5TizIZjSRvqhd5ewrCk8wb6EH9xUGESy/pub?gid=0&single=true&output=csv") return;
+
+  try {
+    const response = await fetch(GOOGLE_SHEET_CSV_URL);
+    const csvText = await response.text();
+    
+    // Parse CSV rows into objects
+    const rows = csvText.split("\n").map(r => r.split(","));
+    const headers = rows[0].map(h => h.trim().toLowerCase());
+
+    const liveData = rows.slice(1).map(row => {
+      let obj = {};
+      headers.forEach((h, index) => {
+        obj[h] = row[index] ? row[index].trim().replace(/^"|"$/g, '') : "";
+      });
+      return obj;
+    });
+
+    // Populate data by type
+    const liveJobs = liveData.filter(d => d.type === "job");
+    const liveEbooks = liveData.filter(d => d.type === "ebook");
+
+    if (liveJobs.length > 0) {
+      renderCareers(liveJobs.map(j => ({
+        title: j.title,
+        department: j.organization,
+        category: j.category || "General",
+        published: j.date || "Recent",
+        lastDate: j.deadline || "Open",
+        link: j.link
+      })));
+    }
+
+    if (liveEbooks.length > 0) {
+      renderEbooks(liveEbooks.map(b => ({
+        title: b.title,
+        subject: b.organization,
+        category: b.category,
+        published: b.date || "2026",
+        source: "Govt Open Repository",
+        docUrl: b.link
+      })));
+    }
+  } catch (error) {
+    console.warn("Could not fetch Google Sheet data, showing default records.", error);
+  }
+}
+
+// Call on startup
+document.addEventListener("DOMContentLoaded", () => {
+  fetchSheetData();
+});
 /* ==============================================================
    ALL-GRID RENDER ENGINES (TITLE, DATES, CATEGORIES IN CARDS)
    ============================================================== */
