@@ -1,0 +1,21 @@
+name: Check Broken Links
+
+on:
+  schedule:
+    # Runs automatically every Monday at 6:00 AM UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch: # Allows you to run it manually anytime with a single click
+
+jobs:
+  link-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --verbose --no-progress './**/*.html'
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
