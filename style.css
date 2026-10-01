@@ -726,3 +726,23 @@ body {
 @media print {
   body { display: none !important; }
 }
+/* PWA Install Button */
+.install-app-btn {
+  background: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  align-items: center;
+  gap: 6px;
+  margin-left: 0.75rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.install-app-btn:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
