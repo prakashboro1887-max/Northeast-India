@@ -1,0 +1,25 @@
+{
+  "name": "Northeast India Academic & Career Hub",
+  "short_name": "NE SuperHub",
+  "description": "Unified digital portal for education, e-books, institutional journals, and career notifications in Northeast India.",
+  "start_url": "/Northeast-India/",
+  "scope": "/Northeast-India/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0284c7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2997/2997295.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2997/2997295.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
