@@ -8,6 +8,7 @@
   <meta name="theme-color" content="#0284c7" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  
   <!-- Font and Icon Assets -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +25,7 @@
     </div>
     <div class="ticker-content">
       <div class="ticker-slider" id="tickerTrack">
-        <!-- Rendered via JS with publication timestamps -->
+        <!-- Dynamic ticker notices injected via portal-data.js -->
       </div>
     </div>
   </div>
@@ -46,13 +47,14 @@
         <a href="#section-journals"><i class="fa-solid fa-newspaper"></i> Journals</a>
         <a href="#section-results"><i class="fa-solid fa-square-poll-vertical"></i> Results</a>
         <a href="#section-media"><i class="fa-brands fa-youtube"></i> Lectures</a>
-          <!-- Inside <nav class="nav-links">, append this toggle button at the end: -->
-      <button id="themeToggleBtn" class="theme-toggle" onclick="toggleTheme()" title="Switch Light/Dark Mode">
-        <i class="fa-solid fa-moon" id="themeIcon"></i>
-        <button id="pwaInstallBtn" class="install-app-btn" style="display: none;" onclick="triggerPWAInstall()">
-    <i class="fa-solid fa-download"></i> Install App
-  </button>
-      </button>
+        
+        <!-- Action Buttons -->
+        <button id="pwaInstallBtn" class="install-app-btn" style="display: none;" onclick="triggerPWAInstall()" title="Install App">
+          <i class="fa-solid fa-download"></i> Install App
+        </button>
+        <button id="themeToggleBtn" class="theme-toggle" onclick="toggleTheme()" title="Switch Light/Dark Mode">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
       </nav>
     </div>
   </header>
@@ -74,9 +76,9 @@
   </section>
 
   <!-- 4. MAIN STRUCTURED PORTAL LAYOUT -->
-<!-- 4. MAIN STRUCTURED PORTAL LAYOUT (ALL-GRID FORMAT) -->
   <main class="portal-body">
-<!-- SUBSCRIBER NOTIFICATION BANNER -->
+
+    <!-- SUBSCRIBER NOTIFICATION BANNER -->
     <section class="newsletter-card">
       <div class="newsletter-content">
         <span class="badge-alert"><i class="fa-solid fa-bell"></i> Instant Alerts</span>
@@ -92,6 +94,7 @@
         </div>
       </div>
     </section>
+
     <!-- SECTION 1: CAREER & RECRUITMENT -->
     <section id="section-career" class="directory-section">
       <div class="section-title-bar">
@@ -110,14 +113,15 @@
       <!-- Grid Container -->
       <div class="grid-layout" id="careerGrid"></div>
     </section>
-<!-- AD PLACEMENT 1: IN-FEED BANNER -->
+
+    <!-- AD PLACEMENT 1: IN-FEED BANNER -->
     <div class="ad-slot-container">
       <span class="ad-label">Advertisement</span>
       <div class="ad-placeholder">
-        <!-- Paste your Google AdSense <ins> code block here -->
         <p><i class="fa-solid fa-rectangle-ad"></i> Sponsored Links / Educational Resources</p>
       </div>
     </div>
+
     <!-- SECTION 2: E-BOOKS & TEXTBOOKS -->
     <section id="section-ebooks" class="directory-section">
       <div class="section-title-bar">
@@ -136,14 +140,7 @@
       <!-- Grid Container -->
       <div class="grid-layout" id="ebooksGrid"></div>
     </section>
-<!-- AD PLACEMENT 1: IN-FEED BANNER -->
-    <div class="ad-slot-container">
-      <span class="ad-label">Advertisement</span>
-      <div class="ad-placeholder">
-        <!-- Paste your Google AdSense <ins> code block here -->
-        <p><i class="fa-solid fa-rectangle-ad"></i> Sponsored Links / Educational Resources</p>
-      </div>
-    </div>
+
     <!-- SECTION 3: PREVIOUS YEAR QUESTION PAPERS (PYQ) -->
     <section id="section-pyq" class="directory-section">
       <div class="section-title-bar">
@@ -196,7 +193,16 @@
       <div class="grid-layout" id="mediaGrid"></div>
     </section>
 
+    <!-- AD PLACEMENT 2: BOTTOM SPONSOR BANNER -->
+    <div class="ad-slot-container">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-placeholder">
+        <p><i class="fa-solid fa-rectangle-ad"></i> Partner Opportunities</p>
+      </div>
+    </div>
+
   </main>
+
   <!-- PROTECTED IN-SITE VIEWER MODAL -->
   <div id="portalModal" class="modal-backdrop">
     <div class="modal-dialog">
@@ -218,18 +224,11 @@
       </div>
 
       <div class="modal-body-frame" id="modalFrameContainer">
-        <!-- Document / Video Container -->
+        <!-- Dynamic iframe/viewer injected via JS -->
       </div>
     </div>
   </div>
-<!-- AD PLACEMENT 2: BOTTOM SPONSOR BANNER -->
-    <div class="ad-slot-container">
-      <span class="ad-label">Advertisement</span>
-      <div class="ad-placeholder">
-        <!-- Paste your Google AdSense <ins> code block here -->
-        <p><i class="fa-solid fa-rectangle-ad"></i> Partner Opportunities</p>
-      </div>
-    </div>
+
   <!-- INSTITUTIONAL FOOTER -->
   <footer class="portal-footer">
     <div class="footer-links">
@@ -241,11 +240,17 @@
     <p>&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
   </footer>
 
-  <!-- DATA & ENGINE SCRIPTS -->
+  <!-- FLOATING BACK-TO-TOP BUTTON -->
+  <button id="backToTopBtn" onclick="scrollToTop()" title="Back to Top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ENGINE CORE -->
   <script src="portal-data.js"></script>
 
-  <!-- PROTECTION SCRIPT (ANTI-COPY / ANTI-INSPECT) -->
+  <!-- PROTECTION & PWA LOGIC -->
   <script>
+    // Protection (Anti-copy / Anti-inspect shortcuts)
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('keydown', e => {
       if ((e.ctrlKey && ['c', 'u', 's', 'p', 'C', 'U', 'S', 'P'].includes(e.key)) || e.key === 'F12') {
@@ -253,16 +258,16 @@
         return false;
       }
     });
-  </script>
-  <!-- FLOATING BACK-TO-TOP BUTTON -->
-  <button id="backToTopBtn" onclick="scrollToTop()" title="Back to Top">
-    <i class="fa-solid fa-arrow-up"></i>
-  </button>
-  <!-- PWA INSTALL & SERVICE WORKER REGISTRATION -->
-  <script>
+
+    // Scroll to Top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // PWA Service Worker Registration
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/Northeast-India/sw.js")
+        navigator.serviceWorker.register("./sw.js")
           .then(reg => console.log("Service Worker registered successfully"))
           .catch(err => console.log("Service Worker registration failed:", err));
       });
@@ -274,9 +279,7 @@
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      if (installBtn) {
-        installBtn.style.display = "inline-flex";
-      }
+      if (installBtn) installBtn.style.display = "inline-flex";
     });
 
     function triggerPWAInstall() {
@@ -284,13 +287,12 @@
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
           if (choiceResult.outcome === "accepted") {
-            installBtn.style.display = "none";
+            if (installBtn) installBtn.style.display = "none";
           }
           deferredPrompt = null;
         });
       }
     }
   </script>
-  <script src="portal-data.js"></script>
 </body>
 </html>
