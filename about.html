@@ -3,44 +3,105 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - Northeast India Resource Hub</title>
+  <title>About - Northeast India Academic & Career Hub</title>
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    .page-content-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin: 3rem auto;
+      max-width: 900px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      line-height: 1.8;
+    }
+    .page-content-card h1 {
+      font-size: 2rem;
+      color: var(--primary-dark);
+      margin-bottom: 1.25rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.75rem;
+    }
+    .page-content-card h2 {
+      font-size: 1.35rem;
+      color: var(--primary-dark);
+      margin: 2rem 0 0.75rem 0;
+    }
+    .page-content-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+    .page-content-card ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
+    .page-content-card li {
+      margin-bottom: 0.5rem;
+    }
+    body.dark-mode .page-content-card h1,
+    body.dark-mode .page-content-card h2 {
+      color: #f8fafc;
+    }
+  </style>
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="logo"><a href="index.html" style="color: #fff; text-decoration: none;">NE Resources Hub</a></div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="disclaimer.html">Disclaimer</a>
-    </nav>
+  <!-- TOP NAVIGATION -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <div class="brand">
+        <i class="fa-solid fa-graduation-cap brand-icon"></i>
+        <div class="brand-text">
+          <span class="brand-title">NE ACADEMIC HUB</span>
+          <span class="brand-subtitle">Government Resources & Public Career Portal</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
+        <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+        <a href="privacy.html"><i class="fa-solid fa-shield-halved"></i> Privacy</a>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <article class="card" style="margin-top: 2rem;">
-      <h2>About Northeast India Resource Hub</h2>
-      <p style="margin-top: 1rem;">
-        Welcome to the Northeast India Resource Hub. This platform was established to serve as an accessible, unified digital bridge connecting students, researchers, job seekers, and communities across northeastern India with essential resources.
-      </p>
+  <!-- ABOUT CONTENT BOX -->
+  <main class="portal-body">
+    <div class="page-content-card">
+      <h1>About Northeast India Resource Hub</h1>
+      <p>Welcome to the Northeast India Resource Hub. This platform was established to serve as an accessible, unified digital bridge connecting students, researchers, job seekers, and communities across northeastern India with essential resources.</p>
       
-      <h3 style="margin-top: 1.5rem;">Our Mission</h3>
-      <p>
-        Finding accurate, centralized information regarding academic research materials, institutional repositories, public notifications, and career opportunities across the region can often be fragmented. Our goal is to curate, organize, and provide easy access to verified digital resources when people need them most.
-      </p>
-
-      <h3 style="margin-top: 1.5rem;">What We Offer</h3>
-      <ul style="margin-left: 1.5rem; margin-top: 0.5rem; color: #64748b;">
+      <h2>Our Mission</h2>
+      <p>Finding accurate, centralized information regarding academic research materials, institutional repositories, public notifications, and career opportunities across the region can often be fragmented. Our goal is to curate, organize, and provide easy access to verified digital resources when people need them most.</p>
+      
+      <h2>What We Offer</h2>
+      <ul>
         <li>Centralized links to university libraries, institutional repositories, and open academic literature.</li>
         <li>Timely notifications, syllabus breakdowns, and preparation guidance for regional career opportunities.</li>
         <li>Preservation records, digital archives, and documentation of Northeast India's heritage.</li>
       </ul>
-    </article>
+    </div>
   </main>
 
-  <footer>
-    <p>&copy; 2026 Northeast India Resources. Hosted with GitHub Pages.</p>
+  <!-- FOOTER -->
+  <footer class="portal-footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Portal</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+    <p>&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
   </footer>
 
 </body>
