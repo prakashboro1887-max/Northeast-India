@@ -555,6 +555,39 @@ ${portalUrl}`;
 
 
 /* ==============================================================
+   CLIENT-SIDE LIVE SEARCH FILTER
+   ============================================================== */
+
+function filterResourcesByKeyword() {
+  const input = document.getElementById("globalSearchInput");
+  if (!input) return;
+
+  const query = input.value.trim().toLowerCase();
+  const allCards = document.querySelectorAll(".portal-card");
+
+  allCards.forEach(card => {
+    const cardText = card.innerText.toLowerCase();
+    if (query === "" || cardText.includes(query)) {
+      card.style.display = ""; // Reset to default layout
+    } else {
+      card.style.display = "none"; // Hide non-matching card
+    }
+  });
+
+  // Check section visibility: hide entire section if no cards match
+  const sections = document.querySelectorAll(".portal-section, .category-panel");
+  sections.forEach(section => {
+    const visibleCards = section.querySelectorAll(".portal-card:not([style*='display: none'])");
+    if (visibleCards.length === 0 && query !== "") {
+      section.style.display = "none";
+    } else {
+      section.style.display = "";
+    }
+  });
+}
+
+
+/* ==============================================================
    INITIALIZATION
    ============================================================== */
 
