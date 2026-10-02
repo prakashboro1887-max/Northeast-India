@@ -432,15 +432,21 @@ function openViewerModal(title, url, type = "doc") {
   // Convert Google Drive view links to direct preview embeds
   if (embedUrl.includes("drive.google.com/file/d/")) {
     embedUrl = embedUrl.replace(/\/view(\?.*)?$/, "/preview");
-  } 
-  // Convert standard YouTube links to responsive embeds
+  }
+ // Convert standard YouTube links to responsive embeds
   else if (embedUrl.includes("youtube.com/watch?v=")) {
     const videoId = embedUrl.split("v=")[1]?.split("&")[0];
     embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
   } else if (embedUrl.includes("youtu.be/")) {
     const videoId = embedUrl.split("youtu.be/")[1]?.split("?")[0];
     embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
-  } 
+  } else if (embedUrl.includes("youtube.com/results") || embedUrl.includes("youtube.com/channel")) {
+    // Search result pages cannot be embedded by YouTube policy; redirect directly
+    window.open(currentActiveResourceUrl, "_blank");
+    closePortalModal();
+    return;
+  }
+     
   // Direct PDF files (Google Docs PDF Viewer wrapper for cross-device compatibility)
   else if (embedUrl.toLowerCase().endsWith(".pdf")) {
     embedUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(embedUrl)}`;
