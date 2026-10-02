@@ -505,6 +505,42 @@ function dispatchShare(platform) {
   }
 }
 
+
+
+
+/* ==============================================================
+   QUICK SOCIAL BROADCAST DISPATCHER
+   ============================================================== */
+
+function shareCardToSocial(title, org, date, link, platform) {
+  const portalUrl = window.location.href.split('#')[0];
+  const shareText = 
+`📢 *NE Academic Hub Update*
+
+📌 *${title}*
+🏢 Organization: ${org || "Public Authority"}
+📅 Date/Deadline: ${date || "Check Details"}
+
+🔗 View Details & Apply:
+${link}
+
+🌐 Explore more regional resources on NE Academic Hub:
+${portalUrl}`;
+
+  const encodedMsg = encodeURIComponent(shareText);
+
+  if (platform === 'whatsapp') {
+    window.open(`https://api.whatsapp.com/send?text=${encodedMsg}`, '_blank');
+  } else if (platform === 'telegram') {
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodedMsg}`, '_blank');
+  } else {
+    navigator.clipboard.writeText(shareText).then(() => {
+      alert("Formatted update copied to clipboard! You can paste it into any group.");
+    });
+  }
+}
+
+
 /* ==============================================================
    INITIALIZATION
    ============================================================== */
