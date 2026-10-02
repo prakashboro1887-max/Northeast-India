@@ -101,7 +101,7 @@ let mediaData = [
   {
     title: "DSpace 9 Setup & Institutional Repository Cataloguing",
     organization: "DLIS Tech Workshop",
-    link: "https://www.youtube.com/results?search_query=dspace+tutorial"
+    link: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
   }
 ];
 
@@ -110,7 +110,8 @@ let mediaData = [
    ============================================================== */
 
 function renderCareers(items) {
-  const container = document.getElementById("careersGrid");
+  // Supports both careerGrid and careersGrid to avoid broken layouts
+  const container = document.getElementById("careerGrid") || document.getElementById("careersGrid");
   if (!container) return;
 
   container.innerHTML = items.map(c => `
@@ -124,7 +125,7 @@ function renderCareers(items) {
       ${c.deadline ? `<p class="card-deadline"><i class="fa-regular fa-clock"></i> Last Date: <strong>${c.deadline}</strong></p>` : ''}
       
       <div class="card-action-bar" style="display: flex; gap: 0.5rem; align-items: center; margin-top: 1rem;">
-        <a href="${c.link}" target="_blank" rel="noopener noreferrer" class="btn-card-primary" style="flex: 1; text-align: center; text-decoration: none;">
+        <a href="${cleanUrl(c.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary" style="flex: 1; text-align: center; text-decoration: none;">
           Official Link &rarr;
         </a>
         <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${c.link}', 'whatsapp')" 
@@ -163,7 +164,6 @@ function renderEbooks(items) {
   `).join("");
 }
 
-
 function renderPYQ(items) {
   const container = document.getElementById("pyqGrid");
   if (!container) return;
@@ -184,7 +184,6 @@ function renderPYQ(items) {
     </div>
   `).join("");
 }
-
 
 function renderJournals(items) {
   const container = document.getElementById("journalsGrid");
@@ -421,9 +420,6 @@ async function syncGoogleSheet() {
   }
 }
 
-
-
-
 /* ==============================================================
    IN-SITE RESOURCE & PDF VIEWER MODAL
    ============================================================== */
@@ -446,7 +442,7 @@ function openViewerModal(title, url, type = "doc") {
   if (embedUrl.includes("drive.google.com/file/d/")) {
     embedUrl = embedUrl.replace(/\/view(\?.*)?$/, "/preview");
   }
- // Convert standard YouTube links to responsive embeds
+  // Convert standard YouTube links to responsive embeds
   else if (embedUrl.includes("youtube.com/watch?v=")) {
     const videoId = embedUrl.split("v=")[1]?.split("&")[0];
     embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
@@ -454,18 +450,16 @@ function openViewerModal(title, url, type = "doc") {
     const videoId = embedUrl.split("youtu.be/")[1]?.split("?")[0];
     embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
   } else if (embedUrl.includes("youtube.com/results") || embedUrl.includes("youtube.com/channel")) {
-    // Search result pages cannot be embedded by YouTube policy; redirect directly
     window.open(currentActiveResourceUrl, "_blank");
     closePortalModal();
     return;
   }
-     
+      
   // Direct PDF files (Google Docs PDF Viewer wrapper for cross-device compatibility)
   else if (embedUrl.toLowerCase().endsWith(".pdf")) {
     embedUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(embedUrl)}`;
   }
 
-  // Inject responsive iframe with an option to open externally if blocked by third-party headers
   container.innerHTML = `
     <div style="position: relative; width: 100%; height: 100%; min-height: 520px; display: flex; flex-direction: column;">
       <iframe src="${embedUrl}" style="width: 100%; height: 100%; flex: 1; border: none; border-radius: 0 0 10px 10px;" allowfullscreen></iframe>
@@ -479,18 +473,17 @@ function openViewerModal(title, url, type = "doc") {
   `;
 
   modal.style.display = "flex";
-  document.body.style.overflow = "hidden"; // Prevent background scrolling
+  document.body.style.overflow = "hidden";
 }
 
 function closePortalModal() {
   const modal = document.getElementById("portalModal");
   const container = document.getElementById("modalFrameContainer");
   if (modal) modal.style.display = "none";
-  if (container) container.innerHTML = ""; // Stop audio/video playback
+  if (container) container.innerHTML = "";
   document.body.style.overflow = "auto";
 }
 
-// Close when clicking outside the modal dialog box
 window.addEventListener("click", (e) => {
   const modal = document.getElementById("portalModal");
   if (e.target === modal) {
@@ -498,7 +491,6 @@ window.addEventListener("click", (e) => {
   }
 });
 
-// Modal Social Media Dispatcher
 function dispatchShare(platform) {
   const url = encodeURIComponent(currentActiveResourceUrl || window.location.href);
   const text = encodeURIComponent("Check out this academic resource on NE Academic Hub:");
@@ -517,9 +509,6 @@ function dispatchShare(platform) {
     });
   }
 }
-
-
-
 
 /* ==============================================================
    QUICK SOCIAL BROADCAST DISPATCHER
@@ -552,40 +541,6 @@ ${portalUrl}`;
     });
   }
 }
-
-
-/* ==============================================================
-   CLIENT-SIDE LIVE SEARCH FILTER
-   ============================================================== */
-
-function filterResourcesByKeyword() {
-  const input = document.getElementById("globalSearchInput");
-  if (!input) return;
-
-  const query = input.value.trim().toLowerCase();
-  const allCards = document.querySelectorAll(".portal-card");
-
-  allCards.forEach(card => {
-    const cardText = card.innerText.toLowerCase();
-    if (query === "" || cardText.includes(query)) {
-      card.style.display = ""; // Reset to default layout
-    } else {
-      card.style.display = "none"; // Hide non-matching card
-    }
-  });
-
-  // Check section visibility: hide entire section if no cards match
-  const sections = document.querySelectorAll(".portal-section, .category-panel");
-  sections.forEach(section => {
-    const visibleCards = section.querySelectorAll(".portal-card:not([style*='display: none'])");
-    if (visibleCards.length === 0 && query !== "") {
-      section.style.display = "none";
-    } else {
-      section.style.display = "";
-    }
-  });
-}
-
 
 /* ==============================================================
    INITIALIZATION
