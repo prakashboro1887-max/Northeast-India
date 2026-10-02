@@ -106,15 +106,69 @@ let mediaData = [
 ];
 
 /* ==============================================================
-   RENDER FUNCTIONS
+   PAGINATION STATE & CONTROLS (6 POSTS PER SECTION)
    ============================================================== */
 
-function renderCareers(items) {
-  // Supports both careerGrid and careersGrid to avoid broken layouts
+const ITEMS_PER_PAGE = 6;
+
+const pageState = {
+  career: 1,
+  ebooks: 1,
+  pyq: 1,
+  journals: 1,
+  results: 1,
+  media: 1
+};
+
+// Generates the 1, 2, 3, Prev, Next buttons
+function renderPaginationControls(totalItems, currentPage, containerId, onPageChangeCallback) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+  // Hide pagination if 6 or fewer items
+  if (totalPages <= 1) {
+    container.innerHTML = "";
+    return;
+  }
+
+  let html = `
+    <button class="pagination-btn" ${currentPage === 1 ? 'disabled' : ''} onclick="${onPageChangeCallback}(${currentPage - 1})">
+      &laquo; Prev
+    </button>
+  `;
+
+  for (let i = 1; i <= totalPages; i++) {
+    html += `
+      <button class="pagination-btn ${i === currentPage ? 'active' : ''}" onclick="${onPageChangeCallback}(${i})">
+        ${i}
+      </button>
+    `;
+  }
+
+  html += `
+    <button class="pagination-btn" ${currentPage === totalPages ? 'disabled' : ''} onclick="${onPageChangeCallback}(${currentPage + 1})">
+      Next &raquo;
+    </button>
+  `;
+
+  container.innerHTML = html;
+}
+
+/* ==============================================================
+   RENDER FUNCTIONS WITH 6-POST PAGINATION
+   ============================================================== */
+
+function renderCareers(items, page = pageState.career) {
+  pageState.career = page;
   const container = document.getElementById("careerGrid") || document.getElementById("careersGrid");
   if (!container) return;
 
-  container.innerHTML = items.map(c => `
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
+
+  container.innerHTML = pageItems.map(c => `
     <div class="portal-card">
       <div class="card-meta-top">
         <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${c.category || "Notice"}</span>
@@ -141,13 +195,24 @@ function renderCareers(items) {
       </div>
     </div>
   `).join("");
+
+  renderPaginationControls(items.length, page, "careerPagination", "changeCareerPage");
 }
 
-function renderEbooks(items) {
+function changeCareerPage(newPage) {
+  renderCareers(careerData, newPage);
+  document.getElementById("section-career")?.scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderEbooks(items, page = pageState.ebooks) {
+  pageState.ebooks = page;
   const container = document.getElementById("ebooksGrid");
   if (!container) return;
 
-  container.innerHTML = items.map(b => `
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
+
+  container.innerHTML = pageItems.map(b => `
     <div class="portal-card">
       <div class="card-meta-top">
         <span class="badge-cat"><i class="fa-solid fa-book-bookmark"></i> ${b.category || "Textbook"}</span>
@@ -162,13 +227,24 @@ function renderEbooks(items) {
       </div>
     </div>
   `).join("");
+
+  renderPaginationControls(items.length, page, "ebooksPagination", "changeEbooksPage");
 }
 
-function renderPYQ(items) {
+function changeEbooksPage(newPage) {
+  renderEbooks(ebooksData, newPage);
+  document.getElementById("section-ebooks")?.scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderPYQ(items, page = pageState.pyq) {
+  pageState.pyq = page;
   const container = document.getElementById("pyqGrid");
   if (!container) return;
 
-  container.innerHTML = items.map(p => `
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
+
+  container.innerHTML = pageItems.map(p => `
     <div class="portal-card">
       <div class="card-meta-top">
         <span class="badge-cat"><i class="fa-solid fa-file-pdf"></i> Question Paper</span>
@@ -183,13 +259,24 @@ function renderPYQ(items) {
       </div>
     </div>
   `).join("");
+
+  renderPaginationControls(items.length, page, "pyqPagination", "changePYQPage");
 }
 
-function renderJournals(items) {
+function changePYQPage(newPage) {
+  renderPYQ(pyqData, newPage);
+  document.getElementById("section-pyq")?.scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderJournals(items, page = pageState.journals) {
+  pageState.journals = page;
   const container = document.getElementById("journalsGrid");
   if (!container) return;
 
-  container.innerHTML = items.map(jn => `
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
+
+  container.innerHTML = pageItems.map(jn => `
     <div class="portal-card">
       <div class="card-meta-top">
         <span class="badge-cat" style="background:#ecfdf5;color:#059669;"><i class="fa-solid fa-award"></i> ${jn.indexing || "UGC-CARE Listed"}</span>
@@ -203,13 +290,24 @@ function renderJournals(items) {
       </div>
     </div>
   `).join("");
+
+  renderPaginationControls(items.length, page, "journalsPagination", "changeJournalsPage");
 }
 
-function renderResults(items) {
+function changeJournalsPage(newPage) {
+  renderJournals(journalsData, newPage);
+  document.getElementById("section-journals")?.scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderResults(items, page = pageState.results) {
+  pageState.results = page;
   const container = document.getElementById("resultsGrid");
   if (!container) return;
 
-  container.innerHTML = items.map(r => `
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
+
+  container.innerHTML = pageItems.map(r => `
     <div class="portal-card">
       <div class="card-meta-top">
         <span class="badge-cat"><i class="fa-solid fa-square-poll-vertical"></i> Portal Gateway</span>
@@ -221,13 +319,24 @@ function renderResults(items) {
       </div>
     </div>
   `).join("");
+
+  renderPaginationControls(items.length, page, "resultsPagination", "changeResultsPage");
 }
 
-function renderMedia(items) {
+function changeResultsPage(newPage) {
+  renderResults(resultsData, newPage);
+  document.getElementById("section-results")?.scrollIntoView({ behavior: 'smooth' });
+}
+
+function renderMedia(items, page = pageState.media) {
+  pageState.media = page;
   const container = document.getElementById("mediaGrid");
   if (!container) return;
 
-  container.innerHTML = items.map(m => `
+  const start = (page - 1) * ITEMS_PER_PAGE;
+  const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
+
+  container.innerHTML = pageItems.map(m => `
     <div class="portal-card">
       <div class="card-meta-top">
         <span class="badge-cat"><i class="fa-brands fa-youtube"></i> Lecture Video</span>
@@ -241,6 +350,13 @@ function renderMedia(items) {
       </div>
     </div>
   `).join("");
+
+  renderPaginationControls(items.length, page, "mediaPagination", "changeMediaPage");
+}
+
+function changeMediaPage(newPage) {
+  renderMedia(mediaData, newPage);
+  document.getElementById("section-media")?.scrollIntoView({ behavior: 'smooth' });
 }
 
 function renderTicker(items) {
@@ -268,9 +384,9 @@ function filterCareer(category) {
   });
 
   if (category === 'All') {
-    renderCareers(careerData);
+    renderCareers(careerData, 1);
   } else {
-    renderCareers(careerData.filter(item => (item.category || '').toLowerCase() === category.toLowerCase()));
+    renderCareers(careerData.filter(item => (item.category || '').toLowerCase() === category.toLowerCase()), 1);
   }
 }
 
@@ -280,9 +396,9 @@ function filterEbooks(category) {
   });
 
   if (category === 'All') {
-    renderEbooks(ebooksData);
+    renderEbooks(ebooksData, 1);
   } else {
-    renderEbooks(ebooksData.filter(item => (item.category || '').toLowerCase() === category.toLowerCase()));
+    renderEbooks(ebooksData.filter(item => (item.category || '').toLowerCase() === category.toLowerCase()), 1);
   }
 }
 
@@ -290,22 +406,22 @@ function executeGlobalSearch() {
   const q = (document.getElementById("masterSearch")?.value || "").toLowerCase().trim();
   
   if (!q) {
-    renderCareers(careerData);
-    renderEbooks(ebooksData);
-    renderPYQ(pyqData);
-    renderJournals(journalsData);
-    renderResults(resultsData);
-    renderMedia(mediaData);
+    renderCareers(careerData, 1);
+    renderEbooks(ebooksData, 1);
+    renderPYQ(pyqData, 1);
+    renderJournals(journalsData, 1);
+    renderResults(resultsData, 1);
+    renderMedia(mediaData, 1);
     return;
   }
 
   const match = obj => Object.values(obj).some(val => String(val).toLowerCase().includes(q));
-  renderCareers(careerData.filter(match));
-  renderEbooks(ebooksData.filter(match));
-  renderPYQ(pyqData.filter(match));
-  renderJournals(journalsData.filter(match));
-  renderResults(resultsData.filter(match));
-  renderMedia(mediaData.filter(match));
+  renderCareers(careerData.filter(match), 1);
+  renderEbooks(ebooksData.filter(match), 1);
+  renderPYQ(pyqData.filter(match), 1);
+  renderJournals(journalsData.filter(match), 1);
+  renderResults(resultsData.filter(match), 1);
+  renderMedia(mediaData.filter(match), 1);
 }
 
 function toggleTheme() {
@@ -361,7 +477,7 @@ async function syncGoogleSheet() {
         deadline: j.deadline || "Open",
         link: j.link || "#"
       }));
-      renderCareers(careerData);
+      renderCareers(careerData, 1);
       renderTicker(careerData);
     }
 
@@ -373,7 +489,7 @@ async function syncGoogleSheet() {
         date: b.date || "2026",
         link: b.link || "#"
       }));
-      renderEbooks(ebooksData);
+      renderEbooks(ebooksData, 1);
     }
 
     if (livePYQs.length > 0) {
@@ -383,7 +499,7 @@ async function syncGoogleSheet() {
         date: p.date || "Latest",
         link: p.link || "#"
       }));
-      renderPYQ(pyqData);
+      renderPYQ(pyqData, 1);
     }
 
     if (liveJournals.length > 0) {
@@ -394,7 +510,7 @@ async function syncGoogleSheet() {
         deadline: jn.deadline || "Open",
         link: jn.link || "#"
       }));
-      renderJournals(journalsData);
+      renderJournals(journalsData, 1);
     }
 
     if (liveResults.length > 0) {
@@ -403,7 +519,7 @@ async function syncGoogleSheet() {
         organization: r.organization || "Examination Authority",
         link: r.link || "#"
       }));
-      renderResults(resultsData);
+      renderResults(resultsData, 1);
     }
 
     if (liveMedia.length > 0) {
@@ -412,7 +528,7 @@ async function syncGoogleSheet() {
         organization: m.organization || "Academic Department",
         link: m.link || "https://youtube.com"
       }));
-      renderMedia(mediaData);
+      renderMedia(mediaData, 1);
     }
 
   } catch (err) {
@@ -553,13 +669,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (icon) icon.className = 'fa-solid fa-sun';
   }
 
-  // Render immediately
-  renderCareers(careerData);
-  renderEbooks(ebooksData);
-  renderPYQ(pyqData);
-  renderJournals(journalsData);
-  renderResults(resultsData);
-  renderMedia(mediaData);
+  // Render immediately with 6 items per page
+  renderCareers(careerData, 1);
+  renderEbooks(ebooksData, 1);
+  renderPYQ(pyqData, 1);
+  renderJournals(journalsData, 1);
+  renderResults(resultsData, 1);
+  renderMedia(mediaData, 1);
   renderTicker(careerData);
 
   // Sync latest from Google Sheets
