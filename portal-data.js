@@ -110,20 +110,33 @@ let mediaData = [
    ============================================================== */
 
 function renderCareers(items) {
-  const container = document.getElementById("careerGrid");
+  const container = document.getElementById("careersGrid");
   if (!container) return;
 
-  container.innerHTML = items.map(j => `
+  container.innerHTML = items.map(c => `
     <div class="portal-card">
       <div class="card-meta-top">
-        <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${j.category || "General"}</span>
-        <span class="date-badge"><i class="fa-regular fa-calendar-check"></i> ${j.date || "Recent"}</span>
+        <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${c.category || "Notice"}</span>
+        <span class="date-badge">${c.date || "Active"}</span>
       </div>
-      <h3>${j.title}</h3>
-      <p class="card-subtext"><strong>Organization:</strong> ${j.organization || "Govt Org"}</p>
-      <p class="card-subtext"><strong style="color: #e11d48;"><i class="fa-regular fa-clock"></i> Deadline:</strong> ${j.deadline || "Open"}</p>
-      <div class="card-action-bar">
-        <a href="${cleanUrl(j.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Official Notification &rarr;</a>
+      <h3>${c.title}</h3>
+      <p class="card-subtext"><strong>Authority:</strong> ${c.organization || "Public Sector"}</p>
+      ${c.deadline ? `<p class="card-deadline"><i class="fa-regular fa-clock"></i> Last Date: <strong>${c.deadline}</strong></p>` : ''}
+      
+      <div class="card-action-bar" style="display: flex; gap: 0.5rem; align-items: center; margin-top: 1rem;">
+        <a href="${c.link}" target="_blank" rel="noopener noreferrer" class="btn-card-primary" style="flex: 1; text-align: center; text-decoration: none;">
+          Official Link &rarr;
+        </a>
+        <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${c.link}', 'whatsapp')" 
+                title="Share to WhatsApp" 
+                style="background: #25D366; color: white; border: none; border-radius: 6px; padding: 0.65rem 0.85rem; cursor: pointer;">
+          <i class="fa-brands fa-whatsapp"></i>
+        </button>
+        <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${c.link}', 'copy')" 
+                title="Copy formatted post" 
+                style="background: #e2e8f0; color: #334155; border: none; border-radius: 6px; padding: 0.65rem 0.85rem; cursor: pointer;">
+          <i class="fa-regular fa-copy"></i>
+        </button>
       </div>
     </div>
   `).join("");
