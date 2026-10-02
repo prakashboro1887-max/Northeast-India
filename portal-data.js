@@ -142,11 +142,14 @@ function renderEbooks(items) {
       <h3>${b.title}</h3>
       <p class="card-subtext"><strong>Board / Publisher:</strong> ${b.organization || "Official"}</p>
       <div class="card-action-bar">
-        <a href="${cleanUrl(b.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Open Resource &rarr;</a>
+        <button onclick="openViewerModal('${b.title.replace(/'/g, "\\'")}', '${b.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
+          <i class="fa-regular fa-eye"></i> Open Document &rarr;
+        </button>
       </div>
     </div>
   `).join("");
 }
+
 
 function renderPYQ(items) {
   const container = document.getElementById("pyqGrid");
@@ -161,11 +164,14 @@ function renderPYQ(items) {
       <h3>${p.title}</h3>
       <p class="card-subtext"><strong>Source:</strong> ${p.organization || "Education Board"}</p>
       <div class="card-action-bar">
-        <a href="${cleanUrl(p.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Download Paper &rarr;</a>
+        <button onclick="openViewerModal('${p.title.replace(/'/g, "\\'")}', '${p.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
+          <i class="fa-regular fa-eye"></i> View Paper &rarr;
+        </button>
       </div>
     </div>
   `).join("");
 }
+
 
 function renderJournals(items) {
   const container = document.getElementById("journalsGrid");
@@ -217,7 +223,9 @@ function renderMedia(items) {
       <h3>${m.title}</h3>
       <p class="card-subtext"><strong>Instructor / Channel:</strong> ${m.organization || "Education Stream"}</p>
       <div class="card-action-bar">
-        <a href="${cleanUrl(m.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Watch Lecture &rarr;</a>
+        <button onclick="openViewerModal('${m.title.replace(/'/g, "\\'")}', '${m.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
+          <i class="fa-solid fa-play"></i> Watch Lecture &rarr;
+        </button>
       </div>
     </div>
   `).join("");
@@ -397,6 +405,97 @@ async function syncGoogleSheet() {
 
   } catch (err) {
     console.warn("Using fallback datasets. Google Sheet fetch warning:", err);
+  }
+}
+
+
+
+
+/* ==============================================================
+   IN-SITE RESOURCE & PDF VIEWER MODAL
+   ============================================================== */
+
+let currentActiveResourceUrl = "";
+
+function openViewerModal(title, url, type = "doc") {
+  const modal = document.getElementById("portalModal");
+  const heading = document.getElementById("modalHeading");
+  const container = document.getElementById("modalFrameContainer");
+  
+  if (!modal || !container) return;
+
+  currentActiveResourceUrl = cleanUrl(url);
+  heading.innerHTML = `<i class="fa-solid fa-file-lines"></i> ${title}`;
+
+  let embedUrl = currentActiveResourceUrl;
+
+  // Convert Google Drive view links to direct preview embeds
+  if (embedUrl.includes("drive.google.com/file/d/")) {
+    embedUrl = embedUrl.replace(/\/view(\?.*)?$/, "/preview");
+  } 
+  // Convert standard YouTube links to responsive embeds
+  else if (embedUrl.includes("youtube.com/watch?v=")) {
+    const videoId = embedUrl.split("v=")[1]?.split("&")[0];
+    embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+  } else if (embedUrl.includes("youtu.be/")) {
+    const videoId = embedUrl.split("youtu.be/")[1]?.split("?")[0];
+    embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+  } 
+  // Direct PDF files (Google Docs PDF Viewer wrapper for cross-device compatibility)
+  else if (embedUrl.toLowerCase().endsWith(".pdf")) {
+    embedUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(embedUrl)}`;
+  }
+
+  // Inject responsive iframe with an option to open externally if blocked by third-party headers
+  container.innerHTML = `
+    <div style="position: relative; width: 100%; height: 100%; min-height: 520px; display: flex; flex-direction: column;">
+      <iframe src="${embedUrl}" style="width: 100%; height: 100%; flex: 1; border: none; border-radius: 0 0 10px 10px;" allowfullscreen></iframe>
+      <div style="padding: 0.6rem 1rem; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
+        <span style="color: #64748b;">Notice issues viewing inside frame?</span>
+        <a href="${currentActiveResourceUrl}" target="_blank" rel="noopener noreferrer" style="color: #0284c7; font-weight: 600; text-decoration: none;">
+          Open in New Tab <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+  `;
+
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden"; // Prevent background scrolling
+}
+
+function closePortalModal() {
+  const modal = document.getElementById("portalModal");
+  const container = document.getElementById("modalFrameContainer");
+  if (modal) modal.style.display = "none";
+  if (container) container.innerHTML = ""; // Stop audio/video playback
+  document.body.style.overflow = "auto";
+}
+
+// Close when clicking outside the modal dialog box
+window.addEventListener("click", (e) => {
+  const modal = document.getElementById("portalModal");
+  if (e.target === modal) {
+    closePortalModal();
+  }
+});
+
+// Modal Social Media Dispatcher
+function dispatchShare(platform) {
+  const url = encodeURIComponent(currentActiveResourceUrl || window.location.href);
+  const text = encodeURIComponent("Check out this academic resource on NE Academic Hub:");
+
+  if (platform === "whatsapp") {
+    window.open(`https://api.whatsapp.com/send?text=${text}%20${url}`, "_blank");
+  } else if (platform === "facebook") {
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+  } else if (platform === "telegram") {
+    window.open(`https://t.me/share/url?url=${url}&text=${text}`, "_blank");
+  } else if (platform === "x") {
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+  } else if (platform === "copy") {
+    navigator.clipboard.writeText(decodeURIComponent(url)).then(() => {
+      alert("Resource link copied to clipboard!");
+    });
   }
 }
 
