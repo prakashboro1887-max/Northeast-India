@@ -5,7 +5,17 @@
 // 1. Google Sheets CSV Endpoint
 const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0y4e3_-teBXQcNZXKbXNca_bzYGi5wF-klG2pJnkHIKOA5TizIZjSRvqhd5ewrCk8wb6EH9xUGESy/pub?gid=0&single=true&output=csv";
 
-// 2. Base Fallback Datasets (Ensures portal is never empty)
+// Helper: Normalize URLs to guarantee secure direct opening
+function cleanUrl(url) {
+  if (!url) return "#";
+  const trimmed = url.trim();
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+    return trimmed;
+  }
+  return "https://" + trimmed;
+}
+
+// 2. Base Datasets (Displays until Google Sheets loads, or if a category is empty)
 let careerData = [
   {
     title: "Library Apprenticeship / Trainee 2026",
@@ -45,7 +55,7 @@ let ebooksData = [
     organization: "Guwahati Open Repository",
     category: "Higher Ed",
     date: "2026",
-    link: "https://dspace.org/"
+    link: "https://dspace.lyrasis.org/"
   }
 ];
 
@@ -91,7 +101,7 @@ let mediaData = [
   {
     title: "DSpace 9 Setup & Institutional Repository Cataloguing",
     organization: "DLIS Tech Workshop",
-    videoId: "dQw4w9WgXcQ"
+    link: "https://www.youtube.com/results?search_query=dspace+tutorial"
   }
 ];
 
@@ -113,7 +123,7 @@ function renderCareers(items) {
       <p class="card-subtext"><strong>Organization:</strong> ${j.organization || "Govt Org"}</p>
       <p class="card-subtext"><strong style="color: #e11d48;"><i class="fa-regular fa-clock"></i> Deadline:</strong> ${j.deadline || "Open"}</p>
       <div class="card-action-bar">
-        <a href="${j.link || '#'}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Official Notification &rarr;</a>
+        <a href="${cleanUrl(j.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Official Notification &rarr;</a>
       </div>
     </div>
   `).join("");
@@ -132,7 +142,7 @@ function renderEbooks(items) {
       <h3>${b.title}</h3>
       <p class="card-subtext"><strong>Board / Publisher:</strong> ${b.organization || "Official"}</p>
       <div class="card-action-bar">
-        <a href="${b.link || '#'}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Open Resource &rarr;</a>
+        <a href="${cleanUrl(b.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Open Resource &rarr;</a>
       </div>
     </div>
   `).join("");
@@ -146,12 +156,12 @@ function renderPYQ(items) {
     <div class="portal-card">
       <div class="card-meta-top">
         <span class="badge-cat"><i class="fa-solid fa-file-pdf"></i> Question Paper</span>
-        <span class="date-badge">${p.date}</span>
+        <span class="date-badge">${p.date || "Latest"}</span>
       </div>
       <h3>${p.title}</h3>
-      <p class="card-subtext"><strong>Source:</strong> ${p.organization}</p>
+      <p class="card-subtext"><strong>Source:</strong> ${p.organization || "Education Board"}</p>
       <div class="card-action-bar">
-        <a href="${p.link || '#'}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Download Paper &rarr;</a>
+        <a href="${cleanUrl(p.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Download Paper &rarr;</a>
       </div>
     </div>
   `).join("");
@@ -164,14 +174,14 @@ function renderJournals(items) {
   container.innerHTML = items.map(jn => `
     <div class="portal-card">
       <div class="card-meta-top">
-        <span class="badge-cat" style="background:#ecfdf5;color:#059669;"><i class="fa-solid fa-award"></i> ${jn.indexing || "Indexed"}</span>
+        <span class="badge-cat" style="background:#ecfdf5;color:#059669;"><i class="fa-solid fa-award"></i> ${jn.indexing || "UGC-CARE Listed"}</span>
         <span class="date-badge">CFP</span>
       </div>
       <h3>${jn.title}</h3>
-      <p class="card-subtext"><strong>Publisher:</strong> ${jn.organization}</p>
+      <p class="card-subtext"><strong>Publisher:</strong> ${jn.organization || "University / Journal"}</p>
       <p class="card-subtext"><strong style="color: #e11d48;"><i class="fa-regular fa-clock"></i> Submit By:</strong> ${jn.deadline || "Open"}</p>
       <div class="card-action-bar">
-        <a href="${jn.link || '#'}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Submission Guidelines &rarr;</a>
+        <a href="${cleanUrl(jn.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Submission Guidelines &rarr;</a>
       </div>
     </div>
   `).join("");
@@ -187,9 +197,9 @@ function renderResults(items) {
         <span class="badge-cat"><i class="fa-solid fa-square-poll-vertical"></i> Portal Gateway</span>
       </div>
       <h3>${r.title}</h3>
-      <p class="card-subtext"><strong>Authority:</strong> ${r.organization}</p>
+      <p class="card-subtext"><strong>Authority:</strong> ${r.organization || "Official Board"}</p>
       <div class="card-action-bar">
-        <a href="${r.link || '#'}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Check Result Now &rarr;</a>
+        <a href="${cleanUrl(r.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Check Result Now &rarr;</a>
       </div>
     </div>
   `).join("");
@@ -205,9 +215,9 @@ function renderMedia(items) {
         <span class="badge-cat"><i class="fa-brands fa-youtube"></i> Lecture Video</span>
       </div>
       <h3>${m.title}</h3>
-      <p class="card-subtext"><strong>Instructor / Channel:</strong> ${m.organization}</p>
+      <p class="card-subtext"><strong>Instructor / Channel:</strong> ${m.organization || "Education Stream"}</p>
       <div class="card-action-bar">
-        <a href="https://www.youtube.com/watch?v=${m.videoId}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Watch Lecture &rarr;</a>
+        <a href="${cleanUrl(m.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Watch Lecture &rarr;</a>
       </div>
     </div>
   `).join("");
@@ -215,17 +225,17 @@ function renderMedia(items) {
 
 function renderTicker(items) {
   const track = document.getElementById("tickerTrack");
-  if (!track) return;
+  if (!track || !items || items.length === 0) return;
 
   const content = items.map(item => `
     <span class="ticker-node">
       <span class="pill-new">NEW</span>
-      <a href="${item.link || '#'}" class="ticker-anchor" target="_blank">${item.title}</a>
+      <a href="${cleanUrl(item.link)}" class="ticker-anchor" target="_blank">${item.title}</a>
       <span class="ticker-date">(${item.date || 'Active'})</span>
     </span>
   `).join(" • ");
 
-  track.innerHTML = content + " • " + content; // Duplicate for smooth looping
+  track.innerHTML = content + " • " + content;
 }
 
 /* ==============================================================
@@ -262,12 +272,20 @@ function executeGlobalSearch() {
   if (!q) {
     renderCareers(careerData);
     renderEbooks(ebooksData);
+    renderPYQ(pyqData);
+    renderJournals(journalsData);
+    renderResults(resultsData);
+    renderMedia(mediaData);
     return;
   }
 
   const match = obj => Object.values(obj).some(val => String(val).toLowerCase().includes(q));
   renderCareers(careerData.filter(match));
   renderEbooks(ebooksData.filter(match));
+  renderPYQ(pyqData.filter(match));
+  renderJournals(journalsData.filter(match));
+  renderResults(resultsData.filter(match));
+  renderMedia(mediaData.filter(match));
 }
 
 function toggleTheme() {
@@ -294,11 +312,10 @@ async function syncGoogleSheet() {
     const rows = text.trim().split(/\r?\n/).filter(r => r.trim().length > 0);
     if (rows.length <= 1) return;
 
-    // Parse header row
+    // Parse header row safely
     const headers = rows[0].split(',').map(h => h.replace(/^["\s]+|["\s]+$/g, '').toLowerCase());
 
     const parsed = rows.slice(1).map(row => {
-      // Split preserving values
       const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
       let obj = {};
       headers.forEach((h, i) => {
@@ -307,10 +324,13 @@ async function syncGoogleSheet() {
       return obj;
     });
 
-    // Categorize entries by 'type'
+    // Categorize by 'type' column
     const liveJobs = parsed.filter(d => (d.type || "").toLowerCase() === "job");
     const liveEbooks = parsed.filter(d => (d.type || "").toLowerCase() === "ebook");
     const livePYQs = parsed.filter(d => (d.type || "").toLowerCase() === "pyq");
+    const liveJournals = parsed.filter(d => (d.type || "").toLowerCase() === "journal");
+    const liveResults = parsed.filter(d => (d.type || "").toLowerCase() === "result" || (d.type || "").toLowerCase() === "notice");
+    const liveMedia = parsed.filter(d => (d.type || "").toLowerCase() === "lecture" || (d.type || "").toLowerCase() === "video");
 
     if (liveJobs.length > 0) {
       careerData = liveJobs.map(j => ({
@@ -345,6 +365,36 @@ async function syncGoogleSheet() {
       }));
       renderPYQ(pyqData);
     }
+
+    if (liveJournals.length > 0) {
+      journalsData = liveJournals.map(jn => ({
+        title: jn.title || jn.tittle || "Call for Papers",
+        organization: jn.organization || "Academic Press",
+        indexing: jn.category || "UGC-CARE Listed",
+        deadline: jn.deadline || "Open",
+        link: jn.link || "#"
+      }));
+      renderJournals(journalsData);
+    }
+
+    if (liveResults.length > 0) {
+      resultsData = liveResults.map(r => ({
+        title: r.title || r.tittle || "Official Result / Notice",
+        organization: r.organization || "Examination Authority",
+        link: r.link || "#"
+      }));
+      renderResults(resultsData);
+    }
+
+    if (liveMedia.length > 0) {
+      mediaData = liveMedia.map(m => ({
+        title: m.title || m.tittle || "Educational Lecture",
+        organization: m.organization || "Academic Department",
+        link: m.link || "https://youtube.com"
+      }));
+      renderMedia(mediaData);
+    }
+
   } catch (err) {
     console.warn("Using fallback datasets. Google Sheet fetch warning:", err);
   }
@@ -355,14 +405,13 @@ async function syncGoogleSheet() {
    ============================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Theme check
   if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-mode');
     const icon = document.getElementById('themeIcon');
     if (icon) icon.className = 'fa-solid fa-sun';
   }
 
-  // Render initial data immediately
+  // Render immediately
   renderCareers(careerData);
   renderEbooks(ebooksData);
   renderPYQ(pyqData);
