@@ -1,797 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="metaTitle">Recruitment Details & Updates | NE Academic Hub</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <style>
-    :root {
-      --primary: #0284c7;
-      --primary-hover: #0369a1;
-      --primary-dark: #0f172a;
-      --primary-light: #f0f9ff;
-      --accent: #e11d48;
-      --bg-main: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --emerald: #059669;
-      --font-serif: 'Bookman Old Style', 'Bookman', 'URW Bookman L', 'Georgia', serif;
-      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
-    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.65; }
-
-    /* Top Institutional Navigation */
-    .site-nav {
-      background: var(--primary-dark);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 0.9rem 1.5rem;
-    }
-
-    .nav-inner {
-      max-width: 1080px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand-group {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      color: #fff;
-    }
-
-    .brand-icon {
-      font-size: 1.6rem;
-      color: #38bdf8;
-    }
-
-    .brand-title {
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: #fff;
-      letter-spacing: 0.5px;
-    }
-
-    .brand-sub {
-      font-size: 0.72rem;
-      color: #94a3b8;
-      display: block;
-    }
-
-    .nav-btn-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: #cbd5e1;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 0.45rem 0.95rem;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      transition: all 0.2s ease;
-    }
-
-    .nav-btn-back:hover {
-      background: rgba(255, 255, 255, 0.18);
-      color: #fff;
-    }
-
-    /* Single Column Main Layout */
-    .editorial-container {
-      max-width: 1040px;
-      margin: 2rem auto 4rem auto;
-      padding: 0 1.25rem;
-    }
-
-    .breadcrumb {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-    }
-
-    .breadcrumb a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    /* Main Article Container */
-    .article-box {
-      background: var(--card-bg);
-      border: none;
-      border-radius: 16px;
-      padding: 2.8rem 2.4rem;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
-    }
-
-    .category-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--primary-light);
-      color: var(--primary);
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.3rem 0.75rem;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 1rem;
-    }
-
-    /* Continuous Moving Gradient Title */
-    .post-main-title {
-      font-family: var(--font-serif);
-      font-size: 2.5rem;
-      font-weight: 700;
-      line-height: 1.22;
-      letter-spacing: -0.4px;
-      margin-bottom: 0.45rem;
-      background: linear-gradient(90deg, #0f172a 0%, #0284c7 35%, #0ea5e9 60%, #0f172a 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: movingGradient 6s linear infinite;
-    }
-
-    @keyframes movingGradient {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-
-    .org-subtitle {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      color: var(--primary);
-      font-style: italic;
-      margin-bottom: 1.6rem;
-    }
-
-    /* Top Summary Metrics Strip */
-    .floating-metrics-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin: 1.8rem 0;
-    }
-
-    .metric-pill {
-      background: #f1f5f9;
-      border-radius: 10px;
-      padding: 1rem 1.15rem;
-      transition: transform 0.2s ease;
-    }
-
-    .metric-pill:hover {
-      transform: translateY(-2px);
-      background: #e2e8f0;
-    }
-
-    .metric-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 700;
-      display: block;
-    }
-
-    .metric-val {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-top: 0.25rem;
-      display: block;
-    }
-
-    .metric-pill.alert {
-      background: #fff1f2;
-    }
-
-    .metric-pill.alert .metric-val {
-      color: var(--accent);
-    }
-
-    /* Moving Gradient Section Headings */
-    .content-section-title {
-      font-family: var(--font-serif);
-      font-size: 1.45rem;
-      font-weight: 700;
-      margin: 2.6rem 0 1.2rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      background: linear-gradient(120deg, #0284c7, #0ea5e9, #0369a1);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: movingGradient 5s ease infinite alternate;
-    }
-
-    /* Executive Clean Specifications Grid (Replaces Pill Rows) */
-    .spec-card-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .spec-card-row {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      align-items: center;
-      background: #f8fafc;
-      padding: 0.95rem 1.4rem;
-      border-radius: 8px;
-      border-left: 3px solid transparent;
-      transition: all 0.2s ease;
-    }
-
-    .spec-card-row:hover {
-      background: #f1f5f9;
-      border-left-color: var(--primary);
-      transform: translateX(2px);
-    }
-
-    .spec-card-key {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #475569;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .spec-card-key i {
-      color: var(--primary);
-      font-size: 0.85rem;
-      width: 16px;
-    }
-
-    .spec-card-value {
-      font-size: 0.96rem;
-      font-weight: 600;
-      color: var(--primary-dark);
-    }
-
-    /* Social Community Ribbon */
-    .social-ribbon {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0.85rem;
-      margin: 2.2rem 0;
-    }
-
-    .btn-social-stream {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      padding: 0.85rem 1rem;
-      border-radius: 10px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 700;
-      transition: transform 0.2s, opacity 0.2s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn-social-stream:hover {
-      transform: translateY(-2px);
-      opacity: 0.95;
-    }
-
-    .btn-social-stream.wa { background: #25d366; }
-    .btn-social-stream.fb { background: #1877f2; }
-    .btn-social-stream.yt { background: #ff0000; }
-    .btn-social-stream.share { background: #475569; }
-
-    /* Separate Individual Action Cards (Below Sections) */
-    .links-stack-list {
+/* ==============================================================
+       VERTICAL SOCIAL LIST WITH DANCING / MOVING COLOR BORDERS
+       ============================================================== */
+    .social-list-stack {
       display: flex;
       flex-direction: column;
       gap: 0.9rem;
-      margin: 1.5rem 0 2.5rem 0;
+      margin: 2.2rem 0;
     }
 
-    .link-item-card {
+    .social-moving-card {
+      position: relative;
+      border-radius: 12px;
+      padding: 2px; /* thickness of the moving color border */
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.25s ease;
+      cursor: pointer;
+    }
+
+    .social-moving-card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Rotating Conic Gradient Light Beam (Dancing Border) */
+    .social-moving-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        transparent,
+        var(--glow-color, #0284c7),
+        #38bdf8,
+        transparent 65%
+      );
+      animation: rotateBorder 4s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes rotateBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Inner Body Container */
+    .social-card-inner {
+      position: relative;
+      z-index: 2;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 0.95rem 1.4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.15rem 1.4rem;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      flex-wrap: wrap;
-      gap: 1rem;
+      color: #0f172a;
     }
 
-    .link-item-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
-    }
-
-    .link-item-info {
+    .social-card-lead {
       display: flex;
       align-items: center;
       gap: 1.1rem;
     }
 
-    .link-icon-box {
-      width: 44px;
-      height: 44px;
+    .social-card-icon {
+      width: 42px;
+      height: 42px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
+      color: #ffffff;
     }
 
-    .link-item-title {
-      font-size: 1.02rem;
-      font-weight: 700;
-      display: block;
+    .social-title-text {
+      font-size: 1rem;
+      font-weight: 800;
       color: #0f172a;
-    }
-
-    .link-item-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
       display: block;
-      margin-top: 0.15rem;
     }
 
-    .btn-link-action {
+    .social-sub-text {
+      font-size: 0.78rem;
+      color: #64748b;
+      display: block;
+    }
+
+    .social-arrow-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 0.6rem 1.25rem;
-      border-radius: 8px;
-      font-size: 0.85rem;
+      gap: 0.4rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      color: #fff;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      color: #ffffff;
     }
 
-    /* Distinct Card Colors */
-    .card-apply {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-    }
-    .card-apply .link-icon-box {
-      background: #dcfce7;
-      color: var(--emerald);
-    }
-    .card-apply .btn-link-action {
-      background: var(--emerald);
-    }
-    .card-apply:hover .btn-link-action {
-      background: #047857;
-    }
+    /* 1. WhatsApp Theme */
+    .theme-wa { --glow-color: #25d366; }
+    .theme-wa .social-card-icon { background: #25d366; }
+    .theme-wa .social-arrow-badge { background: #25d366; }
 
-    .card-pdf {
-      background: #fff1f2;
-      border: 1px solid #fecdd3;
-    }
-    .card-pdf .link-icon-box {
-      background: #ffe4e6;
-      color: var(--accent);
-    }
-    .card-pdf .btn-link-action {
-      background: var(--accent);
-    }
-    .card-pdf:hover .btn-link-action {
-      background: #be123c;
-    }
+    /* 2. Facebook Theme */
+    .theme-fb { --glow-color: #1877f2; }
+    .theme-fb .social-card-icon { background: #1877f2; }
+    .theme-fb .social-arrow-badge { background: #1877f2; }
 
-    .card-site {
-      background: #f0f9ff;
-      border: 1px solid #bae6fd;
-    }
-    .card-site .link-icon-box {
-      background: #e0f2fe;
-      color: var(--primary);
-    }
-    .card-site .btn-link-action {
-      background: var(--primary);
-    }
-    .card-site:hover .btn-link-action {
-      background: var(--primary-hover);
-    }
+    /* 3. YouTube Theme */
+    .theme-yt { --glow-color: #ff0000; }
+    .theme-yt .social-card-icon { background: #ff0000; }
+    .theme-yt .social-arrow-badge { background: #ff0000; }
 
-    /* Related Opportunities */
-    .related-section {
-      margin-top: 3.5rem;
-    }
-
-    .related-grid-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-top: 1.2rem;
-    }
-
-    .related-seamless-card {
-      background: #f8fafc;
-      border-radius: 12px;
-      padding: 1.25rem 1.4rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .related-seamless-card:hover {
-      background: #f1f5f9;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
-    }
-
-    .related-seamless-card .tag {
-      font-size: 0.72rem;
-      color: var(--primary);
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .related-seamless-card h4 {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      color: var(--primary-dark);
-      margin: 0.4rem 0;
-      line-height: 1.35;
-    }
-
-    .related-seamless-card .cutoff {
-      font-size: 0.78rem;
-      color: var(--accent);
-      font-weight: 700;
-      margin-top: 0.5rem;
-    }
-
-    /* Institutional Footer */
-    .portal-footer {
-      background: var(--primary-dark);
-      color: #94a3b8;
-      padding: 3rem 1.5rem;
-      text-align: center;
-      font-size: 0.88rem;
-      margin-top: 4rem;
-    }
-
-    .portal-footer .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .portal-footer .footer-links a {
-      color: #cbd5e1;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .portal-footer .footer-links a:hover {
-      color: #38bdf8;
-    }
-
-    #loadingScreen {
-      text-align: center;
-      padding: 6rem 1rem;
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
-
-    @media (max-width: 768px) {
-      .floating-metrics-row { grid-template-columns: repeat(2, 1fr); }
-      .spec-card-row { grid-template-columns: 1fr; gap: 0.25rem; }
-      .social-ribbon { grid-template-columns: 1fr 1fr; }
-      .link-item-card { flex-direction: column; align-items: flex-start; }
-      .btn-link-action { width: 100%; justify-content: center; }
-      .article-box { padding: 1.8rem 1.25rem; }
-      .post-main-title { font-size: 1.85rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Top Institutional Header -->
-  <header class="site-nav">
-    <div class="nav-inner">
-      <a href="index.html" class="brand-group">
-        <i class="fa-solid fa-graduation-cap brand-icon"></i>
-        <div>
-          <span class="brand-title">NE ACADEMIC HUB</span>
-          <span class="brand-sub">Government Resources & Public Career Portal</span>
-        </div>
-      </a>
-      <a href="index.html" class="nav-btn-back"><i class="fa-solid fa-arrow-left"></i> All Notifications</a>
-    </div>
-  </header>
-
-  <div class="editorial-container">
-    
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-      <span>&rsaquo;</span>
-      <a href="index.html#section-career">Careers & Recruitment</a>
-      <span>&rsaquo;</span>
-      <span id="crumbPostTitle" style="color: var(--text-muted);">Loading Notice...</span>
-    </div>
-
-    <!-- Loading State -->
-    <div id="loadingScreen">
-      <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 0.8rem;"></i>
-      <p>Synchronizing authentic record...</p>
-    </div>
-
-    <!-- Main Dossier Body -->
-    <main class="article-box" id="mainDossier" style="display: none;">
-      
-      <span class="category-chip" id="dispCategory"><i class="fa-solid fa-briefcase"></i> Recruitment Notice</span>
-      
-      <!-- Moving Gradient Headline -->
-      <h1 class="post-main-title" id="dispTitle">Notification Headline</h1>
-      <div class="org-subtitle" id="dispOrg">Hiring Department / Public Authority</div>
-
-      <!-- Floating Stat Strip -->
-      <div class="floating-metrics-row">
-        <div class="metric-pill">
-          <span class="metric-label">Total Cadre</span>
-          <span class="metric-val" id="dispVacancies">--</span>
-        </div>
-        <div class="metric-pill">
-          <span class="metric-label">Pay Level</span>
-          <span class="metric-val" id="dispPayScale">--</span>
-        </div>
-        <div class="metric-pill">
-          <span class="metric-label">Age Ceiling</span>
-          <span class="metric-val" id="dispAgeLimit">--</span>
-        </div>
-        <div class="metric-pill alert">
-          <span class="metric-label">Application Cutoff</span>
-          <span class="metric-val" id="dispDeadline">--</span>
-        </div>
-      </div>
-
-      <!-- Social Media Communities Ribbon -->
-      <div class="social-ribbon">
-        <a href="https://whatsapp.com/channel/YOUR_CHANNEL_LINK" target="_blank" rel="noopener noreferrer" class="btn-social-stream wa">
-          <i class="fa-brands fa-whatsapp fa-lg"></i> WhatsApp Channel
-        </a>
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-social-stream fb">
-          <i class="fa-brands fa-facebook-f fa-lg"></i> Facebook Group
-        </a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn-social-stream yt">
-          <i class="fa-brands fa-youtube fa-lg"></i> YouTube Channel
-        </a>
-        <button class="btn-social-stream share" onclick="shareNotice()">
-          <i class="fa-solid fa-share-nodes fa-lg"></i> Share Notice
-        </button>
-      </div>
-
-      <!-- Section 1: Post Specifications (Redesigned Clean Matrix) -->
-      <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Criteria</h2>
-      <div class="spec-card-grid">
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-user-tie"></i> Designation / Cadre</div>
-          <div class="spec-card-value" id="dispPostName">--</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-graduation-cap"></i> Educational Minimum</div>
-          <div class="spec-card-value" id="dispQualification">--</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-briefcase"></i> Qualifying Experience</div>
-          <div class="spec-card-value" id="dispExperience">--</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-hourglass-half"></i> Age Limits & Relaxations</div>
-          <div class="spec-card-value" id="dispAgeDetailed">Category relaxations applicable as per rules</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-location-dot"></i> Station Allocation</div>
-          <div class="spec-card-value" id="dispLocation">Northeast India / All India</div>
-        </div>
-      </div>
-
-      <!-- Section 2: Application Fee Structure -->
-      <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</h2>
-      <div class="spec-card-grid">
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-receipt"></i> General / OBC / EWS</div>
-          <div class="spec-card-value" id="dispFeeGen">--</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-hand-holding-dollar"></i> SC / ST / PwD / Female</div>
-          <div class="spec-card-value" id="dispFeeReserved">Nil / Exempted</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-regular fa-credit-card"></i> Payment Mode</div>
-          <div class="spec-card-value">Online (Net Banking / Debit Card) or Offline Challan</div>
-        </div>
-      </div>
-
-      <!-- Section 3: Procedural Timeline -->
-      <h2 class="content-section-title"><i class="fa-regular fa-calendar-check"></i> Procedural Timeline & Dates</h2>
-      <div class="spec-card-grid">
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-regular fa-calendar-plus"></i> Notification Released</div>
-          <div class="spec-card-value" id="dispStartDate">--</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-regular fa-calendar-xmark"></i> Registration Cutoff</div>
-          <div class="spec-card-value" id="dispEndDate" style="color: var(--accent); font-weight: 800;">--</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-bullhorn"></i> Examination Schedule</div>
-          <div class="spec-card-value">To be notified on the official authority portal</div>
-        </div>
-      </div>
-
-      <!-- Section 4: Individual Action Links (Placed at the Bottom) -->
-      <h2 class="content-section-title"><i class="fa-solid fa-link"></i> Authorized Application & Verification Gateways</h2>
-      <div class="links-stack-list">
-        
-        <!-- Link 1: Apply Online -->
-        <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="link-item-card card-apply">
-          <div class="link-item-info">
-            <div class="link-icon-box"><i class="fa-solid fa-paper-plane"></i></div>
-            <div>
-              <span class="link-item-title">Online Application Portal</span>
-              <span class="link-item-desc">Access the direct submission gateway for registrations</span>
-            </div>
-          </div>
-          <span class="btn-link-action">Apply Online <i class="fa-solid fa-arrow-right"></i></span>
-        </a>
-
-        <!-- Link 2: Download PDF -->
-        <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="link-item-card card-pdf">
-          <div class="link-item-info">
-            <div class="link-icon-box"><i class="fa-solid fa-file-pdf"></i></div>
-            <div>
-              <span class="link-item-title">Official Notification (PDF)</span>
-              <span class="link-item-desc">Download and inspect the original employment gazette notice</span>
-            </div>
-          </div>
-          <span class="btn-link-action">Download PDF <i class="fa-solid fa-download"></i></span>
-        </a>
-
-        <!-- Link 3: Official Site -->
-        <a id="btnOfficialSite" href="#" target="_blank" rel="noopener noreferrer" class="link-item-card card-site">
-          <div class="link-item-info">
-            <div class="link-icon-box"><i class="fa-solid fa-globe"></i></div>
-            <div>
-              <span class="link-item-title">Official Department Website</span>
-              <span class="link-item-desc">Visit the hiring authority's primary institutional portal</span>
-            </div>
-          </div>
-          <span class="btn-link-action">Official Portal <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-        </a>
-
-      </div>
-
-      <!-- Bottom Horizontal Related Jobs -->
-      <section class="related-section">
-        <h2 class="content-section-title"><i class="fa-solid fa-briefcase"></i> Other Open Job Opportunities</h2>
-        <div class="related-grid-row" id="relatedOpeningsGrid"></div>
-      </section>
-
-    </main>
-
-  </div>
-
-  <!-- Exact Institutional Footer -->
-  <footer class="portal-footer">
-    <div class="footer-links">
-      <a href="about.html">About Portal</a>
-      <a href="contact.html">Contact Support</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="disclaimer.html">Disclaimer</a>
-    </div>
-    <p>&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
-  </footer>
-
-  <script src="portal-data.js"></script>
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
-    let currentRecord = null;
-
-    async function initializeDossier() {
-      const csvUrl = SHEETS_CONFIG.careers;
-      const rows = await fetchCSV(csvUrl);
-      const items = (rows && rows.length > 0) ? rows : careerData;
-
-      if (items) {
-        currentRecord = items.find(r => (r.id || '').trim().toLowerCase() === requestedId) || items[0];
-      }
-
-      if (currentRecord) {
-        const headline = currentRecord.title || currentRecord.post_name;
-        document.title = `${headline} | Academic & Career Hub`;
-        document.getElementById('crumbPostTitle').innerText = headline;
-
-        document.getElementById('dispCategory').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${currentRecord.category || "Career Notice"}`;
-        document.getElementById('dispTitle').innerText = headline;
-        document.getElementById('dispOrg').innerText = currentRecord.organization || "Public Sector Authority";
-
-        document.getElementById('dispVacancies').innerText = currentRecord.vacancies || "Refer Notice";
-        document.getElementById('dispPayScale').innerText = (currentRecord.pay_scale || "Govt Rules").split('(')[0].trim();
-        document.getElementById('dispAgeLimit').innerText = currentRecord.age_limit || "Category Bounds";
-        document.getElementById('dispDeadline').innerText = currentRecord.last_date || currentRecord.deadline || "Open";
-
-        document.getElementById('dispPostName').innerText = currentRecord.post_name || headline;
-        document.getElementById('dispQualification').innerText = currentRecord.qualification || "Refer to detailed advertisement";
-        document.getElementById('dispExperience').innerText = currentRecord.experience || "Freshers / Not Specified";
-        document.getElementById('dispAgeDetailed').innerText = currentRecord.age_limit || "Category relaxations apply";
-        document.getElementById('dispLocation').innerText = currentRecord.job_location || "Northeast India / All India";
-
-        document.getElementById('dispFeeGen').innerText = currentRecord.fee_gen_obc || "₹500/-";
-        document.getElementById('dispFeeReserved').innerText = currentRecord.fee_sc_st || "Nil / Exempted";
-
-        document.getElementById('dispStartDate').innerText = currentRecord.start_date || "Active";
-        document.getElementById('dispEndDate').innerText = currentRecord.last_date || "Check notice";
-
-        // Three Direct Action Links at Bottom
-        document.getElementById('btnApply').href = cleanUrl(currentRecord.apply_link || currentRecord.link);
-        document.getElementById('btnPdf').href = cleanUrl(currentRecord.notification_link || currentRecord.link);
-        document.getElementById('btnOfficialSite').href = cleanUrl(currentRecord.official_site || currentRecord.link);
-
-        // Populate Related Openings
-        populateRelated(items.filter(i => (i.id || '').trim().toLowerCase() !== (currentRecord.id || '').trim().toLowerCase()));
-
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('mainDossier').style.display = 'block';
-      }
-    }
-
-    function populateRelated(items) {
-      const container = document.getElementById('relatedOpeningsGrid');
-      if (!container) return;
-
-      container.innerHTML = items.slice(0, 3).map(j => `
-        <a href="post.html?id=${j.id}" class="related-seamless-card">
-          <div>
-            <span class="tag">${j.category || 'Recruitment'}</span>
-            <h4>${j.title || j.post_name}</h4>
-          </div>
-          <div class="cutoff"><i class="fa-regular fa-clock"></i> Closes: ${j.last_date || 'Active'}</div>
-        </a>
-      `).join('');
-    }
-
-    function shareNotice() {
-      if (!currentRecord) return;
-      const text = `📢 *Recruitment Notice: ${currentRecord.title}*\n🏛️ Authority: ${currentRecord.organization}\n📅 Last Date: ${currentRecord.last_date}\n\n👉 Full Details, PDF & Official Link:\n${window.location.href}`;
-      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
-    }
-
-    document.addEventListener('DOMContentLoaded', initializeDossier);
-  </script>
-</body>
-</html>
+    /* 4. Quick Share Theme */
+    .theme-share { --glow-color: #0284c7; }
+    .theme-share .social-card-icon { background: #0f172a; }
+    .theme-share .social-arrow-badge { background: #0f172a; }
