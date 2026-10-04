@@ -3,453 +3,826 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="metaTitle">Recruitment Details & Updates | NE Academic Hub</title>
+  <title id="metaTitle">Gazette Intelligence & Career Dossier | NE Academic Hub</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,600;0,700;0,800;1,600&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     :root {
-      --primary: #0284c7;
-      --primary-hover: #0369a1;
-      --navy: #0f172a;
-      --slate-dark: #1e293b;
-      --slate-light: #f8fafc;
-      --border-color: #e2e8f0;
-      --text-main: #0f172a;
+      --bg: #0b0f17;
+      --surface: #111827;
+      --surface-elevated: #162032;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.16);
+      --accent: #38bdf8;
+      --accent-muted: rgba(56, 189, 248, 0.12);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
       --text-muted: #64748b;
-      --rose: #e11d48;
-      --emerald: #059669;
-      --font-serif: 'Bookman Old Style', 'Bookman', 'URW Bookman L', 'Georgia', serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      --emerald: #34d399;
+      --rose: #fb7185;
+      --font-serif: 'Crimson Pro', serif;
+      --font-display: 'Space Grotesk', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
-    body { background-color: #f8fafc; color: var(--text-main); line-height: 1.6; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* Top Institutional Navigation */
-    .site-nav { background: #0f172a; color: #fff; padding: 0.85rem 1.75rem; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .nav-inner { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .brand-group { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: #fff; }
-    .brand-group i { font-size: 1.5rem; color: #38bdf8; }
-    .brand-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.3px; }
-    .brand-sub { font-size: 0.7rem; color: #94a3b8; display: block; font-family: var(--font-mono); }
-    
-    .nav-btn-back { display: inline-flex; align-items: center; gap: 0.45rem; color: #cbd5e1; text-decoration: none; font-size: 0.82rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 6px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); transition: all 0.2s ease; }
-    .nav-btn-back:hover { background: rgba(255,255,255,0.12); color: #fff; border-color: #38bdf8; }
+    /* Top Institutional Terminal Bar */
+    .masthead {
+      background: rgba(11, 15, 23, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0.75rem 2rem;
+    }
 
-    /* Layout Frame */
-    .editorial-container { max-width: 1240px; margin: 1.8rem auto 4rem auto; padding: 0 1.25rem; }
-    .breadcrumb { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); }
-    .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 600; }
+    .masthead-inner {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-    .main-grid-layout { display: grid; grid-template-columns: 1fr 330px; gap: 2rem; align-items: start; }
+    .masthead-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
 
-    /* Main Left Article Pane */
-    .article-box { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 2.2rem; box-shadow: 0 2px 12px rgba(15,23,42,0.03); }
+    .brand-shield {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface-elevated);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
 
-    .category-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: #e0f2fe; color: var(--primary); font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 4px; text-transform: uppercase; font-family: var(--font-mono); letter-spacing: 0.5px; margin-bottom: 0.8rem; }
-    
-    /* Bookman Old Style Headline */
-    .post-main-title {
-      font-family: var(--font-serif);
-      font-size: 2.2rem;
+    .brand-title {
+      font-family: var(--font-display);
       font-weight: 700;
-      color: #0f172a;
-      line-height: 1.25;
-      letter-spacing: -0.3px;
+      font-size: 0.95rem;
+      letter-spacing: -0.2px;
+    }
+
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      display: block;
+    }
+
+    .nav-link-back {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.35rem 0.75rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 5px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-link-back:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-muted);
+    }
+
+    /* Dual Column Layout */
+    .dossier-wrapper {
+      max-width: 1380px;
+      margin: 2rem auto 5rem auto;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* Main Article Dossier */
+    .dossier-core {
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 2.5rem;
+    }
+
+    .dossier-meta-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .dossier-id {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      background: var(--accent-muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    .dossier-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .btn-action-tool {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.28rem 0.65rem;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s;
+    }
+
+    .btn-action-tool:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-action-tool.wa:hover {
+      color: #25d366;
+      border-color: #25d366;
+    }
+
+    .org-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
       margin-bottom: 0.4rem;
     }
 
-    .org-subtitle {
+    /* Classical Newspaper Title */
+    .post-headline {
       font-family: var(--font-serif);
-      font-size: 1.15rem;
-      color: var(--primary);
-      font-style: italic;
-      margin-bottom: 1.5rem;
+      font-size: 2.45rem;
+      font-weight: 700;
+      line-height: 1.18;
+      color: var(--text-primary);
+      letter-spacing: -0.5px;
+      margin-bottom: 1.8rem;
     }
 
-    /* Key Spec Metric Deck */
-    .quick-specs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1.8rem; }
-    .spec-item { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 0.95rem; }
-    .spec-item-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; font-family: var(--font-mono); }
-    .spec-item-val { font-size: 1rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem; }
-    .spec-item.deadline { border-color: #fecdd3; background: #fff1f2; }
-    .spec-item.deadline .spec-item-val { color: var(--rose); }
+    /* Minimalist Precision Spec Matrix */
+    .spec-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 2.2rem;
+    }
 
-    /* Compact Top Action Pill Strip */
-    .primary-action-pill-bar { display: flex; align-items: center; justify-content: space-between; background: #0f172a; border-radius: 10px; padding: 0.85rem 1.25rem; margin-bottom: 2rem; flex-wrap: wrap; gap: 0.75rem; }
-    .action-bar-label { color: #f8fafc; font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); }
-    .action-pills-cluster { display: flex; gap: 0.55rem; flex-wrap: wrap; }
+    .spec-cell {
+      background: var(--surface-elevated);
+      padding: 0.95rem 1.1rem;
+    }
 
-    .btn-pill {
-      display: inline-flex;
+    .spec-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .spec-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .spec-value.rose {
+      color: var(--rose);
+      font-family: var(--font-mono);
+    }
+
+    /* Direct Official Links Bar */
+    .links-dock {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .links-dock-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      display: flex;
       align-items: center;
       gap: 0.45rem;
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 0.5rem 0.95rem;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      cursor: pointer;
     }
 
-    .btn-pill-apply { background: #10b981; color: #ffffff; border: 1px solid #059669; }
-    .btn-pill-apply:hover { background: #059669; transform: translateY(-1px); }
+    .dock-actions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
 
-    .btn-pill-pdf { background: #ef4444; color: #ffffff; border: 1px solid #dc2626; }
-    .btn-pill-pdf:hover { background: #dc2626; transform: translateY(-1px); }
+    .btn-dock {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.45rem 0.85rem;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
 
-    .btn-pill-site { background: rgba(255,255,255,0.08); color: #e2e8f0; border: 1px solid rgba(255,255,255,0.18); }
-    .btn-pill-site:hover { background: rgba(255,255,255,0.16); color: #fff; transform: translateY(-1px); }
+    .btn-dock-apply {
+      background: var(--accent);
+      color: #041019;
+    }
 
-    /* Section Headings */
-    .content-section-title {
+    .btn-dock-apply:hover {
+      background: #7dd3fc;
+    }
+
+    .btn-dock-pdf {
+      background: rgba(251, 113, 133, 0.1);
+      color: var(--rose);
+      border: 1px solid rgba(251, 113, 133, 0.3);
+    }
+
+    .btn-dock-pdf:hover {
+      background: rgba(251, 113, 133, 0.2);
+    }
+
+    .btn-dock-site {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-dock-site:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    /* Sectional Typography */
+    .section-headline {
       font-family: var(--font-serif);
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      color: #0f172a;
+      color: var(--text-primary);
       margin: 2rem 0 0.85rem 0;
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      border-left: 3.5px solid var(--primary);
-      padding-left: 0.65rem;
     }
 
-    /* Structured Tables */
-    .styled-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; background: #ffffff; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
-    .styled-table tr:not(:last-child) { border-bottom: 1px solid var(--border-color); }
-    .styled-table th, .styled-table td { padding: 0.85rem 1.1rem; text-align: left; font-size: 0.92rem; }
-    .styled-table th { background: #f8fafc; color: #475569; width: 32%; font-weight: 700; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; border-right: 1px solid var(--border-color); }
-    .styled-table td { color: #1e293b; }
+    .section-headline::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-subtle);
+      margin-left: 0.5rem;
+    }
 
-    /* Right Sidebar */
-    .sidebar-pane { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 80px; }
+    /* Clean Scientific Table */
+    .tabular-record {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
 
-    .sidebar-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 10px rgba(15,23,42,0.02); }
-    .sidebar-header { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.95rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.45rem; display: flex; align-items: center; gap: 0.5rem; }
+    .tabular-record tr:not(:last-child) {
+      border-bottom: 1px solid var(--border-subtle);
+    }
 
-    /* Compact Social Buttons */
-    .social-stack { display: flex; flex-direction: column; gap: 0.55rem; }
-    .btn-social-row { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0.85rem; border-radius: 7px; color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; transition: opacity 0.2s, transform 0.2s; }
-    .btn-social-row:hover { opacity: 0.92; transform: translateX(2px); }
-    .btn-social-row.wa { background: #128c7e; }
-    .btn-social-row.fb { background: #1877f2; }
-    .btn-social-row.yt { background: #cc0000; }
-    .btn-social-row.share { background: #334155; border: none; width: 100%; cursor: pointer; }
+    .tabular-record th {
+      background: var(--surface-elevated);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      width: 30%;
+      border-right: 1px solid var(--border-subtle);
+    }
 
-    /* Related Jobs in Sidebar */
-    .related-list { display: flex; flex-direction: column; gap: 0.65rem; }
-    .related-item-card { display: block; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 0.9rem; text-decoration: none; color: inherit; transition: all 0.2s ease; }
-    .related-item-card:hover { border-color: var(--primary); background: #f0f9ff; transform: translateX(2px); }
-    .related-cat { font-size: 0.68rem; color: var(--primary); font-weight: 700; text-transform: uppercase; font-family: var(--font-mono); }
-    .related-title { font-family: var(--font-serif); font-size: 0.92rem; font-weight: 700; color: #0f172a; margin: 0.25rem 0; line-height: 1.35; }
-    .related-deadline { font-size: 0.72rem; color: var(--rose); font-weight: 700; font-family: var(--font-mono); }
+    .tabular-record td {
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+    }
 
-    /* Discussion & Queries */
-    .discussion-container { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.8rem; margin-top: 2rem; }
-    .comment-form { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.2rem 0 1.6rem 0; }
-    .comment-form input, .comment-form textarea { width: 100%; border: 1px solid var(--border-color); border-radius: 6px; padding: 0.75rem 0.95rem; font-size: 0.88rem; outline: none; background: #f8fafc; }
-    .comment-form input:focus, .comment-form textarea:focus { border-color: var(--primary); background: #ffffff; }
-    .btn-submit-query { align-self: flex-start; background: #0f172a; color: #ffffff; padding: 0.55rem 1.25rem; border-radius: 6px; font-weight: 700; font-size: 0.82rem; border: none; cursor: pointer; transition: background 0.2s; }
-    .btn-submit-query:hover { background: var(--primary); }
+    /* Right Sidebar (Gazette Stream) */
+    .sidebar-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      position: sticky;
+      top: 75px;
+    }
 
-    .comment-feed { display: flex; flex-direction: column; gap: 0.85rem; }
-    .comment-card { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 7px; padding: 0.85rem 1.1rem; }
-    .comment-meta { font-size: 0.82rem; font-weight: 700; color: #0f172a; display: flex; justify-content: space-between; margin-bottom: 0.3rem; }
-    .comment-text { font-size: 0.88rem; color: #334155; }
+    .sidebar-block {
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
 
-    #loadingScreen { text-align: center; padding: 5rem 1rem; color: var(--text-muted); font-size: 1rem; }
+    .sidebar-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
 
-    @media (max-width: 992px) {
-      .main-grid-layout { grid-template-columns: 1fr; }
-      .quick-specs-grid { grid-template-columns: repeat(2, 1fr); }
-      .sidebar-pane { position: static; }
-      .primary-action-pill-bar { flex-direction: column; align-items: stretch; }
-      .action-pills-cluster { justify-content: stretch; }
-      .action-pills-cluster .btn-pill { flex: 1; justify-content: center; }
+    /* Social Community Tunnels */
+    .community-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .btn-rail {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.85rem;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-primary);
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+
+    .btn-rail:hover {
+      border-color: var(--border-strong);
+      transform: translateX(2px);
+    }
+
+    .btn-rail i.fa-whatsapp { color: #34d399; }
+    .btn-rail i.fa-facebook { color: #60a5fa; }
+    .btn-rail i.fa-youtube { color: #f87171; }
+
+    /* Related Gazette Openings */
+    .related-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .gazette-snippet {
+      display: block;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .gazette-snippet:hover {
+      border-color: var(--accent);
+      transform: translateX(2px);
+    }
+
+    .gazette-meta {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .gazette-title {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .gazette-date {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--rose);
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    /* Clean Desk Discussion Forum */
+    .forum-box {
+      margin-top: 2.5rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 2rem;
+    }
+
+    .forum-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1rem 0 1.5rem 0;
+    }
+
+    .forum-form input, .forum-form textarea {
+      width: 100%;
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      outline: none;
+    }
+
+    .forum-form input:focus, .forum-form textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .btn-query-submit {
+      align-self: flex-start;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--text-primary);
+      color: var(--bg);
+      border: none;
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-query-submit:hover {
+      background: var(--accent);
+    }
+
+    .thread-entry {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .thread-header {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+    }
+
+    .thread-body {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    #loadingView {
+      text-align: center;
+      padding: 6rem 1rem;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 960px) {
+      .dossier-wrapper { grid-template-columns: 1fr; }
+      .spec-matrix { grid-template-columns: repeat(2, 1fr); }
+      .sidebar-wrapper { position: static; }
+      .post-headline { font-size: 1.85rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Top Header Navigation -->
-  <header class="site-nav">
-    <div class="nav-inner">
-      <a href="index.html" class="brand-group">
-        <i class="fa-solid fa-graduation-cap"></i>
+  <!-- Top Masthead Terminal -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a href="index.html" class="masthead-brand">
+        <div class="brand-shield"><i class="fa-solid fa-scale-balanced"></i></div>
         <div>
           <span class="brand-title">NE ACADEMIC HUB</span>
-          <span class="brand-sub">Career & Public Recruitment Dossier</span>
+          <span class="brand-sub">Institutional Career & Gazette Dossier</span>
         </div>
       </a>
-      <a href="index.html" class="nav-btn-back"><i class="fa-solid fa-arrow-left"></i> All Notifications</a>
+      <a href="index.html" class="nav-link-back"><i class="fa-solid fa-arrow-left"></i> Registry Index</a>
     </div>
   </header>
 
-  <div class="editorial-container">
+  <div class="dossier-wrapper">
     
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-      <span>&rsaquo;</span>
-      <a href="index.html#section-career">Careers & Recruitment</a>
-      <span>&rsaquo;</span>
-      <span id="crumbPostTitle" style="color: #64748b;">Loading Notice...</span>
-    </div>
-
-    <!-- Loading State -->
-    <div id="loadingScreen">
-      <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 0.8rem;"></i>
-      <p>Loading verified notification details...</p>
-    </div>
-
-    <!-- Two-Column Editorial Layout -->
-    <div class="main-grid-layout" id="mainGrid" style="display: none;">
+    <!-- Left Column: The Intelligence Record -->
+    <main class="dossier-core" id="dossierContent" style="display: none;">
       
-      <!-- Left Column: Primary Post Dossier -->
-      <article class="article-box">
-        
-        <span class="category-chip" id="dispCategory"><i class="fa-solid fa-briefcase"></i> Recruitment Notice</span>
-        <h1 class="post-main-title" id="dispTitle">Notification Headline</h1>
-        <div class="org-subtitle" id="dispOrg">Hiring Department / Public Authority</div>
-
-        <!-- Metric Summary Deck -->
-        <div class="quick-specs-grid">
-          <div class="spec-item">
-            <div class="spec-item-label">Total Vacancies</div>
-            <div class="spec-item-val" id="dispVacancies">--</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-item-label">Pay Level / Band</div>
-            <div class="spec-item-val" id="dispPayScale">--</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-item-label">Age Ceiling</div>
-            <div class="spec-item-val" id="dispAgeLimit">--</div>
-          </div>
-          <div class="spec-item deadline">
-            <div class="spec-item-label">Application Cutoff</div>
-            <div class="spec-item-val" id="dispDeadline">--</div>
-          </div>
+      <div class="dossier-meta-strip">
+        <span class="dossier-id" id="dispDossierId">GAZ-REC-2026</span>
+        <div class="dossier-actions">
+          <button class="btn-action-tool wa" onclick="shareDossier('wa')"><i class="fa-brands fa-whatsapp"></i> Broadcast</button>
+          <button class="btn-action-tool" onclick="shareDossier('copy')"><i class="fa-regular fa-copy"></i> Copy Record</button>
         </div>
+      </div>
 
-        <!-- Compact Action Deck -->
-        <div class="primary-action-pill-bar">
-          <div class="action-bar-label">
-            <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Verified Direct Links:
-          </div>
-          <div class="action-pills-cluster">
-            <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-apply">
-              <i class="fa-solid fa-paper-plane"></i> Apply Online
-            </a>
-            <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-pdf">
-              <i class="fa-solid fa-file-pdf"></i> Download PDF
-            </a>
-            <a id="btnOfficialSite" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-site">
-              <i class="fa-solid fa-globe"></i> Official Site
-            </a>
-          </div>
+      <div class="org-eyebrow" id="dispOrg">Publishing Department</div>
+      <h1 class="post-headline" id="dispTitle">Notification Designation & Cadre Summary</h1>
+
+      <!-- Minimalist Spec Matrix -->
+      <div class="spec-matrix">
+        <div class="spec-cell">
+          <span class="spec-label">Total Cadre</span>
+          <div class="spec-value" id="dispVacancies">--</div>
         </div>
+        <div class="spec-cell">
+          <span class="spec-label">Pay Level</span>
+          <div class="spec-value" id="dispPayScale">--</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-label">Age Ceiling</span>
+          <div class="spec-value" id="dispAgeLimit">--</div>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-label">Cutoff Closing</span>
+          <div class="spec-value rose" id="dispDeadline">--</div>
+        </div>
+      </div>
 
-        <!-- Section 1: Post Eligibility -->
-        <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Requirements</h2>
-        <table class="styled-table">
-          <tr><th>Designation / Post</th><td id="dispPostName">--</td></tr>
-          <tr><th>Required Qualification</th><td id="dispQualification">--</td></tr>
-          <tr><th>Service Experience</th><td id="dispExperience">--</td></tr>
-          <tr><th>Age Limits & Relaxations</th><td id="dispAgeDetailed">Category relaxations applicable as per government rules</td></tr>
-          <tr><th>Job Posting Station</th><td id="dispLocation">Northeast India / All India</td></tr>
-        </table>
+      <!-- Precision Links Dock -->
+      <div class="links-dock">
+        <div class="links-dock-title">
+          <i class="fa-solid fa-circle-check" style="color: var(--emerald);"></i> Authorized Primary Access
+        </div>
+        <div class="dock-actions">
+          <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="btn-dock btn-dock-apply">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Apply Online
+          </a>
+          <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-dock btn-dock-pdf">
+            <i class="fa-solid fa-file-pdf"></i> Gazette Notice
+          </a>
+          <a id="btnOfficialSite" href="#" target="_blank" rel="noopener noreferrer" class="btn-dock btn-dock-site">
+            <i class="fa-solid fa-globe"></i> Primary Portal
+          </a>
+        </div>
+      </div>
 
-        <!-- Section 2: Application Fees -->
-        <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</h2>
-        <table class="styled-table">
-          <tr><th>General / OBC / EWS</th><td id="dispFeeGen">--</td></tr>
-          <tr><th>SC / ST / PwD / Female</th><td id="dispFeeReserved">Nil / Exempted</td></tr>
-          <tr><th>Mode of Payment</th><td>Online (Net Banking / Debit Card) or Offline Challan</td></tr>
-        </table>
+      <!-- Eligibility Section -->
+      <div class="section-headline">Qualifications & Essential Standards</div>
+      <table class="tabular-record">
+        <tr><th>Designation</th><td id="dispPostName">--</td></tr>
+        <tr><th>Educational Minimum</th><td id="dispQualification">--</td></tr>
+        <tr><th>Qualifying Experience</th><td id="dispExperience">--</td></tr>
+        <tr><th>Age Limits</th><td id="dispAgeDetailed">Standard Category Relaxations Apply</td></tr>
+        <tr><th>Station Allocation</th><td id="dispLocation">Northeast India / All India</td></tr>
+      </table>
 
-        <!-- Section 3: Important Dates -->
-        <h2 class="content-section-title"><i class="fa-regular fa-calendar-check"></i> Important Timeline & Dates</h2>
-        <table class="styled-table">
-          <tr><th>Application Opening Date</th><td id="dispStartDate">--</td></tr>
-          <tr><th>Last Date to Submit Application</th><td id="dispEndDate" style="color: var(--rose); font-weight: 700;">--</td></tr>
-          <tr><th>Examination / Interview Schedule</th><td>To be announced on the official portal</td></tr>
-        </table>
+      <!-- Fee Assessment -->
+      <div class="section-headline">Application Fee Matrix</div>
+      <table class="tabular-record">
+        <tr><th>General / OBC / EWS</th><td id="dispFeeGen">--</td></tr>
+        <tr><th>SC / ST / PwD / Female</th><td id="dispFeeReserved">Nil / Exempted</td></tr>
+        <tr><th>Payment Gateway</th><td>Authorized Bharatkosh / State Treasury / Online Portal Gateway</td></tr>
+      </table>
 
-        <!-- Discussion & Query Forum -->
-        <section class="discussion-container">
-          <h3 style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: #0f172a;">
-            <i class="fa-regular fa-comments"></i> Questions & Eligibility Discussion
-          </h3>
-          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">Post your queries regarding eligibility, age relaxations, or application instructions.</p>
+      <!-- Chronology Timeline -->
+      <div class="section-headline">Key Procedural Milestones</div>
+      <table class="tabular-record">
+        <tr><th>Notification Released</th><td id="dispStartDate">--</td></tr>
+        <tr><th>Registration Cutoff</th><td id="dispEndDate" style="color: var(--rose); font-family: var(--font-mono); font-weight: 600;">--</td></tr>
+        <tr><th>Examination Schedule</th><td>To be notified through candidate login</td></tr>
+      </table>
 
-          <div class="comment-form">
-            <input type="text" id="commAuthor" placeholder="Your Name or Designation..." />
-            <textarea id="commText" rows="3" placeholder="Type your question here..."></textarea>
-            <button class="btn-submit-query" onclick="submitQuery()">
-              <i class="fa-solid fa-paper-plane"></i> Post Query
-            </button>
-          </div>
-
-          <div class="comment-feed" id="commFeed">
-            <div class="comment-card">
-              <div class="comment-meta">
-                <span>Raktim Borah <span style="font-size: 0.7rem; color: #0284c7; background: #e0f2fe; padding: 1px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
-                <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 400;">October 2026</span>
-              </div>
-              <div class="comment-text">Is offline submission required after submitting the online application form?</div>
+      <!-- Candidate Query Desk -->
+      <section class="forum-box">
+        <div class="section-headline">Gazette Queries & Clarifications</div>
+        <div class="forum-form">
+          <input type="text" id="commAuthor" placeholder="Candidate Identifier or Name..." />
+          <textarea id="commText" rows="3" placeholder="Post a specific query regarding eligibility, experience certificates, or payment steps..."></textarea>
+          <button class="btn-query-submit" onclick="submitQuery()">Submit for Verification</button>
+        </div>
+        <div id="threadList">
+          <div class="thread-entry">
+            <div class="thread-header">
+              <span>R. Kalita [Applicant]</span>
+              <span>October 2026</span>
             </div>
-            <div class="comment-card">
-              <div class="comment-meta">
-                <span>Portal Desk <span style="font-size: 0.7rem; color: #059669; background: #dcfce7; padding: 1px 6px; border-radius: 4px; margin-left: 4px;">Verified Admin</span></span>
-                <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 400;">October 2026</span>
-              </div>
-              <div class="comment-text">No hard copies need to be mailed unless explicitly required on the final confirmation slip. Please preserve a printed copy for verification.</div>
+            <div class="thread-body">Does the apprentice certification require direct registration through the NATS / NAPS portal?</div>
+          </div>
+          <div class="thread-entry">
+            <div class="thread-header">
+              <span style="color: var(--emerald);"><i class="fa-solid fa-shield-halved"></i> Desk Official</span>
+              <span>October 2026</span>
             </div>
-          </div>
-        </section>
-
-      </article>
-
-      <!-- Right Column: Sidebar (Social Communities & Related Openings) -->
-      <aside class="sidebar-pane">
-        
-        <!-- Social Communities Box -->
-        <div class="sidebar-card">
-          <div class="sidebar-header"><i class="fa-solid fa-bullhorn" style="color: var(--primary);"></i> Community Alerts</div>
-          <div class="social-stack">
-            <a href="https://whatsapp.com/channel/0029Va..." target="_blank" rel="noopener noreferrer" class="btn-social-row wa">
-              <span><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</span>
-              <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-social-row fb">
-              <span><i class="fa-brands fa-facebook-f"></i> Facebook Group</span>
-              <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn-social-row yt">
-              <span><i class="fa-brands fa-youtube"></i> YouTube Channel</span>
-              <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
-            </a>
-            <button class="btn-social-row share" onclick="shareNotice()">
-              <span><i class="fa-solid fa-share-nodes"></i> Share Notice</span>
-              <i class="fa-regular fa-copy" style="font-size: 0.7rem;"></i>
-            </button>
+            <div class="thread-body">Yes. Candidates must have an active 16-digit enrollment identifier on the respective apprenticeship portal before submitting credentials.</div>
           </div>
         </div>
+      </section>
 
-        <!-- Related Jobs Box -->
-        <div class="sidebar-card">
-          <div class="sidebar-header"><i class="fa-solid fa-briefcase" style="color: var(--primary);"></i> Other Active Openings</div>
-          <div class="related-list" id="sidebarRelatedContainer"></div>
+    </main>
+
+    <!-- Right Column: Sidebar Stream -->
+    <aside class="sidebar-wrapper">
+      
+      <!-- Community Channels -->
+      <div class="sidebar-block">
+        <div class="sidebar-tag"><i class="fa-solid fa-network-wired"></i> Verification Tunnels</div>
+        <div class="community-rail">
+          <a href="https://whatsapp.com/channel/0029Va..." target="_blank" rel="noopener noreferrer" class="btn-rail">
+            <span><i class="fa-brands fa-whatsapp"></i> WhatsApp Bulletin</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-rail">
+            <span><i class="fa-brands fa-facebook"></i> Facebook Group</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn-rail">
+            <span><i class="fa-brands fa-youtube"></i> Video Lectures</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
+      </div>
 
-      </aside>
+      <!-- Concurrent Notifications -->
+      <div class="sidebar-block">
+        <div class="sidebar-tag"><i class="fa-solid fa-file-lines"></i> Concurrent Gazettes</div>
+        <div class="related-stream" id="relatedGazettes"></div>
+      </div>
 
-    </div>
+    </aside>
 
+  </div>
+
+  <div id="loadingView">
+    <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--accent); margin-bottom: 0.8rem;"></i>
+    <div>Synchronizing authentic record...</div>
   </div>
 
   <script src="portal-data.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
-    let currentPost = null;
+    let currentRecord = null;
 
-    async function loadPostData() {
+    async function initializeDossier() {
       const csvUrl = SHEETS_CONFIG.careers;
       const rows = await fetchCSV(csvUrl);
       const items = (rows && rows.length > 0) ? rows : careerData;
 
       if (items) {
-        currentPost = items.find(r => (r.id || '').trim().toLowerCase() === requestedId) || items[0];
+        currentRecord = items.find(r => (r.id || '').trim().toLowerCase() === requestedId) || items[0];
       }
 
-      if (currentPost) {
-        const headline = currentPost.title || currentPost.post_name;
-        document.title = `${headline} | NE Academic Hub`;
-        document.getElementById('crumbPostTitle').innerText = headline;
-
-        document.getElementById('dispCategory').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${currentPost.category || "Career Notice"}`;
+      if (currentRecord) {
+        const headline = currentRecord.title || currentRecord.post_name;
+        document.title = `${headline} | Academic & Career Hub`;
+        
+        document.getElementById('dispDossierId').innerText = (currentRecord.id || 'GAZ-REC-2026').toUpperCase();
+        document.getElementById('dispOrg').innerText = currentRecord.organization || "Public Sector Authority";
         document.getElementById('dispTitle').innerText = headline;
-        document.getElementById('dispOrg').innerText = currentPost.organization || "Public Sector Authority";
 
-        document.getElementById('dispVacancies').innerText = currentPost.vacancies || "Refer Notice";
-        document.getElementById('dispPayScale').innerText = (currentPost.pay_scale || "Govt Rules").split('(')[0].trim();
-        document.getElementById('dispAgeLimit').innerText = currentPost.age_limit || "Category Bounds";
-        document.getElementById('dispDeadline').innerText = currentPost.last_date || currentPost.deadline || "Open";
+        document.getElementById('dispVacancies').innerText = currentRecord.vacancies || "Refer Notice";
+        document.getElementById('dispPayScale').innerText = (currentRecord.pay_scale || "Govt Rules").split('(')[0].trim();
+        document.getElementById('dispAgeLimit').innerText = currentRecord.age_limit || "Category Bounds";
+        document.getElementById('dispDeadline').innerText = currentRecord.last_date || currentRecord.deadline || "Open";
 
-        document.getElementById('dispPostName').innerText = currentPost.post_name || headline;
-        document.getElementById('dispQualification').innerText = currentPost.qualification || "Refer to detailed advertisement";
-        document.getElementById('dispExperience').innerText = currentPost.experience || "Freshers / Not Specified";
-        document.getElementById('dispAgeDetailed').innerText = currentPost.age_limit || "Standard Category Relaxations Apply";
-        document.getElementById('dispLocation').innerText = currentPost.job_location || "Northeast India / All India";
+        document.getElementById('dispPostName').innerText = currentRecord.post_name || headline;
+        document.getElementById('dispQualification').innerText = currentRecord.qualification || "Refer to detailed gazette";
+        document.getElementById('dispExperience').innerText = currentRecord.experience || "Freshers / Not Specified";
+        document.getElementById('dispAgeDetailed').innerText = currentRecord.age_limit || "Category relaxations apply";
+        document.getElementById('dispLocation').innerText = currentRecord.job_location || "Northeast India / All India";
 
-        document.getElementById('dispFeeGen').innerText = currentPost.fee_gen_obc || "₹500/-";
-        document.getElementById('dispFeeReserved').innerText = currentPost.fee_sc_st || "Nil / Exempted";
+        document.getElementById('dispFeeGen').innerText = currentRecord.fee_gen_obc || "₹500/-";
+        document.getElementById('dispFeeReserved').innerText = currentRecord.fee_sc_st || "Nil / Exempted";
 
-        document.getElementById('dispStartDate').innerText = currentPost.start_date || "Active";
-        document.getElementById('dispEndDate').innerText = currentPost.last_date || "Check official notice";
+        document.getElementById('dispStartDate').innerText = currentRecord.start_date || "Active";
+        document.getElementById('dispEndDate').innerText = currentRecord.last_date || "Check notice";
 
         // Three Direct Action Links
-        document.getElementById('btnApply').href = cleanUrl(currentPost.apply_link || currentPost.link);
-        document.getElementById('btnPdf').href = cleanUrl(currentPost.notification_link || currentPost.link);
-        document.getElementById('btnOfficialSite').href = cleanUrl(currentPost.official_site || currentPost.link);
+        document.getElementById('btnApply').href = cleanUrl(currentRecord.apply_link || currentRecord.link);
+        document.getElementById('btnPdf').href = cleanUrl(currentRecord.notification_link || currentRecord.link);
+        document.getElementById('btnOfficialSite').href = cleanUrl(currentRecord.official_site || currentRecord.link);
 
-        // Sidebar Related Posts
-        populateSidebarRelated(items.filter(i => (i.id || '').trim().toLowerCase() !== (currentPost.id || '').trim().toLowerCase()));
+        // Sidebar Concurrent Openings
+        populateSidebar(items.filter(i => (i.id || '').trim().toLowerCase() !== (currentRecord.id || '').trim().toLowerCase()));
 
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('mainGrid').style.display = 'grid';
+        document.getElementById('loadingView').style.display = 'none';
+        document.getElementById('dossierContent').style.display = 'block';
       }
     }
 
-    function populateSidebarRelated(items) {
-      const container = document.getElementById('sidebarRelatedContainer');
+    function populateSidebar(items) {
+      const container = document.getElementById('relatedGazettes');
       if (!container) return;
 
       container.innerHTML = items.slice(0, 4).map(j => `
-        <a href="post.html?id=${j.id}" class="related-item-card">
-          <span class="related-cat">${j.category || 'Recruitment'}</span>
-          <div class="related-title">${j.title || j.post_name}</div>
-          <div class="related-deadline"><i class="fa-regular fa-clock"></i> Closes: ${j.last_date || j.deadline || 'Active'}</div>
+        <a href="post.html?id=${j.id}" class="gazette-snippet">
+          <span class="gazette-meta">${j.category || 'Gazette'}</span>
+          <div class="gazette-title">${j.title || j.post_name}</div>
+          <span class="gazette-date"><i class="fa-regular fa-clock"></i> ${j.last_date || 'Active'}</span>
         </a>
       `).join('');
     }
 
-    function shareNotice() {
-      if (!currentPost) return;
-      const text = `📢 *Recruitment Notice: ${currentPost.title}*\n🏛️ Authority: ${currentPost.organization}\n📅 Last Date: ${currentPost.last_date}\n\n👉 Full Details, PDF & Official Link:\n${window.location.href}`;
-      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+    function shareDossier(platform) {
+      if (!currentRecord) return;
+      const text = `📌 *Gazette Release: ${currentRecord.title}*\n🏛️ Organization: ${currentRecord.organization}\n📅 Cutoff: ${currentRecord.last_date}\n\n👉 Inspect Authentic Record:\n${window.location.href}`;
+      
+      if (platform === 'wa') {
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+      } else {
+        navigator.clipboard.writeText(text).then(() => alert("Record copied to clipboard."));
+      }
     }
 
     function submitQuery() {
-      const name = document.getElementById('commAuthor').value.trim() || "Candidate";
-      const query = document.getElementById('commText').value.trim();
-      if (!query) { alert("Please type your question before submitting."); return; }
+      const name = document.getElementById('commAuthor').value.trim() || "Applicant";
+      const body = document.getElementById('commText').value.trim();
+      if (!body) { alert("Please input your inquiry."); return; }
 
-      const feed = document.getElementById('commFeed');
-      const item = document.createElement('div');
-      item.className = 'comment-card';
-      item.innerHTML = `
-        <div class="comment-meta">
-          <span>${name} <span style="font-size: 0.7rem; color: #0284c7; background: #e0f2fe; padding: 1px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
-          <span style="font-size: 0.72rem; color: #94a3b8; font-weight: 400;">Just now</span>
+      const list = document.getElementById('threadList');
+      const entry = document.createElement('div');
+      entry.className = 'thread-entry';
+      entry.innerHTML = `
+        <div class="thread-header">
+          <span>${name}</span>
+          <span>Just now</span>
         </div>
-        <div class="comment-text">${query}</div>
+        <div class="thread-body">${body}</div>
       `;
-      feed.prepend(item);
+      list.prepend(entry);
       document.getElementById('commText').value = "";
-      alert("Your question has been posted to the discussion board.");
     }
 
-    document.addEventListener('DOMContentLoaded', loadPostData);
+    document.addEventListener('DOMContentLoaded', initializeDossier);
   </script>
 </body>
 </html>
