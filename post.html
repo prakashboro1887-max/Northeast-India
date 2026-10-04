@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="metaTitle">Recruitment Details | NE Academic Hub</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .details-wrapper { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    .btn-back { display: inline-flex; align-items: center; gap: 0.5rem; color: #0284c7; text-decoration: none; font-weight: 600; margin-bottom: 1.5rem; }
+    .post-box { background: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.04); }
+    .authority-banner { background: #0f172a; color: #ffffff; border-radius: 10px; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; }
+    .authority-banner h1 { margin: 0; font-size: 1.5rem; }
+    .authority-banner p { margin: 0.4rem 0 0 0; color: #38bdf8; font-weight: 600; }
+    .section-title { font-size: 1.15rem; font-weight: 700; margin: 1.8rem 0 0.8rem 0; border-left: 4px solid #0284c7; padding-left: 0.6rem; color: #0f172a; }
+    .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 1.2rem; }
+    .spec-table th, .spec-table td { padding: 0.85rem 1rem; border: 1px solid #e2e8f0; text-align: left; font-size: 0.95rem; }
+    .spec-table th { background: #f8fafc; color: #475569; width: 32%; }
+    .btn-action-link { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1.2rem; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem; color: white; }
+    .btn-pdf { background: #ef4444; }
+    .btn-apply { background: #0284c7; }
+    .btn-site { background: #334155; }
+    .ad-slot { text-align: center; padding: 1.2rem; margin: 1.5rem 0; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; color: #94a3b8; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <div class="details-wrapper">
+    <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Back to Main Portal</a>
+
+    <div id="loadingState" style="text-align: center; padding: 3rem;">
+      <i class="fa-solid fa-spinner fa-spin fa-2x"></i>
+      <p>Loading notification breakdown...</p>
+    </div>
+
+    <div class="post-box" id="postContent" style="display: none;">
+      <div class="authority-banner">
+        <h1 id="headingOrg">Hiring Authority</h1>
+        <p id="headingPost">Post Designation</p>
+      </div>
+
+      <div class="ad-slot">[ Advertisement Placement Top ]</div>
+
+      <div class="section-title"><i class="fa-solid fa-id-card"></i> Overview & Eligibility</div>
+      <table class="spec-table">
+        <tr><th>Post Designation</th><td id="cellPostName">-</td></tr>
+        <tr><th>Total Vacancies</th><td id="cellVacancies">-</td></tr>
+        <tr><th>Pay Scale / Salary</th><td id="cellPayScale">-</td></tr>
+        <tr><th>Educational Qualification</th><td id="cellQualification">-</td></tr>
+        <tr><th>Experience</th><td id="cellExperience">-</td></tr>
+        <tr><th>Age Limit</th><td id="cellAgeLimit">-</td></tr>
+        <tr><th>Job Location</th><td id="cellLocation">-</td></tr>
+      </table>
+
+      <div class="section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</div>
+      <table class="spec-table">
+        <tr><th>General / OBC / EWS</th><td id="cellFeeGen">Nil</td></tr>
+        <tr><th>SC / ST / PwD</th><td id="cellFeeReserved">Nil</td></tr>
+      </table>
+
+      <div class="section-title"><i class="fa-regular fa-calendar-check"></i> Important Timeline Dates</div>
+      <table class="spec-table">
+        <tr><th>Application Start Date</th><td id="cellStartDate">-</td></tr>
+        <tr><th>Application Last Date</th><td id="cellLastDate" style="color: #e11d48; font-weight: 700;">-</td></tr>
+      </table>
+
+      <div class="ad-slot">[ Advertisement Placement Bottom ]</div>
+
+      <div class="section-title"><i class="fa-solid fa-link"></i> Important Web Links</div>
+      <table class="spec-table">
+        <tr>
+          <td><strong>Official Notification (PDF)</strong></td>
+          <td style="text-align: right;"><a id="btnNotification" href="#" target="_blank" class="btn-action-link btn-pdf"><i class="fa-solid fa-file-pdf"></i> Download PDF</a></td>
+        </tr>
+        <tr>
+          <td><strong>Online Application Portal</strong></td>
+          <td style="text-align: right;"><a id="btnApply" href="#" target="_blank" class="btn-action-link btn-apply"><i class="fa-solid fa-paper-plane"></i> Apply Online</a></td>
+        </tr>
+        <tr>
+          <td><strong>Official Website</strong></td>
+          <td style="text-align: right;"><a id="btnSite" href="#" target="_blank" class="btn-action-link btn-site"><i class="fa-solid fa-globe"></i> Visit Official Site</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script src="portal-data.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
+
+    async function loadPostDetails() {
+      const csvUrl = SHEETS_CONFIG.careers;
+      const rows = await fetchCSV(csvUrl);
+
+      let matched = null;
+      if (rows) {
+        matched = rows.find(r => (r.id || '').trim().toLowerCase() === requestedId);
+      }
+
+      if (!matched) {
+        // Check fallback dataset
+        matched = careerData.find(r => (r.id || '').trim().toLowerCase() === requestedId);
+      }
+
+      if (matched) {
+        document.title = `${matched.title || matched.post_name} | NE Academic Hub`;
+        document.getElementById('headingOrg').innerText = matched.organization || "Public Authority";
+        document.getElementById('headingPost').innerText = matched.title || matched.post_name;
+
+        document.getElementById('cellPostName').innerText = matched.post_name || matched.title;
+        document.getElementById('cellVacancies').innerText = matched.vacancies || "Refer to notification";
+        document.getElementById('cellPayScale').innerText = matched.pay_scale || "As per rules";
+        document.getElementById('cellQualification').innerText = matched.qualification || "Refer to detailed notice";
+        document.getElementById('cellExperience').innerText = matched.experience || "Freshers / Not Specified";
+        document.getElementById('cellAgeLimit').innerText = matched.age_limit || "Standard rules";
+        document.getElementById('cellLocation').innerText = matched.job_location || "Northeast India";
+
+        document.getElementById('cellFeeGen').innerText = matched.fee_gen_obc || "Nil / Exempted";
+        document.getElementById('cellFeeReserved').innerText = matched.fee_sc_st || "Nil / Exempted";
+
+        document.getElementById('cellStartDate').innerText = matched.start_date || "Active";
+        document.getElementById('cellLastDate').innerText = matched.last_date || "Check notice";
+
+        document.getElementById('btnNotification').href = cleanUrl(matched.notification_link || matched.link);
+        document.getElementById('btnApply').href = cleanUrl(matched.apply_link || matched.link);
+        document.getElementById('btnSite').href = cleanUrl(matched.official_site || matched.link);
+
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('postContent').style.display = 'block';
+      } else {
+        document.getElementById('loadingState').innerHTML = `<p style="color: red;">Post not found. <a href="index.html">Return home</a></p>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPostDetails);
+  </script>
+</body>
+</html>
