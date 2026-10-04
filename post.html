@@ -6,7 +6,7 @@
   <title id="metaTitle">Recruitment Details & Updates | NE Academic Hub</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -22,100 +22,135 @@
       --text-muted: #64748b;
       --rose: #e11d48;
       --emerald: #10b981;
+      --font-serif: 'Bookman Old Style', 'Bookman', 'URW Bookman L', 'Georgia', serif;
+      --font-sans: 'Inter', -apple-system, sans-serif;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
     body { background-color: #f1f5f9; color: var(--text-main); line-height: 1.6; }
 
     /* Top Navigation */
-    .site-nav { background: #0f172a; color: #fff; padding: 0.9rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .site-nav { background: #0f172a; color: #fff; padding: 0.9rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+    .nav-inner { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .brand-group { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: #fff; }
-    .brand-group i { font-size: 1.5rem; color: #38bdf8; }
-    .brand-title { font-weight: 800; font-size: 1.1rem; }
-    .brand-sub { font-size: 0.7rem; color: #94a3b8; display: block; }
-    .nav-btn-back { display: inline-flex; align-items: center; gap: 0.4rem; color: #e2e8f0; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 6px; background: rgba(255,255,255,0.08); transition: background 0.2s; }
+    .brand-group i { font-size: 1.6rem; color: #38bdf8; }
+    .brand-title { font-family: var(--font-serif); font-weight: 700; font-size: 1.15rem; letter-spacing: 0.5px; }
+    .brand-sub { font-size: 0.72rem; color: #94a3b8; display: block; }
+    .nav-btn-back { display: inline-flex; align-items: center; gap: 0.4rem; color: #e2e8f0; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 0.45rem 0.95rem; border-radius: 6px; background: rgba(255,255,255,0.08); transition: background 0.2s; }
     .nav-btn-back:hover { background: rgba(255,255,255,0.18); color: #fff; }
 
-    /* Content Layout */
-    .page-wrapper { max-width: 1040px; margin: 2rem auto 4rem auto; padding: 0 1rem; }
-    
-    /* Breadcrumb */
-    .breadcrumb { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+    /* Two-Column Editorial Layout */
+    .editorial-container { max-width: 1240px; margin: 2rem auto 4rem auto; padding: 0 1rem; }
+    .breadcrumb { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
     .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 600; }
 
-    /* Main Job Container */
-    .job-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 2.2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.03); margin-bottom: 2rem; }
+    .main-grid-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: start; }
 
-    /* Top Badge & Authority Banner */
-    .authority-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: #eff6ff; color: var(--primary); font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.7rem; border-radius: 5px; margin-bottom: 0.6rem; text-transform: uppercase; }
-    .job-headline { font-size: 1.85rem; font-weight: 800; color: #0f172a; line-height: 1.3; margin-bottom: 0.4rem; }
-    .org-subtitle { font-size: 1.05rem; color: var(--text-muted); font-weight: 500; margin-bottom: 1.5rem; }
+    /* Main Left Article Pane */
+    .article-box { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 2.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
 
-    /* Highlight Summary Badges */
-    .quick-specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.85rem; margin-bottom: 1.8rem; }
+    .category-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: #e0f2fe; color: var(--primary); font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.75rem; border-radius: 5px; text-transform: uppercase; margin-bottom: 0.8rem; }
+    
+    /* Bookman Old Style Stylish Headline */
+    .post-main-title {
+      font-family: var(--font-serif);
+      font-size: 2.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.3px;
+    }
+
+    .org-subtitle {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--primary);
+      font-style: italic;
+      margin-bottom: 1.6rem;
+    }
+
+    /* Key Spec Badges */
+    .quick-specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0.85rem; margin-bottom: 2rem; }
     .spec-item { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.85rem 1rem; }
     .spec-item-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
-    .spec-item-val { font-size: 1rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem; }
+    .spec-item-val { font-size: 1.05rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem; }
     .spec-item.deadline { border-color: #fecdd3; background: #fff1f2; }
     .spec-item.deadline .spec-item-val { color: var(--rose); }
 
-    /* Social Community Bar */
-    .community-card { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem 1.4rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    .community-text { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; font-weight: 700; color: #334155; }
-    .social-buttons { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-    .btn-social { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 1rem; border-radius: 6px; color: #fff; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; }
-    .btn-social:hover { opacity: 0.9; }
-    .btn-wa { background: #25D366; }
-    .btn-fb { background: #1877F2; }
-    .btn-yt { background: #FF0000; }
-    .btn-share { background: #475569; cursor: pointer; border: none; }
+    /* Section Headings with Bookman Old Style */
+    .content-section-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 2.2rem 0 0.9rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 0.75rem;
+    }
 
     /* Tables */
-    .section-title { font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 2rem 0 0.85rem 0; display: flex; align-items: center; gap: 0.5rem; border-left: 4px solid var(--primary); padding-left: 0.6rem; }
-    .details-table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; }
-    .details-table th, .details-table td { padding: 0.9rem 1.1rem; border: 1px solid var(--border-color); text-align: left; font-size: 0.92rem; }
-    .details-table th { background: #f8fafc; color: #475569; width: 30%; font-weight: 700; }
-    .details-table td { color: #1e293b; }
+    .styled-table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; }
+    .styled-table th, .styled-table td { padding: 0.9rem 1.15rem; border: 1px solid var(--border-color); text-align: left; font-size: 0.92rem; }
+    .styled-table th { background: #f8fafc; color: #475569; width: 32%; font-weight: 700; }
+    .styled-table td { color: #1e293b; }
 
-    /* Action Links */
-    .action-links-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 1.25rem; margin: 2rem 0; }
-    .action-links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
-    .btn-apply-primary { background: var(--primary); color: #fff; text-decoration: none; padding: 0.95rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: background 0.2s; }
-    .btn-apply-primary:hover { background: var(--primary-hover); }
-    .btn-pdf-secondary { background: #ffffff; border: 1px solid var(--border-color); color: var(--rose); text-decoration: none; padding: 0.95rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: background 0.2s; }
-    .btn-pdf-secondary:hover { background: #fff1f2; border-color: #fecdd3; }
+    /* Action Links Matrix (Including Official Website) */
+    .action-links-container { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.4rem; margin: 2.2rem 0; }
+    .action-links-title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .action-buttons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+    
+    .btn-action { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0.95rem 0.8rem; border-radius: 8px; text-decoration: none; color: #fff; font-weight: 700; font-size: 0.88rem; gap: 0.35rem; transition: transform 0.2s, opacity 0.2s; }
+    .btn-action:hover { opacity: 0.92; transform: translateY(-2px); }
+    .btn-apply-portal { background: #16a34a; }
+    .btn-download-pdf { background: #e11d48; }
+    .btn-official-website { background: #0284c7; }
 
-    /* Related Jobs Grid */
-    .related-section { margin-top: 3rem; }
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-top: 1rem; }
-    .related-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s; text-decoration: none; color: inherit; }
-    .related-card:hover { transform: translateY(-2px); border-color: var(--primary); }
-    .related-card h4 { font-size: 0.98rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
-    .related-card p { font-size: 0.82rem; color: var(--text-muted); }
-    .related-card .related-date { font-size: 0.78rem; color: var(--rose); font-weight: 700; margin-top: 0.8rem; }
+    /* Right Sidebar */
+    .sidebar-pane { display: flex; flex-direction: column; gap: 1.5rem; position: sticky; top: 85px; }
 
-    /* Comments & Query Section */
-    .comments-wrapper { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin-top: 2.5rem; }
-    .comments-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.85rem; }
-    .comment-input-area { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
-    .comment-input-area input, .comment-input-area textarea { width: 100%; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.9rem; outline: none; background: #f8fafc; }
-    .comment-input-area input:focus, .comment-input-area textarea:focus { border-color: var(--primary); background: #ffffff; }
-    .btn-submit-comment { align-self: flex-start; background: #0f172a; color: #ffffff; padding: 0.65rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.88rem; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; }
-    .btn-submit-comment:hover { background: var(--primary); }
+    .sidebar-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.4rem; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+    .sidebar-header { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: #0f172a; margin-bottom: 1.1rem; border-bottom: 2px solid #f1f5f9; padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
 
-    .comment-list { display: flex; flex-direction: column; gap: 1rem; }
-    .comment-bubble { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem 1.2rem; }
-    .comment-author { font-size: 0.88rem; font-weight: 700; color: #0f172a; display: flex; justify-content: space-between; margin-bottom: 0.35rem; }
-    .comment-date { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
-    .comment-body { font-size: 0.88rem; color: #334155; }
+    /* Social Community Buttons in Sidebar */
+    .social-stack { display: flex; flex-direction: column; gap: 0.65rem; }
+    .btn-social-sidebar { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; border-radius: 8px; color: #fff; text-decoration: none; font-size: 0.88rem; font-weight: 700; transition: transform 0.2s; }
+    .btn-social-sidebar:hover { transform: translateX(3px); }
+    .btn-social-sidebar.wa { background: #25D366; }
+    .btn-social-sidebar.fb { background: #1877F2; }
+    .btn-social-sidebar.yt { background: #FF0000; }
+    .btn-social-sidebar.share { background: #334155; border: none; width: 100%; cursor: pointer; }
 
-    #loadingBox { text-align: center; padding: 4rem 1rem; color: var(--text-muted); font-size: 1.05rem; }
+    /* Related Jobs in Sidebar */
+    .related-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .related-item-card { display: block; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.85rem 1rem; text-decoration: none; color: inherit; transition: border-color 0.2s, background 0.2s; }
+    .related-item-card:hover { border-color: var(--primary); background: #f0f9ff; }
+    .related-cat { font-size: 0.7rem; color: var(--primary); font-weight: 700; text-transform: uppercase; }
+    .related-title { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0.25rem 0; line-height: 1.35; }
+    .related-deadline { font-size: 0.75rem; color: var(--rose); font-weight: 700; }
 
-    @media (max-width: 768px) {
-      .job-headline { font-size: 1.4rem; }
-      .action-links-grid { grid-template-columns: 1fr; }
-      .community-card { flex-direction: column; align-items: flex-start; }
+    /* Comments Section */
+    .discussion-container { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin-top: 2.2rem; }
+    .comment-form { display: flex; flex-direction: column; gap: 0.8rem; margin: 1.2rem 0 1.8rem 0; }
+    .comment-form input, .comment-form textarea { width: 100%; border: 1px solid var(--border-color); border-radius: 7px; padding: 0.75rem 1rem; font-size: 0.9rem; outline: none; background: #f8fafc; }
+    .comment-form input:focus, .comment-form textarea:focus { border-color: var(--primary); background: #ffffff; }
+    .btn-submit-query { align-self: flex-start; background: #0f172a; color: #ffffff; padding: 0.65rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.88rem; border: none; cursor: pointer; }
+    .btn-submit-query:hover { background: var(--primary); }
+
+    .comment-feed { display: flex; flex-direction: column; gap: 1rem; }
+    .comment-card { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem 1.25rem; }
+    .comment-meta { font-size: 0.85rem; font-weight: 700; color: #0f172a; display: flex; justify-content: space-between; margin-bottom: 0.35rem; }
+    .comment-text { font-size: 0.88rem; color: #334155; }
+
+    #loadingScreen { text-align: center; padding: 5rem 1rem; color: var(--text-muted); font-size: 1.1rem; }
+
+    @media (max-width: 992px) {
+      .main-grid-layout { grid-template-columns: 1fr; }
+      .action-buttons-grid { grid-template-columns: 1fr; }
+      .sidebar-pane { position: static; }
     }
   </style>
 </head>
@@ -128,160 +163,175 @@
         <i class="fa-solid fa-graduation-cap"></i>
         <div>
           <span class="brand-title">NE ACADEMIC HUB</span>
-          <span class="brand-sub">Career & Institutional Portal</span>
+          <span class="brand-sub">Career & Public Recruitment Dossier</span>
         </div>
       </a>
       <a href="index.html" class="nav-btn-back"><i class="fa-solid fa-arrow-left"></i> All Notifications</a>
     </div>
   </header>
 
-  <div class="page-wrapper">
+  <div class="editorial-container">
     
     <!-- Breadcrumb -->
     <div class="breadcrumb">
-      <a href="index.html">Home</a>
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
       <span>&rsaquo;</span>
-      <a href="index.html#section-career">Careers</a>
+      <a href="index.html#section-career">Careers & Recruitment</a>
       <span>&rsaquo;</span>
-      <span id="crumbTitle" style="color: #64748b;">Loading Notice...</span>
+      <span id="crumbPostTitle" style="color: #64748b;">Loading Notice...</span>
     </div>
 
     <!-- Loading State -->
-    <div id="loadingBox">
+    <div id="loadingScreen">
       <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 0.8rem;"></i>
-      <p>Retrieving notification details...</p>
+      <p>Loading verified notification details...</p>
     </div>
 
-    <!-- Main Job Detail Card -->
-    <main class="job-card" id="mainPostContent" style="display: none;">
+    <!-- Two-Column Editorial Layout -->
+    <div class="main-grid-layout" id="mainGrid" style="display: none;">
       
-      <span class="authority-badge" id="valCategory">Recruitment</span>
-      <h1 class="job-headline" id="valTitle">Designation Summary</h1>
-      <p class="org-subtitle" id="valOrg">Hiring Department</p>
+      <!-- Left Column: Primary Post Dossier -->
+      <article class="article-box">
+        
+        <span class="category-chip" id="dispCategory"><i class="fa-solid fa-briefcase"></i> Recruitment Notice</span>
+        <h1 class="post-main-title" id="dispTitle">Notification Headline</h1>
+        <div class="org-subtitle" id="dispOrg">Hiring Department / Public Authority</div>
 
-      <!-- Quick Summary Matrix -->
-      <div class="quick-specs-grid">
-        <div class="spec-item">
-          <div class="spec-item-label">Total Vacancies</div>
-          <div class="spec-item-val" id="valVacancies">--</div>
+        <!-- Quick Summary Metrics -->
+        <div class="quick-specs-grid">
+          <div class="spec-item">
+            <div class="spec-item-label">Total Vacancies</div>
+            <div class="spec-item-val" id="dispVacancies">--</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-item-label">Pay Level / Remuneration</div>
+            <div class="spec-item-val" id="dispPayScale">--</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-item-label">Age Ceiling</div>
+            <div class="spec-item-val" id="dispAgeLimit">--</div>
+          </div>
+          <div class="spec-item deadline">
+            <div class="spec-item-label">Application Deadline</div>
+            <div class="spec-item-val" id="dispDeadline">--</div>
+          </div>
         </div>
-        <div class="spec-item">
-          <div class="spec-item-label">Pay Scale / Band</div>
-          <div class="spec-item-val" id="valPayScale">--</div>
+
+        <!-- Section 1: Post Eligibility -->
+        <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Requirements</h2>
+        <table class="styled-table">
+          <tr><th>Designation / Post</th><td id="dispPostName">--</td></tr>
+          <tr><th>Required Qualification</th><td id="dispQualification">--</td></tr>
+          <tr><th>Service Experience</th><td id="dispExperience">--</td></tr>
+          <tr><th>Age Limits & Relaxations</th><td id="dispAgeDetailed">Category relaxations applicable as per rules</td></tr>
+          <tr><th>Job Posting Station</th><td id="dispLocation">Northeast India / All India</td></tr>
+        </table>
+
+        <!-- Section 2: Application Fees -->
+        <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</h2>
+        <table class="styled-table">
+          <tr><th>General / OBC / EWS</th><td id="dispFeeGen">--</td></tr>
+          <tr><th>SC / ST / PwD / Female</th><td id="dispFeeReserved">Nil / Exempted</td></tr>
+          <tr><th>Mode of Fee Payment</th><td>Online (Net Banking / UPI / Debit Card) or Offline Challan</td></tr>
+        </table>
+
+        <!-- Section 3: Important Dates -->
+        <h2 class="content-section-title"><i class="fa-regular fa-calendar-check"></i> Important Timeline & Dates</h2>
+        <table class="styled-table">
+          <tr><th>Notification Opening Date</th><td id="dispStartDate">--</td></tr>
+          <tr><th>Last Date to Submit Application</th><td id="dispEndDate" style="color: var(--rose); font-weight: 700;">--</td></tr>
+          <tr><th>Examination / Interview Schedule</th><td>To be announced on the official portal</td></tr>
+        </table>
+
+        <!-- Action Links Array (With Official Website) -->
+        <div class="action-links-container">
+          <div class="action-links-title"><i class="fa-solid fa-link"></i> Authorized Portals & Direct Links:</div>
+          <div class="action-buttons-grid">
+            <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="btn-action btn-apply-portal">
+              <i class="fa-solid fa-paper-plane fa-lg"></i>
+              <span>Apply Online Portal</span>
+            </a>
+            <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-action btn-download-pdf">
+              <i class="fa-solid fa-file-pdf fa-lg"></i>
+              <span>Download PDF Notice</span>
+            </a>
+            <a id="btnOfficialSite" href="#" target="_blank" rel="noopener noreferrer" class="btn-action btn-official-website">
+              <i class="fa-solid fa-globe fa-lg"></i>
+              <span>Official Department Site</span>
+            </a>
+          </div>
         </div>
-        <div class="spec-item">
-          <div class="spec-item-label">Age Ceiling</div>
-          <div class="spec-item-val" id="valAgeLimit">--</div>
-        </div>
-        <div class="spec-item deadline">
-          <div class="spec-item-label">Closing Deadline</div>
-          <div class="spec-item-val" id="valDeadline">--</div>
-        </div>
-      </div>
 
-      <!-- Social Community & Share Bar -->
-      <div class="community-card">
-        <div class="community-text">
-          <i class="fa-solid fa-users" style="color: var(--primary);"></i> Join Our Communities for Daily Alerts:
-        </div>
-        <div class="social-buttons">
-          <a href="https://whatsapp.com/channel/0029Va..." target="_blank" rel="noopener noreferrer" class="btn-social btn-wa">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-          </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-social btn-fb">
-            <i class="fa-brands fa-facebook-f"></i> Facebook
-          </a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn-social btn-yt">
-            <i class="fa-brands fa-youtube"></i> YouTube
-          </a>
-          <button class="btn-social btn-share" onclick="sharePost()">
-            <i class="fa-solid fa-share-nodes"></i> Share
-          </button>
-        </div>
-      </div>
-
-      <!-- Eligibility Table -->
-      <div class="section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Criteria</div>
-      <table class="details-table">
-        <tr><th>Designation</th><td id="valPostName">--</td></tr>
-        <tr><th>Educational Qualification</th><td id="valQualification">--</td></tr>
-        <tr><th>Experience Required</th><td id="valExperience">--</td></tr>
-        <tr><th>Age Limits</th><td id="valAgeDetailed">Standard Category Relaxations Apply</td></tr>
-        <tr><th>Posting Location</th><td id="valLocation">Assam / Northeast India</td></tr>
-      </table>
-
-      <!-- Fees Table -->
-      <div class="section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</div>
-      <table class="details-table">
-        <tr><th>General / OBC / EWS</th><td id="valFeeGen">--</td></tr>
-        <tr><th>SC / ST / PwD / Female</th><td id="valFeeReserved">Nil / Exempted</td></tr>
-        <tr><th>Payment Mode</th><td>Online (Net Banking / Debit Card) or Offline Challan</td></tr>
-      </table>
-
-      <!-- Important Dates -->
-      <div class="section-title"><i class="fa-regular fa-calendar-check"></i> Important Timeline</div>
-      <table class="details-table">
-        <tr><th>Notification Opening Date</th><td id="valStartDate">--</td></tr>
-        <tr><th>Last Date to Submit</th><td id="valEndDate" style="color: var(--rose); font-weight: 700;">--</td></tr>
-      </table>
-
-      <!-- Action Download Box -->
-      <div class="action-links-box">
-        <h3 style="font-size: 1.05rem; color: #166534; display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fa-solid fa-circle-check"></i> Verified Official Links:
-        </h3>
-        <div class="action-links-grid">
-          <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="btn-apply-primary">
-            <i class="fa-solid fa-paper-plane"></i> Apply Online Now &rarr;
-          </a>
-          <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-pdf-secondary">
-            <i class="fa-solid fa-file-pdf"></i> Download Official Notice (PDF)
-          </a>
-        </div>
-      </div>
-
-      <!-- Related Jobs Grid -->
-      <section class="related-section">
-        <div class="section-title"><i class="fa-solid fa-briefcase"></i> Other Open Job Opportunities</div>
-        <div class="related-grid" id="relatedJobsContainer"></div>
-      </section>
-
-      <!-- Candidate Questions & Comment Section -->
-      <section class="comments-wrapper">
-        <div class="comments-header">
-          <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a;">
-            <i class="fa-regular fa-comments"></i> Questions & Discussion Forum
+        <!-- Discussion & Query Forum -->
+        <section class="discussion-container">
+          <h3 style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: #0f172a;">
+            <i class="fa-regular fa-comments"></i> Questions & Eligibility Discussion
           </h3>
-          <span style="font-size: 0.8rem; color: var(--text-muted);" id="commentCount">2 Queries</span>
-        </div>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">Post your queries regarding syllabi, age relaxations, or application instructions.</p>
 
-        <div class="comment-input-area">
-          <input type="text" id="commentAuthor" placeholder="Your Name or Designation..." />
-          <textarea id="commentText" rows="3" placeholder="Have a doubt regarding eligibility, syllabus, or fee payment? Post your query here..."></textarea>
-          <button class="btn-submit-comment" onclick="postComment()">
-            <i class="fa-solid fa-paper-plane"></i> Post Query
-          </button>
-        </div>
-
-        <div class="comment-list" id="commentList">
-          <div class="comment-bubble">
-            <div class="comment-author">
-              <span>Bikram Das <span style="font-size: 0.72rem; color: #0284c7; background: #e0f2fe; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
-              <span class="comment-date">October 2026</span>
-            </div>
-            <div class="comment-body">Is final year MLISc students eligible to apply for the library trainee apprenticeship position?</div>
+          <div class="comment-form">
+            <input type="text" id="commAuthor" placeholder="Your Name or Candidate ID..." />
+            <textarea id="commText" rows="3" placeholder="Type your query here..."></textarea>
+            <button class="btn-submit-query" onclick="submitQuery()">
+              <i class="fa-solid fa-paper-plane"></i> Post Query
+            </button>
           </div>
-          <div class="comment-bubble">
-            <div class="comment-author">
-              <span>Portal Administrator <span style="font-size: 0.72rem; color: #166534; background: #dcfce7; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Official</span></span>
-              <span class="comment-date">October 2026</span>
+
+          <div class="comment-feed" id="commFeed">
+            <div class="comment-card">
+              <div class="comment-meta">
+                <span>Raktim Borah <span style="font-size: 0.72rem; color: #0284c7; background: #e0f2fe; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
+                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">October 2026</span>
+              </div>
+              <div class="comment-text">Is offline submission required after submitting the online application form?</div>
             </div>
-            <div class="comment-body">Candidates must possess the provisional degree or mark sheet on or before the closing date. Please check page 3 of the downloaded official PDF advertisement.</div>
+            <div class="comment-card">
+              <div class="comment-meta">
+                <span>Portal Desk <span style="font-size: 0.72rem; color: #166534; background: #dcfce7; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Verified</span></span>
+                <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">October 2026</span>
+              </div>
+              <div class="comment-text">No hard copies need to be mailed unless explicitly required on the final confirmation slip. Please preserve a printed copy for verification.</div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- Right Column: Sidebar (Social Communities & Related Openings) -->
+      <aside class="sidebar-pane">
+        
+        <!-- Social Communities Box -->
+        <div class="sidebar-card">
+          <div class="sidebar-header"><i class="fa-solid fa-bullhorn" style="color: var(--primary);"></i> Instant Alerts</div>
+          <div class="social-stack">
+            <a href="https://whatsapp.com/channel/0029Va..." target="_blank" rel="noopener noreferrer" class="btn-social-sidebar wa">
+              <i class="fa-brands fa-whatsapp fa-lg"></i>
+              <span>WhatsApp Channel</span>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-social-sidebar fb">
+              <i class="fa-brands fa-facebook-f fa-lg"></i>
+              <span>Facebook Group</span>
+            </a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn-social-sidebar yt">
+              <i class="fa-brands fa-youtube fa-lg"></i>
+              <span>YouTube Channel</span>
+            </a>
+            <button class="btn-social-sidebar share" onclick="shareNotice()">
+              <i class="fa-solid fa-share-nodes fa-lg"></i>
+              <span>Share this Notice</span>
+            </button>
           </div>
         </div>
-      </section>
 
-    </main>
+        <!-- Related Jobs Box -->
+        <div class="sidebar-card">
+          <div class="sidebar-header"><i class="fa-solid fa-briefcase" style="color: var(--primary);"></i> Other Open Vacancies</div>
+          <div class="related-list" id="sidebarRelatedContainer"></div>
+        </div>
+
+      </aside>
+
+    </div>
 
   </div>
 
@@ -291,95 +341,94 @@
     const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
     let currentPost = null;
 
-    async function loadPostDetails() {
+    async function loadPostData() {
       const csvUrl = SHEETS_CONFIG.careers;
       const rows = await fetchCSV(csvUrl);
-      const allItems = (rows && rows.length > 0) ? rows : careerData;
+      const items = (rows && rows.length > 0) ? rows : careerData;
 
-      if (allItems) {
-        currentPost = allItems.find(r => (r.id || '').trim().toLowerCase() === requestedId) || allItems[0];
+      if (items) {
+        currentPost = items.find(r => (r.id || '').trim().toLowerCase() === requestedId) || items[0];
       }
 
       if (currentPost) {
-        const titleStr = currentPost.title || currentPost.post_name;
-        document.title = `${titleStr} | NE Academic Hub`;
-        document.getElementById('crumbTitle').innerText = titleStr;
+        const headline = currentPost.title || currentPost.post_name;
+        document.title = `${headline} | NE Academic Hub`;
+        document.getElementById('crumbPostTitle').innerText = headline;
 
-        document.getElementById('valCategory').innerText = currentPost.category || "Recruitment Notice";
-        document.getElementById('valTitle').innerText = titleStr;
-        document.getElementById('valOrg').innerText = currentPost.organization || "Public Sector Authority";
-        
-        document.getElementById('valVacancies').innerText = currentPost.vacancies || "Refer Notice";
-        document.getElementById('valPayScale').innerText = (currentPost.pay_scale || "Govt Rules").split('(')[0].trim();
-        document.getElementById('valAgeLimit').innerText = currentPost.age_limit || "Category Bounds";
-        document.getElementById('valDeadline').innerText = currentPost.last_date || currentPost.deadline || "Open";
+        document.getElementById('dispCategory').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${currentPost.category || "Career Notice"}`;
+        document.getElementById('dispTitle').innerText = headline;
+        document.getElementById('dispOrg').innerText = currentPost.organization || "Public Sector Authority";
 
-        document.getElementById('valPostName').innerText = currentPost.post_name || titleStr;
-        document.getElementById('valQualification').innerText = currentPost.qualification || "Refer to detailed advertisement";
-        document.getElementById('valExperience').innerText = currentPost.experience || "Freshers Eligible / Not Specified";
-        document.getElementById('valAgeDetailed').innerText = currentPost.age_limit || "Category relaxations apply";
-        document.getElementById('valLocation').innerText = currentPost.job_location || "Northeast India / All India";
+        document.getElementById('dispVacancies').innerText = currentPost.vacancies || "Refer Notice";
+        document.getElementById('dispPayScale').innerText = (currentPost.pay_scale || "Govt Rules").split('(')[0].trim();
+        document.getElementById('dispAgeLimit').innerText = currentPost.age_limit || "Category Bounds";
+        document.getElementById('dispDeadline').innerText = currentPost.last_date || currentPost.deadline || "Open";
 
-        document.getElementById('valFeeGen').innerText = currentPost.fee_gen_obc || "₹500/-";
-        document.getElementById('valFeeReserved').innerText = currentPost.fee_sc_st || "Nil / Exempted";
+        document.getElementById('dispPostName').innerText = currentPost.post_name || headline;
+        document.getElementById('dispQualification').innerText = currentPost.qualification || "Refer to detailed advertisement";
+        document.getElementById('dispExperience').innerText = currentPost.experience || "Freshers / Not Specified";
+        document.getElementById('dispAgeDetailed').innerText = currentPost.age_limit || "Standard Category Relaxations Apply";
+        document.getElementById('dispLocation').innerText = currentPost.job_location || "Northeast India / All India";
 
-        document.getElementById('valStartDate').innerText = currentPost.start_date || "Active";
-        document.getElementById('valEndDate').innerText = currentPost.last_date || "Check official notice";
+        document.getElementById('dispFeeGen').innerText = currentPost.fee_gen_obc || "₹500/-";
+        document.getElementById('dispFeeReserved').innerText = currentPost.fee_sc_st || "Nil / Exempted";
 
+        document.getElementById('dispStartDate').innerText = currentPost.start_date || "Active";
+        document.getElementById('dispEndDate').innerText = currentPost.last_date || "Check official notice";
+
+        // Three Dedicated Links
         document.getElementById('btnApply').href = cleanUrl(currentPost.apply_link || currentPost.link);
         document.getElementById('btnPdf').href = cleanUrl(currentPost.notification_link || currentPost.link);
+        document.getElementById('btnOfficialSite').href = cleanUrl(currentPost.official_site || currentPost.link);
 
-        // Render Related Jobs (excluding current post)
-        renderRelatedJobs(allItems.filter(i => (i.id || '').trim().toLowerCase() !== (currentPost.id || '').trim().toLowerCase()));
+        // Populate Right Sidebar with Other Jobs
+        populateSidebarRelated(items.filter(i => (i.id || '').trim().toLowerCase() !== (currentPost.id || '').trim().toLowerCase()));
 
-        document.getElementById('loadingBox').style.display = 'none';
-        document.getElementById('mainPostContent').style.display = 'block';
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('mainGrid').style.display = 'grid';
       }
     }
 
-    function renderRelatedJobs(items) {
-      const container = document.getElementById('relatedJobsContainer');
+    function populateSidebarRelated(items) {
+      const container = document.getElementById('sidebarRelatedContainer');
       if (!container) return;
 
-      container.innerHTML = items.slice(0, 3).map(j => `
-        <a href="post.html?id=${j.id}" class="related-card">
-          <div>
-            <span style="font-size: 0.72rem; color: #0284c7; font-weight: 700;">${j.category || 'Recruitment'}</span>
-            <h4>${j.title || j.post_name}</h4>
-            <p>${(j.organization || 'Public Sector').slice(0, 32)}</p>
-          </div>
-          <div class="related-date"><i class="fa-regular fa-clock"></i> Closes: ${j.last_date || 'Active'}</div>
+      container.innerHTML = items.slice(0, 4).map(j => `
+        <a href="post.html?id=${j.id}" class="related-item-card">
+          <span class="related-cat">${j.category || 'Recruitment'}</span>
+          <div class="related-title">${j.title || j.post_name}</div>
+          <div class="related-deadline"><i class="fa-regular fa-clock"></i> Closes: ${j.last_date || j.deadline || 'Active'}</div>
         </a>
       `).join('');
     }
 
-    function sharePost() {
+    function shareNotice() {
       if (!currentPost) return;
-      const text = `📢 *Recruitment Notice: ${currentPost.title}*\n🏢 Authority: ${currentPost.organization}\n📅 Last Date: ${currentPost.last_date}\n\n👉 Full Details & Online Application:\n${window.location.href}`;
+      const text = `📢 *Recruitment Notice: ${currentPost.title}*\n🏢 Authority: ${currentPost.organization}\n📅 Last Date: ${currentPost.last_date}\n\n👉 Full Details, PDF & Official Link:\n${window.location.href}`;
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
 
-    function postComment() {
-      const author = document.getElementById('commentAuthor').value.trim() || "Candidate";
-      const text = document.getElementById('commentText').value.trim();
-      if (!text) { alert("Please type your question before submitting."); return; }
+    function submitQuery() {
+      const name = document.getElementById('commAuthor').value.trim() || "Candidate";
+      const query = document.getElementById('commText').value.trim();
+      if (!query) { alert("Please type your question before submitting."); return; }
 
-      const list = document.getElementById('commentList');
+      const feed = document.getElementById('commFeed');
       const item = document.createElement('div');
-      item.className = 'comment-bubble';
+      item.className = 'comment-card';
       item.innerHTML = `
-        <div class="comment-author">
-          <span>${author} <span style="font-size: 0.72rem; color: #0284c7; background: #e0f2fe; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
-          <span class="comment-date">Just now</span>
+        <div class="comment-meta">
+          <span>${name} <span style="font-size: 0.72rem; color: #0284c7; background: #e0f2fe; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
+          <span style="font-size: 0.75rem; color: #94a3b8; font-weight: 400;">Just now</span>
         </div>
-        <div class="comment-body">${text}</div>
+        <div class="comment-text">${query}</div>
       `;
-      list.prepend(item);
-      document.getElementById('commentText').value = "";
-      alert("Your query has been posted successfully.");
+      feed.prepend(item);
+      document.getElementById('commText').value = "";
+      alert("Your question has been posted to the discussion board.");
     }
 
-    document.addEventListener('DOMContentLoaded', loadPostDetails);
+    document.addEventListener('DOMContentLoaded', loadPostData);
   </script>
 </body>
 </html>
