@@ -3,269 +3,222 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="metaTitle">Recruitment Intelligence Dossier | NE Academic Hub</title>
+  <title id="metaTitle">Recruitment Notification | NE Academic Hub</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     /* ==============================================================
-       ULTRA-ADVANCED CYBER-EDITORIAL DESIGN SYSTEM
+       ENTERPRISE CRYSTAL DESIGN TOKENS
        ============================================================== */
     :root {
-      --bg: #06080e;
-      --bg-radial: radial-gradient(circle at 50% 0%, #0d1629 0%, #06080e 75%);
-      --surface: rgba(14, 20, 34, 0.75);
-      --surface-elevated: rgba(22, 32, 54, 0.6);
-      --surface-border: rgba(255, 255, 255, 0.08);
-      --surface-border-hover: rgba(56, 189, 248, 0.4);
-      --primary: #00f2fe;
-      --primary-rgb: 0, 242, 254;
-      --cyan-glow: rgba(0, 242, 254, 0.15);
-      --accent-gradient: linear-gradient(135deg, #00f2fe 0%, #4facfe 50%, #6366f1 100%);
+      --bg: #090d16;
+      --bg-gradient: radial-gradient(circle at 50% -10%, #152238 0%, #090d16 70%);
+      --card-bg: rgba(16, 24, 40, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(56, 189, 248, 0.35);
+      --crystal-glow: rgba(56, 189, 248, 0.08);
+      --primary: #38bdf8;
+      --primary-accent: #0284c7;
       --text-main: #f8fafc;
-      --text-muted: #8896ab;
-      --rose: #fb7185;
-      --emerald: #34d399;
-      --amber: #fbbf24;
+      --text-muted: #94a3b8;
+      --emerald: #10b981;
+      --emerald-bg: rgba(16, 185, 129, 0.12);
+      --rose: #f43f5e;
+      --rose-bg: rgba(244, 63, 94, 0.12);
       --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
     body {
       background: var(--bg);
-      background-image: var(--bg-radial);
+      background-image: var(--bg-gradient);
       color: var(--text-main);
       font-family: var(--font-sans);
       min-height: 100vh;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
 
-    /* Ambient Glow Blobs in Background */
-    .ambient-glow-1 {
-      position: fixed;
-      top: -150px;
-      right: 10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .ambient-glow-2 {
-      position: fixed;
-      bottom: -150px;
-      left: 5%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Top Command Header */
-    .terminal-nav {
+    /* Top Institutional Navigation */
+    .top-header {
+      background: rgba(9, 13, 22, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(6, 8, 14, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--surface-border);
-      padding: 0.9rem 1.8rem;
+      padding: 1rem 1.75rem;
     }
 
-    .nav-inner {
-      max-width: 1440px;
+    .header-inner {
+      max-width: 1400px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .brand-cluster {
+    .brand-link {
       display: flex;
       align-items: center;
       gap: 0.85rem;
       text-decoration: none;
-      color: var(--text-main);
+      color: #fff;
     }
 
-    .radar-icon-box {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.3);
+    .brand-badge-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      color: var(--primary);
+      font-size: 1.1rem;
     }
 
-    .radar-pulse {
-      width: 10px;
-      height: 10px;
-      background: var(--primary);
-      border-radius: 50%;
-      box-shadow: 0 0 14px var(--primary);
-      animation: pulseGlow 2s infinite ease-in-out;
+    .brand-text h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.2px;
     }
 
-    @keyframes pulseGlow {
-      0%, 100% { transform: scale(0.9); opacity: 1; }
-      50% { transform: scale(1.3); opacity: 0.5; box-shadow: 0 0 20px var(--primary); }
-    }
-
-    .brand-meta {
+    .brand-text p {
+      font-size: 0.72rem;
       font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 1.5px;
       color: var(--text-muted);
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
-    .brand-name {
-      font-weight: 800;
-      font-size: 1.08rem;
-      letter-spacing: -0.3px;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .btn-terminal-nav {
+    .btn-portal-back {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 600;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
       color: var(--text-muted);
       text-decoration: none;
       padding: 0.45rem 0.95rem;
-      border-radius: 7px;
-      border: 1px solid var(--surface-border);
-      background: rgba(255, 255, 255, 0.02);
-      transition: all 0.25s ease;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
     }
 
-    .btn-terminal-nav:hover {
-      color: var(--primary);
-      border-color: rgba(0, 242, 254, 0.4);
-      background: var(--cyan-glow);
-      transform: translateY(-1px);
+    .btn-portal-back:hover {
+      color: #fff;
+      border-color: var(--primary);
+      background: var(--crystal-glow);
     }
 
-    /* Main Grid Workstation */
-    .terminal-container {
-      max-width: 1440px;
-      margin: 2rem auto 4rem auto;
+    /* Dual-Pane Layout */
+    .workspace-wrapper {
+      max-width: 1400px;
+      margin: 2rem auto;
       padding: 0 1.5rem;
       display: grid;
-      grid-template-columns: 390px 1fr;
+      grid-template-columns: 380px 1fr;
       gap: 2rem;
-      position: relative;
-      z-index: 1;
+      align-items: start;
     }
 
-    /* Left Sidebar: Registry Feed */
-    .registry-pane {
-      background: var(--surface);
+    /* Left: Live Stream Registry */
+    .stream-panel {
+      background: var(--card-bg);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--surface-border);
+      border: 1px solid var(--card-border);
       border-radius: 16px;
       overflow: hidden;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
     }
 
-    .registry-header {
-      padding: 1.25rem 1.4rem;
-      border-bottom: 1px solid var(--surface-border);
-      background: rgba(255, 255, 255, 0.015);
+    .stream-header {
+      padding: 1.2rem 1.4rem;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.02);
     }
 
-    .registry-title {
+    .stream-header-label {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
+      font-size: 0.72rem;
       color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .registry-desc {
-      font-size: 0.85rem;
+    .stream-header p {
+      font-size: 0.82rem;
       color: var(--text-muted);
-      margin-top: 0.3rem;
+      margin-top: 0.25rem;
     }
 
-    .registry-list {
-      max-height: calc(100vh - 220px);
+    .stream-feed {
+      max-height: calc(100vh - 210px);
       overflow-y: auto;
       padding: 0.85rem;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.6rem;
     }
 
-    .registry-list::-webkit-scrollbar { width: 5px; }
-    .registry-list::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+    .stream-feed::-webkit-scrollbar { width: 4px; }
+    .stream-feed::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
 
-    .registry-item {
-      padding: 1.1rem;
+    .stream-card {
+      padding: 1rem 1.15rem;
       border-radius: 10px;
       border: 1px solid transparent;
       background: rgba(255, 255, 255, 0.02);
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .registry-item:hover {
+    .stream-card:hover {
       background: rgba(255, 255, 255, 0.04);
-      border-color: var(--surface-border);
+      border-color: var(--card-border);
       transform: translateX(3px);
     }
 
-    .registry-item.active {
-      background: var(--surface-elevated);
-      border-color: rgba(0, 242, 254, 0.35);
-      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.08), inset 3px 0 0 var(--primary);
+    .stream-card.active {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: inset 3px 0 0 var(--primary);
     }
 
-    .registry-badge {
+    .stream-badge {
       font-family: var(--font-mono);
       font-size: 0.68rem;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.1);
       padding: 0.2rem 0.55rem;
       border-radius: 4px;
-      background: rgba(0, 242, 254, 0.1);
-      color: var(--primary);
-      font-weight: 600;
       display: inline-block;
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
     }
 
-    .registry-item h4 {
-      font-size: 0.95rem;
+    .stream-card h4 {
+      font-size: 0.92rem;
       font-weight: 700;
       color: #fff;
       line-height: 1.35;
     }
 
-    .registry-item-meta {
+    .stream-meta {
       font-size: 0.78rem;
       color: var(--text-muted);
       margin-top: 0.4rem;
@@ -273,16 +226,16 @@
       justify-content: space-between;
     }
 
-    /* Right Main Panel: Intelligence Dossier */
-    .dossier-main {
-      background: var(--surface);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--surface-border);
+    /* Right: Crystal Dossier Card */
+    .dossier-panel {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--card-border);
       border-radius: 20px;
       padding: 2.5rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
       position: relative;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
 
     /* Dossier Top Bar */
@@ -290,9 +243,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--surface-border);
-      margin-bottom: 1.8rem;
+      padding-bottom: 1.4rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 1.75rem;
       flex-wrap: wrap;
       gap: 1rem;
     }
@@ -301,8 +254,8 @@
       font-family: var(--font-mono);
       font-size: 0.78rem;
       color: var(--primary);
-      background: rgba(0, 242, 254, 0.08);
-      border: 1px solid rgba(0, 242, 254, 0.25);
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       padding: 0.35rem 0.85rem;
       border-radius: 6px;
       display: inline-flex;
@@ -311,14 +264,14 @@
       font-weight: 600;
     }
 
-    .dossier-actions {
+    .dossier-tools {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
-    .btn-chip {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--surface-border);
+    .btn-tool {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
       color: var(--text-muted);
       padding: 0.42rem 0.85rem;
       border-radius: 7px;
@@ -332,162 +285,99 @@
       transition: all 0.2s;
     }
 
-    .btn-chip:hover {
+    .btn-tool:hover {
       color: #fff;
-      border-color: rgba(255, 255, 255, 0.25);
-      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.08);
     }
 
-    .btn-chip.wa:hover {
+    .btn-tool.wa:hover {
       color: #25d366;
       border-color: #25d366;
       background: rgba(37, 211, 102, 0.1);
     }
 
-    /* Department & Headline */
-    .org-banner-chip {
+    /* Post Headings */
+    .authority-name {
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--primary);
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      display: inline-block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
-    .post-headline {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1.22;
-      letter-spacing: -0.6px;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Live Countdown Urgency Timer */
-    .urgency-clock-card {
-      background: linear-gradient(90deg, rgba(251, 113, 133, 0.1) 0%, rgba(20, 28, 46, 0.6) 100%);
-      border: 1px solid rgba(251, 113, 133, 0.3);
-      border-radius: 12px;
-      padding: 1.1rem 1.4rem;
-      margin-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .clock-label {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      color: var(--rose);
-      letter-spacing: 1px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .clock-display {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-family: var(--font-mono);
-    }
-
-    .clock-segment {
-      background: rgba(0, 0, 0, 0.4);
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      text-align: center;
-    }
-
-    .clock-segment .num {
-      font-size: 1.2rem;
+    .job-title {
+      font-size: 2.1rem;
       font-weight: 800;
       color: #fff;
+      line-height: 1.22;
+      letter-spacing: -0.5px;
+      margin-bottom: 1.75rem;
     }
 
-    .clock-segment .sub {
-      font-size: 0.62rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      display: block;
-      margin-top: -2px;
-    }
-
-    /* Executive Stat Bento Matrix */
-    .bento-matrix {
+    /* Bento Matrix */
+    .bento-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
-      margin-bottom: 2.2rem;
+      margin-bottom: 2rem;
     }
 
-    .bento-cell {
-      background: var(--surface-elevated);
-      border: 1px solid var(--surface-border);
+    .bento-card {
+      background: rgba(255, 255, 255, 0.025);
+      border: 1px solid var(--card-border);
       border-radius: 12px;
-      padding: 1.1rem 1.25rem;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
+      padding: 1.1rem 1.2rem;
+      transition: all 0.25s ease;
     }
 
-    .bento-cell:hover {
-      border-color: var(--surface-border-hover);
+    .bento-card:hover {
+      border-color: var(--card-hover-border);
+      background: rgba(255, 255, 255, 0.04);
       transform: translateY(-2px);
     }
 
-    .bento-cell::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 2px;
-      background: var(--accent-gradient);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .bento-cell:hover::after { opacity: 1; }
-
     .bento-label {
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
       color: var(--text-muted);
       letter-spacing: 0.8px;
     }
 
     .bento-value {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 800;
       color: #fff;
-      margin-top: 0.35rem;
+      margin-top: 0.3rem;
     }
 
-    /* Candidate Scanner & Fee Engine */
-    .scanner-terminal {
-      background: linear-gradient(145deg, rgba(20, 29, 48, 0.9) 0%, rgba(13, 19, 33, 0.9) 100%);
-      border: 1px solid var(--surface-border-hover);
+    .bento-value.deadline {
+      color: var(--rose);
+    }
+
+    /* Candidate Scanner / Fee Calculator */
+    .scanner-box {
+      background: linear-gradient(145deg, rgba(26, 38, 64, 0.6) 0%, rgba(16, 24, 40, 0.6) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
       border-radius: 14px;
-      padding: 1.6rem;
+      padding: 1.5rem;
       margin-bottom: 2.2rem;
-      box-shadow: 0 4px 25px rgba(0, 242, 254, 0.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     }
 
-    .scanner-top {
+    .scanner-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.2rem;
-      border-bottom: 1px solid var(--surface-border);
+      border-bottom: 1px solid var(--card-border);
       padding-bottom: 0.75rem;
     }
 
-    .scanner-title {
-      font-size: 0.98rem;
+    .scanner-header h3 {
+      font-size: 0.95rem;
       font-weight: 700;
       color: #fff;
       display: flex;
@@ -495,13 +385,19 @@
       gap: 0.5rem;
     }
 
-    .scanner-fields-grid {
+    .scanner-header span {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--primary);
+    }
+
+    .scanner-controls {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 1.1rem;
     }
 
-    .scanner-input-block label {
+    .scanner-field label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
       color: var(--text-muted);
@@ -510,187 +406,123 @@
       letter-spacing: 0.5px;
     }
 
-    .scanner-input-block select,
-    .scanner-input-block input {
+    .scanner-field select,
+    .scanner-field input {
       width: 100%;
-      background: rgba(6, 8, 14, 0.8);
-      border: 1px solid var(--surface-border);
+      background: rgba(9, 13, 22, 0.85);
+      border: 1px solid var(--card-border);
       color: #fff;
-      padding: 0.7rem 0.9rem;
-      border-radius: 7px;
-      font-size: 0.9rem;
+      padding: 0.65rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
       outline: none;
       font-family: var(--font-sans);
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
 
-    .scanner-input-block select:focus,
-    .scanner-input-block input:focus {
+    .scanner-field select:focus,
+    .scanner-field input:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 12px var(--cyan-glow);
+      box-shadow: 0 0 12px var(--crystal-glow);
     }
 
-    .scanner-telemetry-result {
+    .scanner-footer {
       grid-column: span 3;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid var(--surface-border);
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--card-border);
       border-radius: 9px;
-      padding: 1rem 1.3rem;
+      padding: 0.9rem 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-top: 0.5rem;
+      margin-top: 0.6rem;
     }
 
-    .fee-readout {
+    .scanner-fee-text {
       font-family: var(--font-mono);
       font-size: 0.82rem;
       color: var(--text-muted);
     }
 
-    .fee-readout strong {
+    .scanner-fee-text strong {
       color: #fff;
       font-size: 1.05rem;
       margin-left: 0.4rem;
     }
 
-    .eligibility-badge {
+    .scanner-status {
       font-family: var(--font-mono);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      padding: 0.35rem 0.9rem;
+      padding: 0.35rem 0.85rem;
       border-radius: 5px;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
     }
 
-    .eligibility-badge.pass {
-      background: rgba(52, 211, 153, 0.15);
+    .scanner-status.eligible {
+      background: var(--emerald-bg);
       color: var(--emerald);
-      border: 1px solid rgba(52, 211, 153, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
-    .eligibility-badge.fail {
-      background: rgba(251, 113, 133, 0.15);
+    .scanner-status.ineligible {
+      background: var(--rose-bg);
       color: var(--rose);
-      border: 1px solid rgba(251, 113, 133, 0.3);
+      border: 1px solid rgba(244, 63, 94, 0.3);
     }
 
-    /* Complete Parameters Spec Table */
-    .spec-block {
+    /* Specifications Table */
+    .specs-block {
       margin-bottom: 2.2rem;
     }
 
-    .spec-block-title {
+    .specs-block-title {
       font-family: var(--font-mono);
       font-size: 0.82rem;
       text-transform: uppercase;
       letter-spacing: 1.2px;
       color: var(--primary);
-      margin-bottom: 1rem;
+      margin-bottom: 0.85rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .spec-table {
+    .specs-table {
       width: 100%;
       border-collapse: collapse;
-      background: var(--surface-elevated);
-      border: 1px solid var(--surface-border);
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--card-border);
       border-radius: 12px;
       overflow: hidden;
     }
 
-    .spec-table tr:not(:last-child) {
-      border-bottom: 1px solid var(--surface-border);
+    .specs-table tr:not(:last-child) {
+      border-bottom: 1px solid var(--card-border);
     }
 
-    .spec-table th {
-      width: 26%;
+    .specs-table th {
+      width: 28%;
       padding: 0.95rem 1.25rem;
       text-align: left;
       font-size: 0.82rem;
       font-weight: 600;
       color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.015);
-      border-right: 1px solid var(--surface-border);
+      background: rgba(255, 255, 255, 0.02);
+      border-right: 1px solid var(--card-border);
       font-family: var(--font-mono);
     }
 
-    .spec-table td {
+    .specs-table td {
       padding: 0.95rem 1.25rem;
       font-size: 0.92rem;
       color: #fff;
     }
 
-    /* Application Roadmap Stepper */
-    .roadmap-container {
-      background: var(--surface-elevated);
-      border: 1px solid var(--surface-border);
-      border-radius: 12px;
-      padding: 1.4rem;
-      margin-bottom: 2.2rem;
-    }
-
-    .roadmap-title {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .stepper-track {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      position: relative;
-    }
-
-    .stepper-step {
-      text-align: center;
-      position: relative;
-    }
-
-    .step-indicator {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--surface-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 0.6rem auto;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--text-muted);
-    }
-
-    .stepper-step.active .step-indicator {
-      background: var(--primary);
-      color: #041019;
-      border-color: var(--primary);
-      box-shadow: 0 0 15px var(--cyan-glow);
-    }
-
-    .step-text {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    .stepper-step.active .step-text { color: #fff; }
-
-    /* High-Impact Action Array */
-    .action-grid {
+    /* Action Links Bar */
+    .actions-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.1rem;
@@ -698,36 +530,36 @@
     }
 
     .btn-action-primary {
-      background: var(--accent-gradient);
+      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
       color: #041019;
       text-decoration: none;
-      padding: 1.1rem;
-      border-radius: 9px;
+      padding: 1.05rem;
+      border-radius: 10px;
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 0.95rem;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.55rem;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.25);
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.25);
     }
 
     .btn-action-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(0, 242, 254, 0.45);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
     }
 
     .btn-action-secondary {
-      background: var(--surface-elevated);
-      border: 1px solid var(--surface-border);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
       color: #fff;
       text-decoration: none;
-      padding: 1.1rem;
-      border-radius: 9px;
+      padding: 1.05rem;
+      border-radius: 10px;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.95rem;
       text-align: center;
       display: flex;
       align-items: center;
@@ -737,136 +569,115 @@
     }
 
     .btn-action-secondary:hover {
-      border-color: var(--surface-border-hover);
-      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.07);
       transform: translateY(-2px);
     }
 
-    /* Print Formatting */
+    /* Print Styles */
     @media print {
       body { background: #fff !important; color: #000 !important; }
-      .terminal-nav, .registry-pane, .urgency-clock-card, .scanner-terminal, .action-grid, .dossier-actions { display: none !important; }
-      .terminal-container { grid-template-columns: 1fr !important; margin: 0 !important; padding: 0 !important; }
-      .dossier-main { border: none !important; box-shadow: none !important; padding: 0 !important; }
-      .spec-table th, .spec-table td { color: #000 !important; border-color: #ccc !important; }
+      .top-header, .stream-panel, .scanner-box, .actions-grid, .dossier-tools { display: none !important; }
+      .workspace-wrapper { grid-template-columns: 1fr !important; margin: 0 !important; padding: 0 !important; }
+      .dossier-panel { border: none !important; box-shadow: none !important; padding: 0 !important; }
+      .specs-table th, .specs-table td { color: #000 !important; border-color: #ddd !important; }
     }
 
     /* Responsive */
     @media (max-width: 1080px) {
-      .terminal-container { grid-template-columns: 1fr; }
-      .bento-matrix { grid-template-columns: repeat(2, 1fr); }
-      .scanner-fields-grid { grid-template-columns: 1fr; }
-      .scanner-telemetry-result { grid-column: span 1; flex-direction: column; gap: 0.6rem; text-align: center; }
-      .action-grid { grid-template-columns: 1fr; }
-      .stepper-track { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .workspace-wrapper { grid-template-columns: 1fr; }
+      .bento-grid { grid-template-columns: repeat(2, 1fr); }
+      .scanner-controls { grid-template-columns: 1fr; }
+      .scanner-footer { grid-column: span 1; flex-direction: column; gap: 0.6rem; text-align: center; }
+      .actions-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Light Accents -->
-  <div class="ambient-glow-1"></div>
-  <div class="ambient-glow-2"></div>
-
-  <!-- Terminal Top Command Nav -->
-  <header class="terminal-nav">
-    <div class="nav-inner">
-      <a href="index.html" class="brand-cluster">
-        <div class="radar-icon-box">
-          <div class="radar-pulse"></div>
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-link">
+        <div class="brand-badge-icon">
+          <i class="fa-solid fa-graduation-cap"></i>
         </div>
-        <div>
-          <div class="brand-meta">NE ACADEMIC HUB // COMMAND DECK v4.0</div>
-          <div class="brand-name">Career Intelligence Dossier</div>
+        <div class="brand-text">
+          <h2>NE ACADEMIC HUB</h2>
+          <p>Institutional Career & Reading Dossier</p>
         </div>
       </a>
-      <div class="nav-actions">
-        <button class="btn-terminal-nav" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Dossier</button>
-        <a href="index.html" class="btn-terminal-nav"><i class="fa-solid fa-arrow-left"></i> Super-Portal</a>
+      <div style="display: flex; gap: 0.6rem;">
+        <button class="btn-portal-back" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>
+        <a href="index.html" class="btn-portal-back"><i class="fa-solid fa-arrow-left"></i> All Categories</a>
       </div>
     </div>
   </header>
 
-  <!-- Workstation Container -->
-  <main class="terminal-container">
+  <!-- Dual-Pane Workspace -->
+  <main class="workspace-wrapper">
     
-    <!-- Left Column: Registry Stream -->
-    <aside class="registry-pane">
-      <div class="registry-header">
-        <div class="registry-title"><i class="fa-solid fa-satellite-dish"></i> Live Stream Registry</div>
-        <p class="registry-desc">Select any notice below to switch the active intelligence dossier instantaneously.</p>
+    <!-- Left: Live Active Registry -->
+    <aside class="stream-panel">
+      <div class="stream-header">
+        <div class="stream-header-label"><i class="fa-solid fa-satellite-dish"></i> Live Opportunities</div>
+        <p>Select any post to load its breakdown instantly.</p>
       </div>
-      <div class="registry-list" id="registryListContainer">
-        <div style="padding: 2.5rem; text-align: center; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem;">
+      <div class="stream-feed" id="streamContainer">
+        <div style="padding: 2.5rem; text-align: center; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.82rem;">
           <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--primary); margin-bottom: 0.8rem;"></i>
-          <div>Connecting to Central Database...</div>
+          <div>Syncing verified notices...</div>
         </div>
       </div>
     </aside>
 
-    <!-- Right Column: Active Dossier -->
-    <section class="dossier-main" id="dossierDisplay">
+    <!-- Right: Detailed Dossier Panel -->
+    <section class="dossier-panel" id="dossierDisplay">
       
-      <!-- Dossier Header & Share Strip -->
+      <!-- Top Tool Bar -->
       <div class="dossier-topbar">
         <div class="dossier-token"><i class="fa-solid fa-shield-halved"></i> <span id="valDossierId">REC-IND-2026</span></div>
-        <div class="dossier-actions">
-          <button class="btn-chip wa" onclick="dispatchBroadcast('wa')"><i class="fa-brands fa-whatsapp"></i> Broadcast</button>
-          <button class="btn-chip" onclick="dispatchBroadcast('tg')"><i class="fa-brands fa-telegram"></i> Telegram</button>
-          <button class="btn-chip" onclick="dispatchBroadcast('copy')"><i class="fa-regular fa-copy"></i> Copy Feed</button>
+        <div class="dossier-tools">
+          <button class="btn-tool wa" onclick="shareDossier('wa')"><i class="fa-brands fa-whatsapp"></i> Broadcast</button>
+          <button class="btn-tool" onclick="shareDossier('tg')"><i class="fa-brands fa-telegram"></i> Telegram</button>
+          <button class="btn-tool" onclick="shareDossier('copy')"><i class="fa-regular fa-copy"></i> Copy Feed</button>
         </div>
       </div>
 
-      <!-- Main Headline & Eyebrow -->
-      <div class="org-banner-chip" id="valOrg">Hiring Department</div>
-      <h1 class="post-headline" id="valTitle">Designation & Summary</h1>
-
-      <!-- Real-Time Countdown Urgency Box -->
-      <div class="urgency-clock-card">
-        <div class="clock-label">
-          <i class="fa-solid fa-hourglass-half"></i> Registration Closing Window
-        </div>
-        <div class="clock-display">
-          <div class="clock-segment"><span class="num" id="timeDays">00</span><span class="sub">Days</span></div>
-          <span style="font-weight: 800; color: rgba(255,255,255,0.3);">:</span>
-          <div class="clock-segment"><span class="num" id="timeHours">00</span><span class="sub">Hours</span></div>
-          <span style="font-weight: 800; color: rgba(255,255,255,0.3);">:</span>
-          <div class="clock-segment"><span class="num" id="timeMins">00</span><span class="sub">Mins</span></div>
-          <span style="font-weight: 800; color: rgba(255,255,255,0.3);">:</span>
-          <div class="clock-segment"><span class="num" id="timeSecs">00</span><span class="sub">Secs</span></div>
-        </div>
-      </div>
+      <!-- Department & Title -->
+      <div class="authority-name" id="valOrg">Hiring Department</div>
+      <h1 class="job-title" id="valTitle">Designation & Summary</h1>
 
       <!-- Bento-Matrix Quick Parameters -->
-      <div class="bento-matrix">
-        <div class="bento-cell">
+      <div class="bento-grid">
+        <div class="bento-card">
           <div class="bento-label">Vacancies Declared</div>
           <div class="bento-value" id="valVacancies">--</div>
         </div>
-        <div class="bento-cell">
+        <div class="bento-card">
           <div class="bento-label">Pay Level / Band</div>
           <div class="bento-value" id="valPayScale">--</div>
         </div>
-        <div class="bento-cell">
+        <div class="bento-card">
           <div class="bento-label">Age Ceiling</div>
           <div class="bento-value" id="valAgeLimit">--</div>
         </div>
-        <div class="bento-cell">
-          <div class="bento-label">Cutoff Deadline</div>
-          <div class="bento-value" id="valDeadline" style="color: var(--rose);">--</div>
+        <div class="bento-card">
+          <div class="bento-label">Application Deadline</div>
+          <div class="bento-value deadline" id="valDeadline">--</div>
         </div>
       </div>
 
-      <!-- Dynamic Candidate Scanner & Fee Engine -->
-      <div class="scanner-terminal">
-        <div class="scanner-top">
-          <div class="scanner-title"><i class="fa-solid fa-sliders" style="color: var(--primary);"></i> Candidate Eligibility & Fee Calculator</div>
-          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">REAL-TIME EVALUATION</span>
+      <!-- Candidate Scanner / Dynamic Fee Engine -->
+      <div class="scanner-box">
+        <div class="scanner-header">
+          <h3><i class="fa-solid fa-calculator" style="color: var(--primary);"></i> Candidate Eligibility & Fee Calculator</h3>
+          <span>LIVE EVALUATION</span>
         </div>
-        <div class="scanner-fields-grid">
-          <div class="scanner-input-block">
+        <div class="scanner-controls">
+          <div class="scanner-field">
             <label>RESERVATION CATEGORY</label>
-            <select id="userCategory" onchange="runCandidateScan()">
+            <select id="candidateCategory" onchange="evaluateCandidate()">
               <option value="GEN">General / Unreserved</option>
               <option value="OBC">OBC / MOBC</option>
               <option value="SC">Scheduled Caste (SC)</option>
@@ -874,19 +685,19 @@
               <option value="PWD">PwD / Divyangjan</option>
             </select>
           </div>
-          <div class="scanner-input-block">
-            <label>CANDIDATE AGE (YEARS)</label>
-            <input type="number" id="userAge" value="25" min="18" max="65" oninput="runCandidateScan()" />
+          <div class="scanner-field">
+            <label>YOUR AGE (IN YEARS)</label>
+            <input type="number" id="candidateAge" value="25" min="18" max="65" oninput="evaluateCandidate()" />
           </div>
-          <div class="scanner-input-block">
-            <label>SUBMISSION CHANNEL</label>
-            <input type="text" id="valMode" value="Online Portal" readonly />
+          <div class="scanner-field">
+            <label>APPLICATION CHANNEL</label>
+            <input type="text" id="valChannel" value="Online Portal" readonly />
           </div>
-          <div class="scanner-telemetry-result">
-            <div class="fee-readout">
-              COMPUTED APPLICATION FEE: <strong id="valComputedFee">₹0/-</strong>
+          <div class="scanner-footer">
+            <div class="scanner-fee-text">
+              APPLICATION FEE: <strong id="valComputedFee">₹0/-</strong>
             </div>
-            <div id="statusBadge" class="eligibility-badge pass">
+            <div id="statusBadge" class="scanner-status eligible">
               <i class="fa-solid fa-circle-check"></i> ELIGIBLE AGE CRITERIA
             </div>
           </div>
@@ -894,48 +705,25 @@
       </div>
 
       <!-- Specification Parameters Table -->
-      <div class="spec-block">
-        <div class="spec-block-title"><i class="fa-solid fa-table-cells-large"></i> Official Notification Parameters</div>
-        <table class="spec-table">
+      <div class="specs-block">
+        <div class="specs-block-title"><i class="fa-solid fa-table-cells-large"></i> Official Notification Parameters</div>
+        <table class="specs-table">
           <tr><th>Official Designation</th><td id="valPostName">--</td></tr>
           <tr><th>Academic Qualification</th><td id="valQualification">--</td></tr>
           <tr><th>Prior Experience</th><td id="valExperience">--</td></tr>
-          <tr><th>Notification Opening Date</th><td id="valStartDate">--</td></tr>
-          <tr><th>Deployment Station</th><td id="valLocation">--</td></tr>
+          <tr><th>Application Opening Date</th><td id="valStartDate">--</td></tr>
+          <tr><th>Posting Station</th><td id="valLocation">--</td></tr>
           <tr><th>Evaluation Procedure</th><td id="valSelection">Written Examination / Document Scrutiny / Interview</td></tr>
         </table>
       </div>
 
-      <!-- Recruitment Lifecycle Stepper -->
-      <div class="roadmap-container">
-        <div class="roadmap-title"><i class="fa-solid fa-timeline"></i> Recruitment Progression Pipeline</div>
-        <div class="stepper-track">
-          <div class="stepper-step active">
-            <div class="step-indicator">01</div>
-            <div class="step-text">Registration Active</div>
-          </div>
-          <div class="stepper-step">
-            <div class="step-indicator">02</div>
-            <div class="step-text">Scrutiny / Verification</div>
-          </div>
-          <div class="stepper-step">
-            <div class="step-indicator">03</div>
-            <div class="step-text">Admit Card / Test</div>
-          </div>
-          <div class="stepper-step">
-            <div class="step-indicator">04</div>
-            <div class="step-text">Final Merit List</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- High-Impact Action Array -->
-      <div class="action-grid">
+      <!-- Action Links Grid -->
+      <div class="actions-grid">
         <a id="btnApplyPortal" href="#" target="_blank" rel="noopener noreferrer" class="btn-action-primary">
           <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Application Gateway &rarr;
         </a>
         <a id="btnDownloadPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-action-secondary">
-          <i class="fa-solid fa-file-pdf" style="color: var(--rose);"></i> Download Official PDF Notice
+          <i class="fa-solid fa-file-pdf" style="color: var(--rose);"></i> Download Official Notice (PDF)
         </a>
       </div>
 
@@ -946,39 +734,38 @@
   <script src="portal-data.js"></script>
   <script>
     let activeDossier = null;
-    let allRegistryItems = [];
-    let countdownInterval = null;
+    let allRecords = [];
 
-    async function initializeCommandCenter() {
+    async function initDossier() {
       const urlParams = new URLSearchParams(window.location.search);
       const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
 
-      // Retrieve live sheet records
+      // Fetch live records from Google Sheet or fallback
       const csvData = await fetchCSV(SHEETS_CONFIG.careers);
-      allRegistryItems = (csvData && csvData.length > 0) ? csvData : careerData;
+      allRecords = (csvData && csvData.length > 0) ? csvData : careerData;
 
-      // Populate Left Column Registry Stream
-      renderRegistryList(allRegistryItems, requestedId);
+      // Render Left Registry Stream
+      renderStream(allRecords, requestedId);
 
-      // Select initial or requested post
-      const initialItem = allRegistryItems.find(item => (item.id || '').trim().toLowerCase() === requestedId) || allRegistryItems[0];
-      if (initialItem) {
-        displayDossier(initialItem);
+      // Select post
+      const selected = allRecords.find(item => (item.id || '').trim().toLowerCase() === requestedId) || allRecords[0];
+      if (selected) {
+        renderDossierView(selected);
       }
     }
 
-    function renderRegistryList(items, currentId) {
-      const container = document.getElementById('registryListContainer');
+    function renderStream(items, currentId) {
+      const container = document.getElementById('streamContainer');
       if (!container) return;
 
       container.innerHTML = items.map(item => {
         const id = (item.id || '').trim().toLowerCase();
         const isActive = id === (currentId || '').trim().toLowerCase();
         return `
-          <div class="registry-item ${isActive ? 'active' : ''}" onclick="selectRegistryRecord('${id}', event)">
-            <span class="registry-badge">${item.category || 'Recruitment Notice'}</span>
+          <div class="stream-card ${isActive ? 'active' : ''}" onclick="selectItem('${id}', event)">
+            <span class="stream-badge">${item.category || 'Recruitment'}</span>
             <h4>${item.title || item.post_name}</h4>
-            <div class="registry-item-meta">
+            <div class="stream-meta">
               <span><i class="fa-regular fa-building"></i> ${(item.organization || 'Govt').slice(0, 18)}...</span>
               <span><i class="fa-regular fa-clock"></i> ${item.last_date || item.deadline || 'Open'}</span>
             </div>
@@ -987,24 +774,24 @@
       }).join('');
     }
 
-    function selectRegistryRecord(id, evt) {
-      const target = allRegistryItems.find(item => (item.id || '').trim().toLowerCase() === id);
+    function selectItem(id, evt) {
+      const target = allRecords.find(item => (item.id || '').trim().toLowerCase() === id);
       if (target) {
         const newUrl = new URL(window.location);
         newUrl.searchParams.set('id', id);
         window.history.pushState({}, '', newUrl);
 
-        document.querySelectorAll('.registry-item').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.stream-card').forEach(el => el.classList.remove('active'));
         if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
 
-        displayDossier(target);
+        renderDossierView(target);
       }
     }
 
-    function displayDossier(post) {
+    function renderDossierView(post) {
       activeDossier = post;
       const titleStr = post.title || post.post_name;
-      document.title = `${titleStr} // Command Dossier`;
+      document.title = `${titleStr} | NE Academic Hub`;
 
       document.getElementById('valDossierId').innerText = (post.id || 'GOV-REC-2026').toUpperCase();
       document.getElementById('valOrg').innerText = post.organization || "Public Sector Authority";
@@ -1015,7 +802,7 @@
       document.getElementById('valDeadline').innerText = post.last_date || post.deadline || "Active";
 
       document.getElementById('valPostName').innerText = post.post_name || titleStr;
-      document.getElementById('valQualification').innerText = post.qualification || "Refer to detailed advertisement";
+      document.getElementById('valQualification').innerText = post.qualification || "Refer to detailed notice";
       document.getElementById('valExperience').innerText = post.experience || "Freshers / Not Specified";
       document.getElementById('valStartDate').innerText = post.start_date || "Active";
       document.getElementById('valLocation').innerText = post.job_location || "Northeast India / All India";
@@ -1024,99 +811,55 @@
       document.getElementById('btnApplyPortal').href = cleanUrl(post.apply_link || post.link);
       document.getElementById('btnDownloadPdf').href = cleanUrl(post.notification_link || post.link);
 
-      runCandidateScan();
-      startCountdown(post.last_date || post.deadline);
+      evaluateCandidate();
     }
 
-    function runCandidateScan() {
+    function evaluateCandidate() {
       if (!activeDossier) return;
-      const category = document.getElementById('userCategory').value;
-      const age = parseInt(document.getElementById('userAge').value, 10) || 0;
+      const category = document.getElementById('candidateCategory').value;
+      const age = parseInt(document.getElementById('candidateAge').value, 10) || 0;
 
-      // Fee Readout
-      let feeDisplay = activeDossier.fee_gen_obc || "₹500/-";
+      // Fee Breakdown
+      let fee = activeDossier.fee_gen_obc || "₹500/-";
       if (['SC', 'ST', 'PWD'].includes(category)) {
-        feeDisplay = activeDossier.fee_sc_st || "Nil / Exempted";
+        fee = activeDossier.fee_sc_st || "Nil / Exempted";
       }
-      document.getElementById('valComputedFee').innerText = feeDisplay;
+      document.getElementById('valComputedFee').innerText = fee;
 
-      // Age Threshold
+      // Age Bounds with Govt Relaxation
       const maxAgeMatch = (activeDossier.age_limit || '').match(/\d+/g);
-      const maxAgeLimit = maxAgeMatch ? parseInt(maxAgeMatch[maxAgeMatch.length - 1], 10) : 40;
+      const baseMaxAge = maxAgeMatch ? parseInt(maxAgeMatch[maxAgeMatch.length - 1], 10) : 40;
       
       let relaxation = 0;
       if (category === 'OBC') relaxation = 3;
       if (['SC', 'ST'].includes(category)) relaxation = 5;
       if (category === 'PWD') relaxation = 10;
 
-      const effectiveLimit = maxAgeLimit + relaxation;
+      const totalAllowedAge = baseMaxAge + relaxation;
       const badge = document.getElementById('statusBadge');
 
-      if (age <= effectiveLimit && age >= 18) {
-        badge.className = "eligibility-badge pass";
-        badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> ELIGIBLE (${category} MAX: ${effectiveLimit} YRS)`;
+      if (age <= totalAllowedAge && age >= 18) {
+        badge.className = "scanner-status eligible";
+        badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> ELIGIBLE (${category} MAX: ${totalAllowedAge} YRS)`;
       } else {
-        badge.className = "eligibility-badge fail";
-        badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> OVER AGE LIMIT (${category} MAX: ${effectiveLimit} YRS)`;
+        badge.className = "scanner-status ineligible";
+        badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> OVER AGE LIMIT (${category} MAX: ${totalAllowedAge} YRS)`;
       }
     }
 
-    function startCountdown(deadlineStr) {
-      if (countdownInterval) clearInterval(countdownInterval);
-
-      // Attempt parsing date
-      let targetDate;
-      if (deadlineStr && deadlineStr.includes('-')) {
-        const parts = deadlineStr.split('-');
-        if (parts[0].length === 4) {
-          targetDate = new Date(`${parts[0]}-${parts[1]}-${parts[2]}T23:59:59`);
-        } else {
-          targetDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}T23:59:59`);
-        }
-      }
-
-      if (!targetDate || isNaN(targetDate.getTime())) {
-        targetDate = new Date(Date.now() + 15 * 86400000); // 15 day fallback
-      }
-
-      function updateClock() {
-        const diff = targetDate - new Date();
-        if (diff <= 0) {
-          document.getElementById('timeDays').innerText = "00";
-          document.getElementById('timeHours').innerText = "00";
-          document.getElementById('timeMins').innerText = "00";
-          document.getElementById('timeSecs').innerText = "00";
-          return;
-        }
-
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((diff / 1000 / 60) % 60);
-        const s = Math.floor((diff / 1000) % 60);
-
-        document.getElementById('timeDays').innerText = String(d).padStart(2, '0');
-        document.getElementById('timeHours').innerText = String(h).padStart(2, '0');
-        document.getElementById('timeMins').innerText = String(m).padStart(2, '0');
-        document.getElementById('timeSecs').innerText = String(s).padStart(2, '0');
-      }
-
-      updateClock();
-      countdownInterval = setInterval(updateClock, 1000);
-    }
-
-    function dispatchBroadcast(platform) {
+    function shareDossier(platform) {
       if (!activeDossier) return;
       const url = window.location.href;
       const text = 
-`⚡ *NORTHEAST RECRUITMENT INTELLIGENCE*
+`⚡ *NORTHEAST RECRUITMENT NOTIFICATION*
 ━━━━━━━━━━━━━━━━━━━━━━━━━
 🏛️ *${activeDossier.organization}*
 📌 Post: *${activeDossier.title || activeDossier.post_name}*
 👥 Vacancies: ${activeDossier.vacancies || '01'}
 💰 Pay Band: ${activeDossier.pay_scale || 'Level 6'}
-📅 Closing Date: *${activeDossier.last_date || 'Check Notice'}*
+📅 Last Date: *${activeDossier.last_date || 'Check Notice'}*
 
-🔗 *Inspect Full Dossier & Apply:*
+🔗 *Inspect Full Details & Apply Online:*
 ${url}`;
 
       if (platform === 'wa') {
@@ -1124,11 +867,11 @@ ${url}`;
       } else if (platform === 'tg') {
         window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
       } else {
-        navigator.clipboard.writeText(text).then(() => alert("Dossier copied to clipboard!"));
+        navigator.clipboard.writeText(text).then(() => alert("Notification copied to clipboard!"));
       }
     }
 
-    document.addEventListener('DOMContentLoaded', initializeCommandCenter);
+    document.addEventListener('DOMContentLoaded', initDossier);
   </script>
 </body>
 </html>
