@@ -1,42 +1,60 @@
 /* ==============================================================
-   NORTHEAST ACADEMIC & CAREER HUB - UNIFIED ENGINE
+   NORTHEAST ACADEMIC & CAREER HUB - MULTI-SHEET ENGINE
    ============================================================== */
 
-// 1. Google Sheets CSV Endpoint
-const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0y4e3_-teBXQcNZXKbXNca_bzYGi5wF-klG2pJnkHIKOA5TizIZjSRvqhd5ewrCk8wb6EH9xUGESy/pub?gid=0&single=true&output=csv";
+// 1. Separate Google Sheet CSV Endpoints for each section
+// Publish each sheet/tab: File -> Share -> Publish to web -> CSV
+const SHEETS_CONFIG = {
+  careers: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0y4e3_-teBXQcNZXKbXNca_bzYGi5wF-klG2pJnkHIKOA5TizIZjSRvqhd5ewrCk8wb6EH9xUGESy/pub?gid=0&single=true&output=csv",
+  ebooks:  "", // Paste your E-Books Sheet CSV URL here (or leave empty to use fallback)
+  pyq:     "", // Paste your PYQ Sheet CSV URL here
+  journals:"", // Paste your Journals Sheet CSV URL here
+  results: "", // Paste your Results Sheet CSV URL here
+  media:   ""  // Paste your Media Sheet CSV URL here
+};
 
-// Helper: Normalize URLs to guarantee secure direct opening
+// URL cleaner utility
 function cleanUrl(url) {
   if (!url) return "#";
   const trimmed = url.trim();
-  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
-    return trimmed;
-  }
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
   return "https://" + trimmed;
 }
 
-// 2. Base Datasets (Displays until Google Sheets loads, or if a category is empty)
+// 2. Base Fallback Datasets (used when a sheet URL is empty or fails)
 let careerData = [
   {
-    title: "Library Apprenticeship / Trainee 2026",
-    organization: "Krishna Kanta Handiqui Library (GU)",
+    id: "nml-lia-2026",
+    title: "Library Trainee & Apprenticeship Program",
+    organization: "Gauhati University / KKHL",
     category: "Library & Apprentice",
     date: "2026-10-01",
     deadline: "2026-10-31",
     link: "https://kkhl.gauhati.ac.in/"
   },
   {
-    title: "Combined Competitive Exam (CCE)",
-    organization: "Assam Public Service Commission (APSC)",
+    id: "apsc-cce-2026",
+    title: "Combined Competitive Examination Updates",
+    organization: "Assam Public Service Commission",
     category: "State Govt",
-    date: "2026-09-28",
-    deadline: "2026-10-31",
+    date: "2026-09-20",
+    deadline: "2026-10-25",
     link: "https://apsc.nic.in/"
+  },
+  {
+    id: "iitg-staff-2026",
+    title: "Project & Non-Faculty Staff Recruitment",
+    organization: "IIT Guwahati",
+    category: "Central Govt",
+    date: "2026-09-28",
+    deadline: "2026-10-20",
+    link: "https://iitg.ac.in/"
   }
 ];
 
 let ebooksData = [
   {
+    id: "seba-10",
     title: "Class 10 General Mathematics Textbook",
     organization: "SEBA Board",
     category: "SEBA Class 10",
@@ -44,6 +62,7 @@ let ebooksData = [
     link: "https://site.sebaonline.org/"
   },
   {
+    id: "ahsec-12",
     title: "Class 12 Modern Indian Language (Bodo)",
     organization: "AHSEC Council",
     category: "AHSEC Class 12",
@@ -51,6 +70,7 @@ let ebooksData = [
     link: "https://ahsec.assam.gov.in/"
   },
   {
+    id: "dspace-docs",
     title: "Digital Archiving & Metadata Systems (DSpace 9 / Dublin Core)",
     organization: "Guwahati Open Repository",
     category: "Higher Ed",
@@ -110,24 +130,13 @@ let mediaData = [
    ============================================================== */
 
 const ITEMS_PER_PAGE = 6;
+const pageState = { career: 1, ebooks: 1, pyq: 1, journals: 1, results: 1, media: 1 };
 
-const pageState = {
-  career: 1,
-  ebooks: 1,
-  pyq: 1,
-  journals: 1,
-  results: 1,
-  media: 1
-};
-
-// Generates the 1, 2, 3, Prev, Next buttons
 function renderPaginationControls(totalItems, currentPage, containerId, onPageChangeCallback) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-
-  // Hide pagination if 6 or fewer items
   if (totalPages <= 1) {
     container.innerHTML = "";
     return;
@@ -157,7 +166,7 @@ function renderPaginationControls(totalItems, currentPage, containerId, onPageCh
 }
 
 /* ==============================================================
-   RENDER FUNCTIONS WITH 6-POST PAGINATION
+   RENDER FUNCTIONS (6 POSTS PER PAGE)
    ============================================================== */
 
 function renderCareers(items, page = pageState.career) {
@@ -168,39 +177,44 @@ function renderCareers(items, page = pageState.career) {
   const start = (page - 1) * ITEMS_PER_PAGE;
   const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
 
-  container.innerHTML = pageItems.map(c => `
-    <div class="portal-card">
-      <div class="card-meta-top">
-        <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${c.category || "Notice"}</span>
-        <span class="date-badge">${c.date || "Active"}</span>
+  container.innerHTML = pageItems.map(c => {
+    // If post has an ID, send them to your detailed post.html; otherwise fallback to external link
+    const targetUrl = c.id ? `post.html?id=${encodeURIComponent(c.id)}` : cleanUrl(c.link);
+
+    return `
+      <div class="portal-card">
+        <div class="card-meta-top">
+          <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${c.category || "Notice"}</span>
+          <span class="date-badge">${c.date || "Active"}</span>
+        </div>
+        <h3>${c.title}</h3>
+        <p class="card-subtext"><strong>Organization:</strong> ${c.organization || "Public Sector"}</p>
+        ${c.deadline ? `<p class="card-deadline" style="color: #e11d48; margin-top: 0.4rem;"><i class="fa-regular fa-clock"></i> Deadline: <strong>${c.deadline}</strong></p>` : ''}
+        
+        <div class="card-action-bar" style="display: flex; gap: 0.5rem; align-items: center; margin-top: 1rem;">
+          <a href="${targetUrl}" class="btn-card-primary" style="flex: 1; text-align: center; text-decoration: none;">
+            Official Notification &rarr;
+          </a>
+          <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${targetUrl}', 'whatsapp')" 
+                  title="Share to WhatsApp" 
+                  style="background: #25D366; color: white; border: none; border-radius: 6px; padding: 0.65rem 0.85rem; cursor: pointer;">
+            <i class="fa-brands fa-whatsapp"></i>
+          </button>
+          <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${targetUrl}', 'copy')" 
+                  title="Copy formatted post" 
+                  style="background: #e2e8f0; color: #334155; border: none; border-radius: 6px; padding: 0.65rem 0.85rem; cursor: pointer;">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
       </div>
-      <h3>${c.title}</h3>
-      <p class="card-subtext"><strong>Authority:</strong> ${c.organization || "Public Sector"}</p>
-      ${c.deadline ? `<p class="card-deadline"><i class="fa-regular fa-clock"></i> Last Date: <strong>${c.deadline}</strong></p>` : ''}
-      
-      <div class="card-action-bar" style="display: flex; gap: 0.5rem; align-items: center; margin-top: 1rem;">
-        <a href="${cleanUrl(c.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary" style="flex: 1; text-align: center; text-decoration: none;">
-          Official Link &rarr;
-        </a>
-        <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${c.link}', 'whatsapp')" 
-                title="Share to WhatsApp" 
-                style="background: #25D366; color: white; border: none; border-radius: 6px; padding: 0.65rem 0.85rem; cursor: pointer;">
-          <i class="fa-brands fa-whatsapp"></i>
-        </button>
-        <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${c.link}', 'copy')" 
-                title="Copy formatted post" 
-                style="background: #e2e8f0; color: #334155; border: none; border-radius: 6px; padding: 0.65rem 0.85rem; cursor: pointer;">
-          <i class="fa-regular fa-copy"></i>
-        </button>
-      </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   renderPaginationControls(items.length, page, "careerPagination", "changeCareerPage");
 }
 
-function changeCareerPage(newPage) {
-  renderCareers(careerData, newPage);
+function changeCareerPage(p) {
+  renderCareers(careerData, p);
   document.getElementById("section-career")?.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -222,7 +236,7 @@ function renderEbooks(items, page = pageState.ebooks) {
       <p class="card-subtext"><strong>Board / Publisher:</strong> ${b.organization || "Official"}</p>
       <div class="card-action-bar">
         <button onclick="openViewerModal('${b.title.replace(/'/g, "\\'")}', '${b.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
-          <i class="fa-regular fa-eye"></i> Open Document &rarr;
+          <i class="fa-regular fa-eye"></i> Open Resource &rarr;
         </button>
       </div>
     </div>
@@ -231,8 +245,8 @@ function renderEbooks(items, page = pageState.ebooks) {
   renderPaginationControls(items.length, page, "ebooksPagination", "changeEbooksPage");
 }
 
-function changeEbooksPage(newPage) {
-  renderEbooks(ebooksData, newPage);
+function changeEbooksPage(p) {
+  renderEbooks(ebooksData, p);
   document.getElementById("section-ebooks")?.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -263,8 +277,8 @@ function renderPYQ(items, page = pageState.pyq) {
   renderPaginationControls(items.length, page, "pyqPagination", "changePYQPage");
 }
 
-function changePYQPage(newPage) {
-  renderPYQ(pyqData, newPage);
+function changePYQPage(p) {
+  renderPYQ(pyqData, p);
   document.getElementById("section-pyq")?.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -294,8 +308,8 @@ function renderJournals(items, page = pageState.journals) {
   renderPaginationControls(items.length, page, "journalsPagination", "changeJournalsPage");
 }
 
-function changeJournalsPage(newPage) {
-  renderJournals(journalsData, newPage);
+function changeJournalsPage(p) {
+  renderJournals(journalsData, p);
   document.getElementById("section-journals")?.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -323,8 +337,8 @@ function renderResults(items, page = pageState.results) {
   renderPaginationControls(items.length, page, "resultsPagination", "changeResultsPage");
 }
 
-function changeResultsPage(newPage) {
-  renderResults(resultsData, newPage);
+function changeResultsPage(p) {
+  renderResults(resultsData, p);
   document.getElementById("section-results")?.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -354,8 +368,8 @@ function renderMedia(items, page = pageState.media) {
   renderPaginationControls(items.length, page, "mediaPagination", "changeMediaPage");
 }
 
-function changeMediaPage(newPage) {
-  renderMedia(mediaData, newPage);
+function changeMediaPage(p) {
+  renderMedia(mediaData, p);
   document.getElementById("section-media")?.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -366,7 +380,7 @@ function renderTicker(items) {
   const content = items.map(item => `
     <span class="ticker-node">
       <span class="pill-new">NEW</span>
-      <a href="${cleanUrl(item.link)}" class="ticker-anchor" target="_blank">${item.title}</a>
+      <a href="${item.id ? `post.html?id=${item.id}` : cleanUrl(item.link)}" class="ticker-anchor">${item.title}</a>
       <span class="ticker-date">(${item.date || 'Active'})</span>
     </span>
   `).join(" • ");
@@ -434,24 +448,21 @@ function toggleTheme() {
 }
 
 /* ==============================================================
-   LIVE GOOGLE SHEET FETCHER & CSV SYNC
+   GENERIC CSV FETCHER HELPER
    ============================================================== */
 
-async function syncGoogleSheet() {
-  if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL.includes("YOUR_GOOGLE_SHEET")) return;
-
+async function fetchCSV(url) {
+  if (!url || !url.startsWith("http")) return null;
   try {
-    const res = await fetch(GOOGLE_SHEET_CSV_URL);
-    if (!res.ok) return;
-
+    const res = await fetch(url);
+    if (!res.ok) return null;
     const text = await res.text();
     const rows = text.trim().split(/\r?\n/).filter(r => r.trim().length > 0);
-    if (rows.length <= 1) return;
+    if (rows.length <= 1) return null;
 
-    // Parse header row safely
     const headers = rows[0].split(',').map(h => h.replace(/^["\s]+|["\s]+$/g, '').toLowerCase());
 
-    const parsed = rows.slice(1).map(row => {
+    return rows.slice(1).map(row => {
       const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
       let obj = {};
       headers.forEach((h, i) => {
@@ -459,120 +470,120 @@ async function syncGoogleSheet() {
       });
       return obj;
     });
-
-    // Categorize by 'type' column
-    const liveJobs = parsed.filter(d => (d.type || "").toLowerCase() === "job");
-    const liveEbooks = parsed.filter(d => (d.type || "").toLowerCase() === "ebook");
-    const livePYQs = parsed.filter(d => (d.type || "").toLowerCase() === "pyq");
-    const liveJournals = parsed.filter(d => (d.type || "").toLowerCase() === "journal");
-    const liveResults = parsed.filter(d => (d.type || "").toLowerCase() === "result" || (d.type || "").toLowerCase() === "notice");
-    const liveMedia = parsed.filter(d => (d.type || "").toLowerCase() === "lecture" || (d.type || "").toLowerCase() === "video");
-
-    if (liveJobs.length > 0) {
-      careerData = liveJobs.map(j => ({
-        title: j.title || j.tittle || "Recruitment Post",
-        organization: j.organization || "Govt Department",
-        category: j.category || "General",
-        date: j.date || "Recent",
-        deadline: j.deadline || "Open",
-        link: j.link || "#"
-      }));
-      renderCareers(careerData, 1);
-      renderTicker(careerData);
-    }
-
-    if (liveEbooks.length > 0) {
-      ebooksData = liveEbooks.map(b => ({
-        title: b.title || b.tittle || "E-Book",
-        organization: b.organization || "Academic Repository",
-        category: b.category || "General",
-        date: b.date || "2026",
-        link: b.link || "#"
-      }));
-      renderEbooks(ebooksData, 1);
-    }
-
-    if (livePYQs.length > 0) {
-      pyqData = livePYQs.map(p => ({
-        title: p.title || p.tittle || "Question Paper",
-        organization: p.organization || "Education Board",
-        date: p.date || "Latest",
-        link: p.link || "#"
-      }));
-      renderPYQ(pyqData, 1);
-    }
-
-    if (liveJournals.length > 0) {
-      journalsData = liveJournals.map(jn => ({
-        title: jn.title || jn.tittle || "Call for Papers",
-        organization: jn.organization || "Academic Press",
-        indexing: jn.category || "UGC-CARE Listed",
-        deadline: jn.deadline || "Open",
-        link: jn.link || "#"
-      }));
-      renderJournals(journalsData, 1);
-    }
-
-    if (liveResults.length > 0) {
-      resultsData = liveResults.map(r => ({
-        title: r.title || r.tittle || "Official Result / Notice",
-        organization: r.organization || "Examination Authority",
-        link: r.link || "#"
-      }));
-      renderResults(resultsData, 1);
-    }
-
-    if (liveMedia.length > 0) {
-      mediaData = liveMedia.map(m => ({
-        title: m.title || m.tittle || "Educational Lecture",
-        organization: m.organization || "Academic Department",
-        link: m.link || "https://youtube.com"
-      }));
-      renderMedia(mediaData, 1);
-    }
-
-  } catch (err) {
-    console.warn("Using fallback datasets. Google Sheet fetch warning:", err);
+  } catch (e) {
+    console.warn("CSV Fetch error for:", url, e);
+    return null;
   }
 }
 
 /* ==============================================================
-   IN-SITE RESOURCE & PDF VIEWER MODAL
+   MULTI-SHEET SYNC LOGIC
+   ============================================================== */
+
+async function syncAllSheets() {
+  // 1. Sync Careers Sheet
+  const careersParsed = await fetchCSV(SHEETS_CONFIG.careers);
+  if (careersParsed && careersParsed.length > 0) {
+    careerData = careersParsed.map(j => ({
+      id: j.id || "",
+      title: j.title || j.tittle || "Recruitment Post",
+      organization: j.organization || "Govt Department",
+      category: j.category || "General",
+      date: j.start_date || j.date || "Recent",
+      deadline: j.last_date || j.deadline || "Open",
+      link: j.official_site || j.notification_link || j.link || "#"
+    }));
+    renderCareers(careerData, 1);
+    renderTicker(careerData);
+  }
+
+  // 2. Sync E-Books Sheet (if provided)
+  const ebooksParsed = await fetchCSV(SHEETS_CONFIG.ebooks);
+  if (ebooksParsed && ebooksParsed.length > 0) {
+    ebooksData = ebooksParsed.map(b => ({
+      id: b.id || "",
+      title: b.title || "E-Book Resource",
+      organization: b.organization || "Academic Board",
+      category: b.category || "General",
+      date: b.date || "2026",
+      link: b.link || "#"
+    }));
+    renderEbooks(ebooksData, 1);
+  }
+
+  // 3. Sync PYQ Sheet (if provided)
+  const pyqParsed = await fetchCSV(SHEETS_CONFIG.pyq);
+  if (pyqParsed && pyqParsed.length > 0) {
+    pyqData = pyqParsed.map(p => ({
+      title: p.title || "Question Paper",
+      organization: p.organization || "Education Board",
+      date: p.date || "Latest",
+      link: p.link || "#"
+    }));
+    renderPYQ(pyqData, 1);
+  }
+
+  // 4. Sync Journals Sheet (if provided)
+  const journalsParsed = await fetchCSV(SHEETS_CONFIG.journals);
+  if (journalsParsed && journalsParsed.length > 0) {
+    journalsData = journalsParsed.map(jn => ({
+      title: jn.title || "Call for Papers",
+      organization: jn.organization || "University / Journal",
+      indexing: jn.category || "UGC-CARE Listed",
+      deadline: jn.deadline || "Open",
+      link: jn.link || "#"
+    }));
+    renderJournals(journalsData, 1);
+  }
+
+  // 5. Sync Results Sheet (if provided)
+  const resultsParsed = await fetchCSV(SHEETS_CONFIG.results);
+  if (resultsParsed && resultsParsed.length > 0) {
+    resultsData = resultsParsed.map(r => ({
+      title: r.title || "Official Notice",
+      organization: r.organization || "Examination Authority",
+      link: r.link || "#"
+    }));
+    renderResults(resultsData, 1);
+  }
+
+  // 6. Sync Media Sheet (if provided)
+  const mediaParsed = await fetchCSV(SHEETS_CONFIG.media);
+  if (mediaParsed && mediaParsed.length > 0) {
+    mediaData = mediaParsed.map(m => ({
+      title: m.title || "Educational Lecture",
+      organization: m.organization || "DLIS Tech Workshop",
+      link: m.link || "https://youtube.com"
+    }));
+    renderMedia(mediaData, 1);
+  }
+}
+
+/* ==============================================================
+   IN-SITE VIEWER MODAL
    ============================================================== */
 
 let currentActiveResourceUrl = "";
 
-function openViewerModal(title, url, type = "doc") {
+function openViewerModal(title, url) {
   const modal = document.getElementById("portalModal");
   const heading = document.getElementById("modalHeading");
   const container = document.getElementById("modalFrameContainer");
-  
   if (!modal || !container) return;
 
   currentActiveResourceUrl = cleanUrl(url);
   heading.innerHTML = `<i class="fa-solid fa-file-lines"></i> ${title}`;
 
   let embedUrl = currentActiveResourceUrl;
-
-  // Convert Google Drive view links to direct preview embeds
   if (embedUrl.includes("drive.google.com/file/d/")) {
     embedUrl = embedUrl.replace(/\/view(\?.*)?$/, "/preview");
-  }
-  // Convert standard YouTube links to responsive embeds
-  else if (embedUrl.includes("youtube.com/watch?v=")) {
+  } else if (embedUrl.includes("youtube.com/watch?v=")) {
     const videoId = embedUrl.split("v=")[1]?.split("&")[0];
     embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
   } else if (embedUrl.includes("youtu.be/")) {
     const videoId = embedUrl.split("youtu.be/")[1]?.split("?")[0];
     embedUrl = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
-  } else if (embedUrl.includes("youtube.com/results") || embedUrl.includes("youtube.com/channel")) {
-    window.open(currentActiveResourceUrl, "_blank");
-    closePortalModal();
-    return;
-  }
-      
-  // Direct PDF files (Google Docs PDF Viewer wrapper for cross-device compatibility)
-  else if (embedUrl.toLowerCase().endsWith(".pdf")) {
+  } else if (embedUrl.toLowerCase().endsWith(".pdf")) {
     embedUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(embedUrl)}`;
   }
 
@@ -580,7 +591,7 @@ function openViewerModal(title, url, type = "doc") {
     <div style="position: relative; width: 100%; height: 100%; min-height: 520px; display: flex; flex-direction: column;">
       <iframe src="${embedUrl}" style="width: 100%; height: 100%; flex: 1; border: none; border-radius: 0 0 10px 10px;" allowfullscreen></iframe>
       <div style="padding: 0.6rem 1rem; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
-        <span style="color: #64748b;">Notice issues viewing inside frame?</span>
+        <span style="color: #64748b;">Having trouble viewing in frame?</span>
         <a href="${currentActiveResourceUrl}" target="_blank" rel="noopener noreferrer" style="color: #0284c7; font-weight: 600; text-decoration: none;">
           Open in New Tab <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
@@ -602,36 +613,14 @@ function closePortalModal() {
 
 window.addEventListener("click", (e) => {
   const modal = document.getElementById("portalModal");
-  if (e.target === modal) {
-    closePortalModal();
-  }
+  if (e.target === modal) closePortalModal();
 });
 
-function dispatchShare(platform) {
-  const url = encodeURIComponent(currentActiveResourceUrl || window.location.href);
-  const text = encodeURIComponent("Check out this academic resource on NE Academic Hub:");
-
-  if (platform === "whatsapp") {
-    window.open(`https://api.whatsapp.com/send?text=${text}%20${url}`, "_blank");
-  } else if (platform === "facebook") {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
-  } else if (platform === "telegram") {
-    window.open(`https://t.me/share/url?url=${url}&text=${text}`, "_blank");
-  } else if (platform === "x") {
-    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
-  } else if (platform === "copy") {
-    navigator.clipboard.writeText(decodeURIComponent(url)).then(() => {
-      alert("Resource link copied to clipboard!");
-    });
-  }
-}
-
 /* ==============================================================
-   QUICK SOCIAL BROADCAST DISPATCHER
+   SOCIAL SHARE
    ============================================================== */
 
 function shareCardToSocial(title, org, date, link, platform) {
-  const portalUrl = window.location.href.split('#')[0];
   const shareText = 
 `📢 *NE Academic Hub Update*
 
@@ -639,11 +628,8 @@ function shareCardToSocial(title, org, date, link, platform) {
 🏢 Organization: ${org || "Public Authority"}
 📅 Date/Deadline: ${date || "Check Details"}
 
-🔗 View Details & Apply:
-${link}
-
-🌐 Explore more regional resources on NE Academic Hub:
-${portalUrl}`;
+🔗 Read Details & Apply:
+${link.startsWith("http") ? link : window.location.origin + window.location.pathname.replace('index.html', '') + link}`;
 
   const encodedMsg = encodeURIComponent(shareText);
 
@@ -653,13 +639,13 @@ ${portalUrl}`;
     window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodedMsg}`, '_blank');
   } else {
     navigator.clipboard.writeText(shareText).then(() => {
-      alert("Formatted update copied to clipboard! You can paste it into any group.");
+      alert("Formatted update copied to clipboard!");
     });
   }
 }
 
 /* ==============================================================
-   INITIALIZATION
+   INIT
    ============================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -669,7 +655,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (icon) icon.className = 'fa-solid fa-sun';
   }
 
-  // Render immediately with 6 items per page
+  // Render initial fallback cards immediately
   renderCareers(careerData, 1);
   renderEbooks(ebooksData, 1);
   renderPYQ(pyqData, 1);
@@ -678,6 +664,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderMedia(mediaData, 1);
   renderTicker(careerData);
 
-  // Sync latest from Google Sheets
-  syncGoogleSheet();
+  // Sync with live Google Sheets
+  syncAllSheets();
 });
