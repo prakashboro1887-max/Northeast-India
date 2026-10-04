@@ -6,7 +6,7 @@
   <title id="metaTitle">Recruitment Details & Updates | NE Academic Hub</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
@@ -226,7 +226,137 @@
       animation: movingGradient 5s ease infinite alternate;
     }
 
-    /* Executive Clean Specifications Grid (Replaces Pill Rows) */
+    /* ==============================================================
+       VERTICAL SOCIAL LIST WITH DANCING / MOVING COLOR BORDERS
+       ============================================================== */
+    .social-list-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin: 2.2rem 0;
+    }
+
+    .social-moving-card {
+      position: relative;
+      border-radius: 14px;
+      padding: 2.5px;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      background: #e2e8f0;
+    }
+
+    .social-moving-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+
+    /* The Dancing Border Conic Beam */
+    .social-moving-card::before {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 90deg,
+        var(--glow-color, #0284c7) 180deg,
+        var(--glow-accent, #38bdf8) 220deg,
+        transparent 280deg,
+        transparent 360deg
+      );
+      animation: rotateDancingBorder 3.5s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes rotateDancingBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Inner Body Container Covering Center */
+    .social-card-inner {
+      position: relative;
+      z-index: 2;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #0f172a;
+    }
+
+    .social-card-lead {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .social-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .social-title-text {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: block;
+    }
+
+    .social-sub-text {
+      font-size: 0.8rem;
+      color: #64748b;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .social-arrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    /* 1. WhatsApp Neon */
+    .theme-wa { --glow-color: #25d366; --glow-accent: #86efac; }
+    .theme-wa .social-card-icon { background: #25d366; }
+    .theme-wa .social-arrow-badge { background: #25d366; }
+
+    /* 2. Facebook Neon */
+    .theme-fb { --glow-color: #1877f2; --glow-accent: #93c5fd; }
+    .theme-fb .social-card-icon { background: #1877f2; }
+    .theme-fb .social-arrow-badge { background: #1877f2; }
+
+    /* 3. YouTube Neon */
+    .theme-yt { --glow-color: #ff0000; --glow-accent: #fca5a5; }
+    .theme-yt .social-card-icon { background: #ff0000; }
+    .theme-yt .social-arrow-badge { background: #ff0000; }
+
+    /* 4. Quick Share Neon */
+    .theme-share { --glow-color: #0284c7; --glow-accent: #38bdf8; }
+    .theme-share .social-card-icon { background: #0f172a; }
+    .theme-share .social-arrow-badge { background: #0f172a; }
+
+    /* Executive Clean Specifications Grid */
     .spec-card-grid {
       display: flex;
       flex-direction: column;
@@ -271,138 +401,6 @@
       font-weight: 600;
       color: var(--primary-dark);
     }
-
-  /* ==============================================================
-       VERTICAL SOCIAL LIST WITH DANCING / MOVING COLOR BORDERS
-       ============================================================== */
-    .social-list-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-      margin: 2.2rem 0;
-    }
-
-    .social-moving-card {
-      position: relative;
-      border-radius: 12px;
-      padding: 2px; /* thickness of the moving color border */
-      overflow: hidden;
-      text-decoration: none;
-      display: block;
-      transition: transform 0.25s ease;
-      cursor: pointer;
-    }
-
-    .social-moving-card:hover {
-      transform: translateY(-2px);
-    }
-
-    /* Rotating Conic Gradient Light Beam (Dancing Border) */
-    .social-moving-card::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(
-        transparent,
-        var(--glow-color, #0284c7),
-        #38bdf8,
-        transparent 65%
-      );
-      animation: rotateBorder 4s linear infinite;
-      z-index: 1;
-    }
-
-    @keyframes rotateBorder {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Inner Body Container */
-    .social-card-inner {
-      position: relative;
-      z-index: 2;
-      background: #ffffff;
-      border-radius: 10px;
-      padding: 0.95rem 1.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #0f172a;
-    }
-
-    .social-card-lead {
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-    }
-
-    .social-card-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      color: #ffffff;
-    }
-
-    .social-title-text {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #0f172a;
-      display: block;
-    }
-
-    .social-sub-text {
-      font-size: 0.78rem;
-      color: #64748b;
-      display: block;
-    }
-
-    .social-arrow-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      font-weight: 700;
-      padding: 0.4rem 0.9rem;
-      border-radius: 6px;
-      color: #ffffff;
-    }
-
-    /* 1. WhatsApp Theme */
-    .theme-wa { --glow-color: #25d366; }
-    .theme-wa .social-card-icon { background: #25d366; }
-    .theme-wa .social-arrow-badge { background: #25d366; }
-
-    /* 2. Facebook Theme */
-    .theme-fb { --glow-color: #1877f2; }
-    .theme-fb .social-card-icon { background: #1877f2; }
-    .theme-fb .social-arrow-badge { background: #1877f2; }
-
-    /* 3. YouTube Theme */
-    .theme-yt { --glow-color: #ff0000; }
-    .theme-yt .social-card-icon { background: #ff0000; }
-    .theme-yt .social-arrow-badge { background: #ff0000; }
-
-    /* 4. Quick Share Theme */
-    .theme-share { --glow-color: #0284c7; }
-    .theme-share .social-card-icon { background: #0f172a; }
-    .theme-share .social-arrow-badge { background: #0f172a; }
-
-    .btn-social-stream:hover {
-      transform: translateY(-2px);
-      opacity: 0.95;
-    }
-
-    .btn-social-stream.wa { background: #25d366; }
-    .btn-social-stream.fb { background: #1877f2; }
-    .btn-social-stream.yt { background: #ff0000; }
-    .btn-social-stream.share { background: #475569; }
 
     /* Separate Individual Action Cards (Below Sections) */
     .links-stack-list {
@@ -606,11 +604,11 @@
     @media (max-width: 768px) {
       .floating-metrics-row { grid-template-columns: repeat(2, 1fr); }
       .spec-card-row { grid-template-columns: 1fr; gap: 0.25rem; }
-      .social-ribbon { grid-template-columns: 1fr 1fr; }
       .link-item-card { flex-direction: column; align-items: flex-start; }
       .btn-link-action { width: 100%; justify-content: center; }
       .article-box { padding: 1.8rem 1.25rem; }
       .post-main-title { font-size: 1.85rem; }
+      .social-card-inner { padding: 0.85rem 1rem; }
     }
   </style>
 </head>
@@ -676,7 +674,7 @@
         </div>
       </div>
 
-     <!-- Vertical List: Dancing/Moving Color Border Social Stack -->
+      <!-- Vertical List: Dancing/Moving Color Border Social Stack -->
       <div class="social-list-stack">
         
         <!-- 1. WhatsApp Channel (Top) -->
@@ -737,7 +735,7 @@
 
       </div>
 
-      <!-- Section 1: Post Specifications (Redesigned Clean Matrix) -->
+      <!-- Section 1: Post Specifications -->
       <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Criteria</h2>
       <div class="spec-card-grid">
         <div class="spec-card-row">
