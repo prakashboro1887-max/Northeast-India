@@ -6,13 +6,13 @@
   <title id="metaTitle">Recruitment Details & Updates | NE Academic Hub</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     /* ==============================================================
-       HOME-PAGE MATCHED COLOR PALETTE
+       HOME-PAGE MATCHED THEME WITH NO-LINE BORDERLESS FLOW
        ============================================================== */
     :root {
       --primary: #0284c7;
@@ -22,21 +22,19 @@
       --accent: #e11d48;
       --bg-main: #f8fafc;
       --card-bg: #ffffff;
-      --border-color: #e2e8f0;
       --text-main: #0f172a;
       --text-muted: #64748b;
-      --font-serif: 'Bookman Old Style', 'Bookman', 'URW Bookman L', 'Crimson Pro', Georgia, serif;
+      --font-serif: 'Bookman Old Style', 'Bookman', 'URW Bookman L', 'Georgia', serif;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
-    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; }
+    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.65; }
 
-    /* Top Institutional Navigation (Identical to Home Page) */
+    /* Top Institutional Navigation (Exact Match to Homepage) */
     .site-nav {
       background: var(--primary-dark);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -44,7 +42,7 @@
     }
 
     .nav-inner {
-      max-width: 1240px;
+      max-width: 1080px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
@@ -88,20 +86,18 @@
       font-weight: 600;
       padding: 0.45rem 0.95rem;
       border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.08);
       transition: all 0.2s ease;
     }
 
     .nav-btn-back:hover {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.18);
       color: #fff;
-      border-color: #38bdf8;
     }
 
-    /* Layout Frame */
+    /* Single Column Centered Layout */
     .editorial-container {
-      max-width: 1240px;
+      max-width: 1040px;
       margin: 2rem auto 4rem auto;
       padding: 0 1.25rem;
     }
@@ -121,22 +117,13 @@
       font-weight: 600;
     }
 
-    .breadcrumb a:hover { text-decoration: underline; }
-
-    .main-grid-layout {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    /* Main Left Article Pane */
+    /* Seamless Main Wrapper (Borderless) */
     .article-box {
       background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 2.2rem;
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+      border: none;
+      border-radius: 16px;
+      padding: 2.8rem 2.4rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
     }
 
     .category-chip {
@@ -145,88 +132,157 @@
       gap: 0.4rem;
       background: var(--primary-light);
       color: var(--primary);
-      font-size: 0.72rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      padding: 0.25rem 0.65rem;
-      border-radius: 4px;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
     }
 
-    /* Classical Newspaper Headline */
+    /* Continuous Moving Fluid Gradient Title */
     .post-main-title {
       font-family: var(--font-serif);
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: 700;
-      color: var(--primary-dark);
       line-height: 1.22;
-      letter-spacing: -0.3px;
-      margin-bottom: 0.35rem;
+      letter-spacing: -0.4px;
+      margin-bottom: 0.45rem;
+      background: linear-gradient(90deg, #0f172a 0%, #0284c7 35%, #0ea5e9 60%, #0f172a 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: movingGradient 6s linear infinite;
+    }
+
+    @keyframes movingGradient {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
     }
 
     .org-subtitle {
       font-family: var(--font-serif);
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       color: var(--primary);
       font-style: italic;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.6rem;
     }
 
-    /* Metric Summary Deck */
-    .quick-specs-grid {
+    /* Floating Metric Strip (Directly Below Title) */
+    .floating-metrics-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0.85rem;
-      margin-bottom: 1.8rem;
+      gap: 1rem;
+      margin: 1.8rem 0;
     }
 
-    .spec-item {
-      background: #f8fafc;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 0.85rem 1rem;
+    .metric-pill {
+      background: #f1f5f9;
+      border: none;
+      border-radius: 10px;
+      padding: 1rem 1.15rem;
+      transition: transform 0.2s ease;
     }
 
-    .spec-item-label {
-      font-size: 0.7rem;
+    .metric-pill:hover {
+      transform: translateY(-2px);
+      background: #e2e8f0;
+    }
+
+    .metric-label {
+      font-size: 0.72rem;
       text-transform: uppercase;
       color: var(--text-muted);
       font-weight: 700;
+      display: block;
     }
 
-    .spec-item-val {
-      font-size: 1rem;
+    .metric-val {
+      font-size: 1.15rem;
       font-weight: 800;
       color: var(--primary-dark);
-      margin-top: 0.2rem;
+      margin-top: 0.25rem;
+      display: block;
     }
 
-    .spec-item.deadline {
-      border-color: #fecdd3;
+    .metric-pill.alert {
       background: #fff1f2;
     }
 
-    .spec-item.deadline .spec-item-val {
+    .metric-pill.alert .metric-val {
       color: var(--accent);
     }
 
-    /* Direct Action Pill Bar */
+    /* Moving Color Section Headings */
+    .content-section-title {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      margin: 2.5rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: linear-gradient(120deg, #0284c7, #0ea5e9, #0369a1);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: movingGradient 5s ease infinite alternate;
+    }
+
+    /* Borderless Clean Tables */
+    .seamless-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .seamless-table tr {
+      background: #f8fafc;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .seamless-table tr:hover {
+      background: #f1f5f9;
+    }
+
+    .seamless-table th, .seamless-table td {
+      padding: 1rem 1.25rem;
+      font-size: 0.95rem;
+      border: none;
+    }
+
+    .seamless-table th {
+      color: #475569;
+      width: 32%;
+      font-weight: 700;
+      border-radius: 8px 0 0 8px;
+    }
+
+    .seamless-table td {
+      color: var(--text-main);
+      border-radius: 0 8px 8px 0;
+    }
+
+    /* Action Links Bar */
     .primary-action-pill-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: var(--primary-dark);
-      border-radius: 10px;
-      padding: 0.85rem 1.25rem;
-      margin-bottom: 2rem;
+      border-radius: 12px;
+      padding: 1.1rem 1.6rem;
+      margin: 2.2rem 0;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 1rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
     }
 
     .action-bar-label {
       color: #f8fafc;
-      font-size: 0.85rem;
+      font-size: 0.92rem;
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -235,307 +291,184 @@
 
     .action-pills-cluster {
       display: flex;
-      gap: 0.55rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
     }
 
     .btn-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      font-size: 0.82rem;
+      gap: 0.5rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      padding: 0.55rem 1rem;
-      border-radius: 6px;
+      padding: 0.65rem 1.15rem;
+      border-radius: 8px;
       text-decoration: none;
       transition: all 0.2s ease;
       cursor: pointer;
+      border: none;
     }
 
     .btn-pill-apply {
       background: var(--primary);
       color: #ffffff;
-      border: 1px solid var(--primary-hover);
     }
 
     .btn-pill-apply:hover {
       background: var(--primary-hover);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .btn-pill-pdf {
       background: var(--accent);
       color: #ffffff;
-      border: 1px solid #be123c;
     }
 
     .btn-pill-pdf:hover {
       background: #be123c;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
     }
 
     .btn-pill-site {
-      background: rgba(255, 255, 255, 0.1);
-      color: #f1f5f9;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
     }
 
     .btn-pill-site:hover {
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
-      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-2px);
     }
 
-    /* Section Headings */
-    .content-section-title {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin: 2.2rem 0 0.85rem 0;
+    /* Horizontal Moving Ribbon for Social Channels */
+    .social-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.85rem;
+      margin: 2rem 0;
+    }
+
+    .btn-social-stream {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 0.6rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 0.65rem;
-    }
-
-    /* Structured Tables */
-    .styled-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 1.5rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .styled-table tr:not(:last-child) {
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .styled-table th, .styled-table td {
-      padding: 0.85rem 1.1rem;
-      text-align: left;
-      font-size: 0.92rem;
-    }
-
-    .styled-table th {
-      background: #f8fafc;
-      color: #475569;
-      width: 32%;
-      font-weight: 700;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      border-right: 1px solid var(--border-color);
-    }
-
-    .styled-table td {
-      color: var(--text-main);
-    }
-
-    /* Right Sidebar */
-    .sidebar-pane {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      position: sticky;
-      top: 85px;
-    }
-
-    .sidebar-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.25rem;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
-    }
-
-    .sidebar-header {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      margin-bottom: 0.95rem;
-      border-bottom: 1px solid var(--border-color);
-      padding-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    /* Social Community Buttons */
-    .social-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
-
-    .btn-social-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.65rem 0.9rem;
-      border-radius: 7px;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
       color: #fff;
       text-decoration: none;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       font-weight: 700;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .btn-social-row:hover {
-      opacity: 0.92;
-      transform: translateX(2px);
-    }
-
-    .btn-social-row.wa { background-color: #25d366; }
-    .btn-social-row.fb { background-color: #1877f2; }
-    .btn-social-row.yt { background-color: #ff0000; }
-    .btn-social-row.share {
-      background-color: #64748b;
+      transition: transform 0.2s, opacity 0.2s;
       border: none;
-      width: 100%;
       cursor: pointer;
     }
 
-    /* Related Jobs in Sidebar */
-    .related-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
+    .btn-social-stream:hover {
+      transform: translateY(-2px);
+      opacity: 0.95;
     }
 
-    .related-item-card {
-      display: block;
+    .btn-social-stream.wa { background: #25d366; }
+    .btn-social-stream.fb { background: #1877f2; }
+    .btn-social-stream.yt { background: #ff0000; }
+    .btn-social-stream.share { background: #475569; }
+
+    /* Horizontal Related Jobs Row */
+    .related-section {
+      margin-top: 3.5rem;
+    }
+
+    .related-grid-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.2rem;
+    }
+
+    .related-seamless-card {
       background: #f8fafc;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 0.8rem 0.95rem;
+      border: none;
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
       text-decoration: none;
       color: inherit;
       transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .related-item-card:hover {
-      border-color: var(--primary);
-      background: var(--primary-light);
-      transform: translateX(2px);
+    .related-seamless-card:hover {
+      background: #f1f5f9;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
     }
 
-    .related-cat {
-      font-size: 0.7rem;
+    .related-seamless-card .tag {
+      font-size: 0.72rem;
       color: var(--primary);
       font-weight: 700;
       text-transform: uppercase;
     }
 
-    .related-title {
+    .related-seamless-card h4 {
       font-family: var(--font-serif);
-      font-size: 0.95rem;
-      font-weight: 700;
+      font-size: 1.05rem;
       color: var(--primary-dark);
-      margin: 0.25rem 0;
+      margin: 0.4rem 0;
       line-height: 1.35;
     }
 
-    .related-deadline {
-      font-size: 0.72rem;
+    .related-seamless-card .cutoff {
+      font-size: 0.78rem;
       color: var(--accent);
       font-weight: 700;
+      margin-top: 0.5rem;
     }
 
-    /* Discussion & Queries */
-    .discussion-container {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 1.8rem;
-      margin-top: 2.2rem;
-    }
-
-    .comment-form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin: 1.2rem 0 1.6rem 0;
-    }
-
-    .comment-form input, .comment-form textarea {
-      width: 100%;
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-      padding: 0.75rem 0.95rem;
-      font-size: 0.88rem;
-      outline: none;
-      background: #f8fafc;
-      color: var(--text-main);
-    }
-
-    .comment-form input:focus, .comment-form textarea:focus {
-      border-color: var(--primary);
-      background: #ffffff;
-    }
-
-    .btn-submit-query {
-      align-self: flex-start;
+    /* Exact Institutional Footer from index.html */
+    .portal-footer {
       background: var(--primary-dark);
-      color: #ffffff;
-      padding: 0.6rem 1.3rem;
-      border-radius: 6px;
-      font-weight: 700;
-      font-size: 0.82rem;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-submit-query:hover {
-      background: var(--primary);
-    }
-
-    .comment-feed {
-      display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-
-    .comment-card {
-      background: #f8fafc;
-      border: 1px solid var(--border-color);
-      border-radius: 7px;
-      padding: 0.85rem 1.1rem;
-    }
-
-    .comment-meta {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--primary-dark);
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.3rem;
-    }
-
-    .comment-text {
+      color: #94a3b8;
+      padding: 3rem 1.5rem;
+      text-align: center;
       font-size: 0.88rem;
-      color: #334155;
+      margin-top: 4rem;
+    }
+
+    .portal-footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .portal-footer .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .portal-footer .footer-links a:hover {
+      color: #38bdf8;
     }
 
     #loadingScreen {
       text-align: center;
-      padding: 5rem 1rem;
+      padding: 6rem 1rem;
       color: var(--text-muted);
-      font-size: 1rem;
+      font-size: 1.05rem;
     }
 
-    @media (max-width: 992px) {
-      .main-grid-layout { grid-template-columns: 1fr; }
-      .quick-specs-grid { grid-template-columns: repeat(2, 1fr); }
-      .sidebar-pane { position: static; }
+    @media (max-width: 768px) {
+      .floating-metrics-row { grid-template-columns: repeat(2, 1fr); }
+      .social-ribbon { grid-template-columns: 1fr 1fr; }
       .primary-action-pill-bar { flex-direction: column; align-items: stretch; }
       .action-pills-cluster { justify-content: stretch; }
       .action-pills-cluster .btn-pill { flex: 1; justify-content: center; }
+      .article-box { padding: 1.8rem 1.25rem; }
+      .post-main-title { font-size: 1.85rem; }
     }
   </style>
 </head>
@@ -569,250 +502,195 @@
     <!-- Loading State -->
     <div id="loadingScreen">
       <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 0.8rem;"></i>
-      <p>Loading verified notification details...</p>
+      <p>Synchronizing authentic record...</p>
     </div>
 
-    <!-- Main Two-Column Editorial Layout -->
-    <div class="main-grid-layout" id="mainGrid" style="display: none;">
+    <!-- Single Column Dossier Layout -->
+    <main class="article-box" id="mainDossier" style="display: none;">
       
-      <!-- Left Column: Primary Post Dossier -->
-      <article class="article-box">
-        
-        <span class="category-chip" id="dispCategory"><i class="fa-solid fa-briefcase"></i> Recruitment Notice</span>
-        <h1 class="post-main-title" id="dispTitle">Notification Headline</h1>
-        <div class="org-subtitle" id="dispOrg">Hiring Department / Public Authority</div>
+      <span class="category-chip" id="dispCategory"><i class="fa-solid fa-briefcase"></i> Recruitment Notice</span>
+      
+      <!-- Moving Gradient Headline -->
+      <h1 class="post-main-title" id="dispTitle">Notification Headline</h1>
+      <div class="org-subtitle" id="dispOrg">Hiring Department / Public Authority</div>
 
-        <!-- Metric Summary Deck -->
-        <div class="quick-specs-grid">
-          <div class="spec-item">
-            <div class="spec-item-label">Total Vacancies</div>
-            <div class="spec-item-val" id="dispVacancies">--</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-item-label">Pay Level / Band</div>
-            <div class="spec-item-val" id="dispPayScale">--</div>
-          </div>
-          <div class="spec-item">
-            <div class="spec-item-label">Age Ceiling</div>
-            <div class="spec-item-val" id="dispAgeLimit">--</div>
-          </div>
-          <div class="spec-item deadline">
-            <div class="spec-item-label">Application Cutoff</div>
-            <div class="spec-item-val" id="dispDeadline">--</div>
-          </div>
+      <!-- Floating Stat Strip Immediately Below Heading -->
+      <div class="floating-metrics-row">
+        <div class="metric-pill">
+          <span class="metric-label">Total Cadre</span>
+          <span class="metric-val" id="dispVacancies">--</span>
         </div>
-
-        <!-- Compact Action Deck -->
-        <div class="primary-action-pill-bar">
-          <div class="action-bar-label">
-            <i class="fa-solid fa-circle-check" style="color: #38bdf8;"></i> Authorized Official Gateways:
-          </div>
-          <div class="action-pills-cluster">
-            <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-apply">
-              <i class="fa-solid fa-paper-plane"></i> Apply Online
-            </a>
-            <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-pdf">
-              <i class="fa-solid fa-file-pdf"></i> Download PDF
-            </a>
-            <a id="btnOfficialSite" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-site">
-              <i class="fa-solid fa-globe"></i> Official Site
-            </a>
-          </div>
+        <div class="metric-pill">
+          <span class="metric-label">Pay Level</span>
+          <span class="metric-val" id="dispPayScale">--</span>
         </div>
-
-        <!-- Section 1: Post Eligibility -->
-        <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Requirements</h2>
-        <table class="styled-table">
-          <tr><th>Designation / Post</th><td id="dispPostName">--</td></tr>
-          <tr><th>Required Qualification</th><td id="dispQualification">--</td></tr>
-          <tr><th>Service Experience</th><td id="dispExperience">--</td></tr>
-          <tr><th>Age Limits & Relaxations</th><td id="dispAgeDetailed">Category relaxations applicable as per government rules</td></tr>
-          <tr><th>Job Posting Station</th><td id="dispLocation">Northeast India / All India</td></tr>
-        </table>
-
-        <!-- Section 2: Application Fees -->
-        <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</h2>
-        <table class="styled-table">
-          <tr><th>General / OBC / EWS</th><td id="dispFeeGen">--</td></tr>
-          <tr><th>SC / ST / PwD / Female</th><td id="dispFeeReserved">Nil / Exempted</td></tr>
-          <tr><th>Mode of Payment</th><td>Online (Net Banking / Debit Card) or Offline Challan</td></tr>
-        </table>
-
-        <!-- Section 3: Important Dates -->
-        <h2 class="content-section-title"><i class="fa-regular fa-calendar-check"></i> Important Timeline & Dates</h2>
-        <table class="styled-table">
-          <tr><th>Application Opening Date</th><td id="dispStartDate">--</td></tr>
-          <tr><th>Last Date to Submit Application</th><td id="dispEndDate" style="color: var(--accent); font-weight: 700;">--</td></tr>
-          <tr><th>Examination / Interview Schedule</th><td>To be announced on the official portal</td></tr>
-        </table>
-
-        <!-- Discussion & Query Forum -->
-        <section class="discussion-container">
-          <h3 style="font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700; color: var(--primary-dark);">
-            <i class="fa-regular fa-comments"></i> Questions & Eligibility Discussion
-          </h3>
-          <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 0.2rem;">Post your queries regarding eligibility, age relaxations, or application instructions.</p>
-
-          <div class="comment-form">
-            <input type="text" id="commAuthor" placeholder="Your Name or Designation..." />
-            <textarea id="commText" rows="3" placeholder="Type your query here..."></textarea>
-            <button class="btn-submit-query" onclick="submitQuery()">
-              <i class="fa-solid fa-paper-plane"></i> Post Query
-            </button>
-          </div>
-
-          <div class="comment-feed" id="commFeed">
-            <div class="comment-card">
-              <div class="comment-meta">
-                <span>Raktim Borah <span style="font-size: 0.7rem; color: var(--primary); background: var(--primary-light); padding: 1px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
-                <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 400;">October 2026</span>
-              </div>
-              <div class="comment-text">Is offline submission required after submitting the online application form?</div>
-            </div>
-            <div class="comment-card">
-              <div class="comment-meta">
-                <span>Portal Desk <span style="font-size: 0.7rem; color: #166534; background: #dcfce7; padding: 1px 6px; border-radius: 4px; margin-left: 4px;">Verified Admin</span></span>
-                <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 400;">October 2026</span>
-              </div>
-              <div class="comment-text">No hard copies need to be mailed unless explicitly required on the final confirmation slip. Please preserve a printed copy for verification.</div>
-            </div>
-          </div>
-        </section>
-
-      </article>
-
-      <!-- Right Column: Sidebar (Social Communities & Related Openings) -->
-      <aside class="sidebar-pane">
-        
-        <!-- Social Communities Box -->
-        <div class="sidebar-card">
-          <div class="sidebar-header"><i class="fa-solid fa-bullhorn" style="color: var(--primary);"></i> Community Alerts</div>
-          <div class="social-stack">
-            <a href="https://whatsapp.com/channel/YOUR_CHANNEL_LINK" target="_blank" rel="noopener noreferrer" class="btn-social-row wa">
-              <span><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</span>
-              <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
-            </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-social-row fb">
-              <span><i class="fa-brands fa-facebook-f"></i> Facebook Group</span>
-              <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn-social-row yt">
-              <span><i class="fa-brands fa-youtube"></i> YouTube Channel</span>
-              <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
-            </a>
-            <button class="btn-social-row share" onclick="shareNotice()">
-              <span><i class="fa-solid fa-share-nodes"></i> Share Notice</span>
-              <i class="fa-regular fa-copy" style="font-size: 0.7rem;"></i>
-            </button>
-          </div>
+        <div class="metric-pill">
+          <span class="metric-label">Age Ceiling</span>
+          <span class="metric-val" id="dispAgeLimit">--</span>
         </div>
-
-        <!-- Related Jobs Box -->
-        <div class="sidebar-card">
-          <div class="sidebar-header"><i class="fa-solid fa-briefcase" style="color: var(--primary);"></i> Other Active Openings</div>
-          <div class="related-list" id="sidebarRelatedContainer"></div>
+        <div class="metric-pill alert">
+          <span class="metric-label">Application Cutoff</span>
+          <span class="metric-val" id="dispDeadline">--</span>
         </div>
+      </div>
 
-      </aside>
+      <!-- Action Gateways Bar -->
+      <div class="primary-action-pill-bar">
+        <div class="action-bar-label">
+          <i class="fa-solid fa-circle-check" style="color: #38bdf8;"></i> Authorized Gateways:
+        </div>
+        <div class="action-pills-cluster">
+          <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-apply">
+            <i class="fa-solid fa-paper-plane"></i> Apply Online
+          </a>
+          <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-pdf">
+            <i class="fa-solid fa-file-pdf"></i> Download PDF
+          </a>
+          <a id="btnOfficialSite" href="#" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-site">
+            <i class="fa-solid fa-globe"></i> Official Site
+          </a>
+        </div>
+      </div>
 
-    </div>
+      <!-- Horizontal Moving Ribbon of Social Media Links -->
+      <div class="social-ribbon">
+        <a href="https://whatsapp.com/channel/YOUR_CHANNEL_LINK" target="_blank" rel="noopener noreferrer" class="btn-social-stream wa">
+          <i class="fa-brands fa-whatsapp fa-lg"></i> WhatsApp Channel
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-social-stream fb">
+          <i class="fa-brands fa-facebook-f fa-lg"></i> Facebook Group
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn-social-stream yt">
+          <i class="fa-brands fa-youtube fa-lg"></i> YouTube Channel
+        </a>
+        <button class="btn-social-stream share" onclick="shareNotice()">
+          <i class="fa-solid fa-share-nodes fa-lg"></i> Share Notice
+        </button>
+      </div>
+
+      <!-- Section 1: Post Eligibility -->
+      <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Criteria</h2>
+      <table class="seamless-table">
+        <tr><th>Designation / Cadre</th><td id="dispPostName">--</td></tr>
+        <tr><th>Educational Minimum</th><td id="dispQualification">--</td></tr>
+        <tr><th>Qualifying Experience</th><td id="dispExperience">--</td></tr>
+        <tr><th>Age Limits & Relaxations</th><td id="dispAgeDetailed">Category relaxations applicable as per rules</td></tr>
+        <tr><th>Station Allocation</th><td id="dispLocation">Northeast India / All India</td></tr>
+      </table>
+
+      <!-- Section 2: Application Fee Structure -->
+      <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</h2>
+      <table class="seamless-table">
+        <tr><th>General / OBC / EWS</th><td id="dispFeeGen">--</td></tr>
+        <tr><th>SC / ST / PwD / Female</th><td id="dispFeeReserved">Nil / Exempted</td></tr>
+        <tr><th>Payment Mode</th><td>Online (Net Banking / Debit Card) or Offline Challan</td></tr>
+      </table>
+
+      <!-- Section 3: Important Timeline Dates -->
+      <h2 class="content-section-title"><i class="fa-regular fa-calendar-check"></i> Procedural Timeline & Dates</h2>
+      <table class="seamless-table">
+        <tr><th>Notification Released</th><td id="dispStartDate">--</td></tr>
+        <tr><th>Registration Cutoff</th><td id="dispEndDate" style="color: var(--accent); font-weight: 700;">--</td></tr>
+        <tr><th>Examination Schedule</th><td>To be notified on the official authority portal</td></tr>
+      </table>
+
+      <!-- Bottom Horizontal Related Jobs -->
+      <section class="related-section">
+        <h2 class="content-section-title"><i class="fa-solid fa-briefcase"></i> Other Open Job Opportunities</h2>
+        <div class="related-grid-row" id="relatedOpeningsGrid"></div>
+      </section>
+
+    </main>
 
   </div>
+
+  <!-- Exact Institutional Footer from index.html -->
+  <footer class="portal-footer">
+    <div class="footer-links">
+      <a href="about.html">About Portal</a>
+      <a href="contact.html">Contact Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+    <p>&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
+  </footer>
 
   <script src="portal-data.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
-    let currentPost = null;
+    let currentRecord = null;
 
-    async function loadPostData() {
+    async function initializeDossier() {
       const csvUrl = SHEETS_CONFIG.careers;
       const rows = await fetchCSV(csvUrl);
       const items = (rows && rows.length > 0) ? rows : careerData;
 
       if (items) {
-        currentPost = items.find(r => (r.id || '').trim().toLowerCase() === requestedId) || items[0];
+        currentRecord = items.find(r => (r.id || '').trim().toLowerCase() === requestedId) || items[0];
       }
 
-      if (currentPost) {
-        const headline = currentPost.title || currentPost.post_name;
-        document.title = `${headline} | NE Academic Hub`;
+      if (currentRecord) {
+        const headline = currentRecord.title || currentRecord.post_name;
+        document.title = `${headline} | Academic & Career Hub`;
         document.getElementById('crumbPostTitle').innerText = headline;
 
-        document.getElementById('dispCategory').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${currentPost.category || "Career Notice"}`;
+        document.getElementById('dispCategory').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${currentRecord.category || "Career Notice"}`;
         document.getElementById('dispTitle').innerText = headline;
-        document.getElementById('dispOrg').innerText = currentPost.organization || "Public Sector Authority";
+        document.getElementById('dispOrg').innerText = currentRecord.organization || "Public Sector Authority";
 
-        document.getElementById('dispVacancies').innerText = currentPost.vacancies || "Refer Notice";
-        document.getElementById('dispPayScale').innerText = (currentPost.pay_scale || "Govt Rules").split('(')[0].trim();
-        document.getElementById('dispAgeLimit').innerText = currentPost.age_limit || "Category Bounds";
-        document.getElementById('dispDeadline').innerText = currentPost.last_date || currentPost.deadline || "Open";
+        document.getElementById('dispVacancies').innerText = currentRecord.vacancies || "Refer Notice";
+        document.getElementById('dispPayScale').innerText = (currentRecord.pay_scale || "Govt Rules").split('(')[0].trim();
+        document.getElementById('dispAgeLimit').innerText = currentRecord.age_limit || "Category Bounds";
+        document.getElementById('dispDeadline').innerText = currentRecord.last_date || currentRecord.deadline || "Open";
 
-        document.getElementById('dispPostName').innerText = currentPost.post_name || headline;
-        document.getElementById('dispQualification').innerText = currentPost.qualification || "Refer to detailed advertisement";
-        document.getElementById('dispExperience').innerText = currentPost.experience || "Freshers / Not Specified";
-        document.getElementById('dispAgeDetailed').innerText = currentPost.age_limit || "Standard Category Relaxations Apply";
-        document.getElementById('dispLocation').innerText = currentPost.job_location || "Northeast India / All India";
+        document.getElementById('dispPostName').innerText = currentRecord.post_name || headline;
+        document.getElementById('dispQualification').innerText = currentRecord.qualification || "Refer to detailed advertisement";
+        document.getElementById('dispExperience').innerText = currentRecord.experience || "Freshers / Not Specified";
+        document.getElementById('dispAgeDetailed').innerText = currentRecord.age_limit || "Category relaxations apply";
+        document.getElementById('dispLocation').innerText = currentRecord.job_location || "Northeast India / All India";
 
-        document.getElementById('dispFeeGen').innerText = currentPost.fee_gen_obc || "₹500/-";
-        document.getElementById('dispFeeReserved').innerText = currentPost.fee_sc_st || "Nil / Exempted";
+        document.getElementById('dispFeeGen').innerText = currentRecord.fee_gen_obc || "₹500/-";
+        document.getElementById('dispFeeReserved').innerText = currentRecord.fee_sc_st || "Nil / Exempted";
 
-        document.getElementById('dispStartDate').innerText = currentPost.start_date || "Active";
-        document.getElementById('dispEndDate').innerText = currentPost.last_date || "Check official notice";
+        document.getElementById('dispStartDate').innerText = currentRecord.start_date || "Active";
+        document.getElementById('dispEndDate').innerText = currentRecord.last_date || "Check notice";
 
         // Three Direct Action Links
-        document.getElementById('btnApply').href = cleanUrl(currentPost.apply_link || currentPost.link);
-        document.getElementById('btnPdf').href = cleanUrl(currentPost.notification_link || currentPost.link);
-        document.getElementById('btnOfficialSite').href = cleanUrl(currentPost.official_site || currentPost.link);
+        document.getElementById('btnApply').href = cleanUrl(currentRecord.apply_link || currentRecord.link);
+        document.getElementById('btnPdf').href = cleanUrl(currentRecord.notification_link || currentRecord.link);
+        document.getElementById('btnOfficialSite').href = cleanUrl(currentRecord.official_site || currentRecord.link);
 
-        // Sidebar Related Posts
-        populateSidebarRelated(items.filter(i => (i.id || '').trim().toLowerCase() !== (currentPost.id || '').trim().toLowerCase()));
+        // Populate Bottom Horizontal Related Openings
+        populateRelated(items.filter(i => (i.id || '').trim().toLowerCase() !== (currentRecord.id || '').trim().toLowerCase()));
 
         document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('mainGrid').style.display = 'grid';
+        document.getElementById('mainDossier').style.display = 'block';
       }
     }
 
-    function populateSidebarRelated(items) {
-      const container = document.getElementById('sidebarRelatedContainer');
+    function populateRelated(items) {
+      const container = document.getElementById('relatedOpeningsGrid');
       if (!container) return;
 
-      container.innerHTML = items.slice(0, 4).map(j => `
-        <a href="post.html?id=${j.id}" class="related-item-card">
-          <span class="related-cat">${j.category || 'Recruitment'}</span>
-          <div class="related-title">${j.title || j.post_name}</div>
-          <div class="related-deadline"><i class="fa-regular fa-clock"></i> Closes: ${j.last_date || j.deadline || 'Active'}</div>
+      container.innerHTML = items.slice(0, 3).map(j => `
+        <a href="post.html?id=${j.id}" class="related-seamless-card">
+          <div>
+            <span class="tag">${j.category || 'Recruitment'}</span>
+            <h4>${j.title || j.post_name}</h4>
+          </div>
+          <div class="cutoff"><i class="fa-regular fa-clock"></i> Closes: ${j.last_date || 'Active'}</div>
         </a>
       `).join('');
     }
 
     function shareNotice() {
-      if (!currentPost) return;
-      const text = `📢 *Recruitment Notice: ${currentPost.title}*\n🏛️ Authority: ${currentPost.organization}\n📅 Last Date: ${currentPost.last_date}\n\n👉 Full Details, PDF & Official Link:\n${window.location.href}`;
+      if (!currentRecord) return;
+      const text = `📢 *Recruitment Notice: ${currentRecord.title}*\n🏛️ Authority: ${currentRecord.organization}\n📅 Last Date: ${currentRecord.last_date}\n\n👉 Full Details, PDF & Official Link:\n${window.location.href}`;
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
 
-    function submitQuery() {
-      const name = document.getElementById('commAuthor').value.trim() || "Candidate";
-      const query = document.getElementById('commText').value.trim();
-      if (!query) { alert("Please type your question before submitting."); return; }
-
-      const feed = document.getElementById('commFeed');
-      const item = document.createElement('div');
-      item.className = 'comment-card';
-      item.innerHTML = `
-        <div class="comment-meta">
-          <span>${name} <span style="font-size: 0.7rem; color: var(--primary); background: var(--primary-light); padding: 1px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
-          <span style="font-size: 0.72rem; color: var(--text-muted); font-weight: 400;">Just now</span>
-        </div>
-        <div class="comment-text">${query}</div>
-      `;
-      feed.prepend(item);
-      document.getElementById('commText').value = "";
-      alert("Your question has been posted to the discussion board.");
-    }
-
-    document.addEventListener('DOMContentLoaded', loadPostData);
+    document.addEventListener('DOMContentLoaded', initializeDossier);
   </script>
 </body>
 </html>
