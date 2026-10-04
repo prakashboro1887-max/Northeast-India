@@ -5,7 +5,7 @@
 // 1. Separate Google Sheet CSV Endpoints for each section
 // Publish each sheet/tab: File -> Share -> Publish to web -> CSV
 const SHEETS_CONFIG = {
-  careers: "https://docs.google.com/spreadsheets/d/e/2PACX-1vS0y4e3_-teBXQcNZXKbXNca_bzYGi5wF-klG2pJnkHIKOA5TizIZjSRvqhd5ewrCk8wb6EH9xUGESy/pub?gid=0&single=true&output=csv",
+  careers: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRGWGj6X65GeWTNB4DP0Yz8j0v_Zm-ZwcyvY9IjGRXH8_aXPdDUqeUgJD4ks6EFJl4Q98RQYT0JxYMB/pub?output=csv",
   ebooks:  "", // Paste your E-Books Sheet CSV URL here (or leave empty to use fallback)
   pyq:     "", // Paste your PYQ Sheet CSV URL here
   journals:"", // Paste your Journals Sheet CSV URL here
