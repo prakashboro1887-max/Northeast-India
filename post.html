@@ -3,875 +3,383 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="metaTitle">Recruitment Notification | NE Academic Hub</title>
+  <title id="metaTitle">Recruitment Details & Updates | NE Academic Hub</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    /* ==============================================================
-       ENTERPRISE CRYSTAL DESIGN TOKENS
-       ============================================================== */
     :root {
-      --bg: #090d16;
-      --bg-gradient: radial-gradient(circle at 50% -10%, #152238 0%, #090d16 70%);
-      --card-bg: rgba(16, 24, 40, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --card-hover-border: rgba(56, 189, 248, 0.35);
-      --crystal-glow: rgba(56, 189, 248, 0.08);
-      --primary: #38bdf8;
-      --primary-accent: #0284c7;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --navy: #0f172a;
+      --slate-dark: #1e293b;
+      --slate-light: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --rose: #e11d48;
       --emerald: #10b981;
-      --emerald-bg: rgba(16, 185, 129, 0.12);
-      --rose: #f43f5e;
-      --rose-bg: rgba(244, 63, 94, 0.12);
-      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: var(--bg);
-      background-image: var(--bg-gradient);
-      color: var(--text-main);
-      font-family: var(--font-sans);
-      min-height: 100vh;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Top Institutional Navigation */
-    .top-header {
-      background: rgba(9, 13, 22, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--card-border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      padding: 1rem 1.75rem;
-    }
-
-    .header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand-link {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      text-decoration: none;
-      color: #fff;
-    }
-
-    .brand-badge-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--primary);
-      font-size: 1.1rem;
-    }
-
-    .brand-text h2 {
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: -0.2px;
-    }
-
-    .brand-text p {
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    .btn-portal-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 0.45rem 0.95rem;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-    }
-
-    .btn-portal-back:hover {
-      color: #fff;
-      border-color: var(--primary);
-      background: var(--crystal-glow);
-    }
-
-    /* Dual-Pane Layout */
-    .workspace-wrapper {
-      max-width: 1400px;
-      margin: 2rem auto;
-      padding: 0 1.5rem;
-      display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 2rem;
-      align-items: start;
-    }
-
-    /* Left: Live Stream Registry */
-    .stream-panel {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    .stream-header {
-      padding: 1.2rem 1.4rem;
-      border-bottom: 1px solid var(--card-border);
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .stream-header-label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .stream-header p {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 0.25rem;
-    }
-
-    .stream-feed {
-      max-height: calc(100vh - 210px);
-      overflow-y: auto;
-      padding: 0.85rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .stream-feed::-webkit-scrollbar { width: 4px; }
-    .stream-feed::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
-
-    .stream-card {
-      padding: 1rem 1.15rem;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      background: rgba(255, 255, 255, 0.02);
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .stream-card:hover {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: var(--card-border);
-      transform: translateX(3px);
-    }
-
-    .stream-card.active {
-      background: rgba(56, 189, 248, 0.08);
-      border-color: rgba(56, 189, 248, 0.4);
-      box-shadow: inset 3px 0 0 var(--primary);
-    }
-
-    .stream-badge {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--primary);
-      background: rgba(56, 189, 248, 0.1);
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-      display: inline-block;
-      margin-bottom: 0.4rem;
-      font-weight: 600;
-    }
-
-    .stream-card h4 {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.35;
-    }
-
-    .stream-meta {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.4rem;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    /* Right: Crystal Dossier Card */
-    .dossier-panel {
-      background: var(--card-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 2.5rem;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-      position: relative;
-    }
-
-    /* Dossier Top Bar */
-    .dossier-topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1.4rem;
-      border-bottom: 1px solid var(--card-border);
-      margin-bottom: 1.75rem;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .dossier-token {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--primary);
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      padding: 0.35rem 0.85rem;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-weight: 600;
-    }
-
-    .dossier-tools {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .btn-tool {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--card-border);
-      color: var(--text-muted);
-      padding: 0.42rem 0.85rem;
-      border-radius: 7px;
-      font-size: 0.78rem;
-      font-family: var(--font-mono);
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: all 0.2s;
-    }
-
-    .btn-tool:hover {
-      color: #fff;
-      border-color: rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .btn-tool.wa:hover {
-      color: #25d366;
-      border-color: #25d366;
-      background: rgba(37, 211, 102, 0.1);
-    }
-
-    /* Post Headings */
-    .authority-name {
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 0.4rem;
-    }
-
-    .job-title {
-      font-size: 2.1rem;
-      font-weight: 800;
-      color: #fff;
-      line-height: 1.22;
-      letter-spacing: -0.5px;
-      margin-bottom: 1.75rem;
-    }
-
-    /* Bento Matrix */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .bento-card {
-      background: rgba(255, 255, 255, 0.025);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1.1rem 1.2rem;
-      transition: all 0.25s ease;
-    }
-
-    .bento-card:hover {
-      border-color: var(--card-hover-border);
-      background: rgba(255, 255, 255, 0.04);
-      transform: translateY(-2px);
-    }
-
-    .bento-label {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      letter-spacing: 0.8px;
-    }
-
-    .bento-value {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #fff;
-      margin-top: 0.3rem;
-    }
-
-    .bento-value.deadline {
-      color: var(--rose);
-    }
-
-    /* Candidate Scanner / Fee Calculator */
-    .scanner-box {
-      background: linear-gradient(145deg, rgba(26, 38, 64, 0.6) 0%, rgba(16, 24, 40, 0.6) 100%);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 14px;
-      padding: 1.5rem;
-      margin-bottom: 2.2rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-    }
-
-    .scanner-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.2rem;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 0.75rem;
-    }
-
-    .scanner-header h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .scanner-header span {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--primary);
-    }
-
-    .scanner-controls {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.1rem;
-    }
-
-    .scanner-field label {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      display: block;
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.5px;
-    }
-
-    .scanner-field select,
-    .scanner-field input {
-      width: 100%;
-      background: rgba(9, 13, 22, 0.85);
-      border: 1px solid var(--card-border);
-      color: #fff;
-      padding: 0.65rem 0.85rem;
-      border-radius: 8px;
-      font-size: 0.88rem;
-      outline: none;
-      font-family: var(--font-sans);
-      transition: all 0.2s;
-    }
-
-    .scanner-field select:focus,
-    .scanner-field input:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 12px var(--crystal-glow);
-    }
-
-    .scanner-footer {
-      grid-column: span 3;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid var(--card-border);
-      border-radius: 9px;
-      padding: 0.9rem 1.25rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.6rem;
-    }
-
-    .scanner-fee-text {
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .scanner-fee-text strong {
-      color: #fff;
-      font-size: 1.05rem;
-      margin-left: 0.4rem;
-    }
-
-    .scanner-status {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 0.35rem 0.85rem;
-      border-radius: 5px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .scanner-status.eligible {
-      background: var(--emerald-bg);
-      color: var(--emerald);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-
-    .scanner-status.ineligible {
-      background: var(--rose-bg);
-      color: var(--rose);
-      border: 1px solid rgba(244, 63, 94, 0.3);
-    }
-
-    /* Specifications Table */
-    .specs-block {
-      margin-bottom: 2.2rem;
-    }
-
-    .specs-block-title {
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--primary);
-      margin-bottom: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .specs-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: rgba(255, 255, 255, 0.015);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .specs-table tr:not(:last-child) {
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    .specs-table th {
-      width: 28%;
-      padding: 0.95rem 1.25rem;
-      text-align: left;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      background: rgba(255, 255, 255, 0.02);
-      border-right: 1px solid var(--card-border);
-      font-family: var(--font-mono);
-    }
-
-    .specs-table td {
-      padding: 0.95rem 1.25rem;
-      font-size: 0.92rem;
-      color: #fff;
-    }
-
-    /* Action Links Bar */
-    .actions-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.1rem;
-      margin-top: 2rem;
-    }
-
-    .btn-action-primary {
-      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-      color: #041019;
-      text-decoration: none;
-      padding: 1.05rem;
-      border-radius: 10px;
-      font-weight: 800;
-      font-size: 0.95rem;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.25);
-    }
-
-    .btn-action-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
-    }
-
-    .btn-action-secondary {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--card-border);
-      color: #fff;
-      text-decoration: none;
-      padding: 1.05rem;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      transition: all 0.25s ease;
-    }
-
-    .btn-action-secondary:hover {
-      border-color: rgba(255, 255, 255, 0.3);
-      background: rgba(255, 255, 255, 0.07);
-      transform: translateY(-2px);
-    }
-
-    /* Print Styles */
-    @media print {
-      body { background: #fff !important; color: #000 !important; }
-      .top-header, .stream-panel, .scanner-box, .actions-grid, .dossier-tools { display: none !important; }
-      .workspace-wrapper { grid-template-columns: 1fr !important; margin: 0 !important; padding: 0 !important; }
-      .dossier-panel { border: none !important; box-shadow: none !important; padding: 0 !important; }
-      .specs-table th, .specs-table td { color: #000 !important; border-color: #ddd !important; }
-    }
-
-    /* Responsive */
-    @media (max-width: 1080px) {
-      .workspace-wrapper { grid-template-columns: 1fr; }
-      .bento-grid { grid-template-columns: repeat(2, 1fr); }
-      .scanner-controls { grid-template-columns: 1fr; }
-      .scanner-footer { grid-column: span 1; flex-direction: column; gap: 0.6rem; text-align: center; }
-      .actions-grid { grid-template-columns: 1fr; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: #f1f5f9; color: var(--text-main); line-height: 1.6; }
+
+    /* Top Navigation */
+    .site-nav { background: #0f172a; color: #fff; padding: 0.9rem 1.5rem; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .brand-group { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: #fff; }
+    .brand-group i { font-size: 1.5rem; color: #38bdf8; }
+    .brand-title { font-weight: 800; font-size: 1.1rem; }
+    .brand-sub { font-size: 0.7rem; color: #94a3b8; display: block; }
+    .nav-btn-back { display: inline-flex; align-items: center; gap: 0.4rem; color: #e2e8f0; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 6px; background: rgba(255,255,255,0.08); transition: background 0.2s; }
+    .nav-btn-back:hover { background: rgba(255,255,255,0.18); color: #fff; }
+
+    /* Content Layout */
+    .page-wrapper { max-width: 1040px; margin: 2rem auto 4rem auto; padding: 0 1rem; }
+    
+    /* Breadcrumb */
+    .breadcrumb { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 600; }
+
+    /* Main Job Container */
+    .job-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 2.2rem; box-shadow: 0 4px 16px rgba(0,0,0,0.03); margin-bottom: 2rem; }
+
+    /* Top Badge & Authority Banner */
+    .authority-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: #eff6ff; color: var(--primary); font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.7rem; border-radius: 5px; margin-bottom: 0.6rem; text-transform: uppercase; }
+    .job-headline { font-size: 1.85rem; font-weight: 800; color: #0f172a; line-height: 1.3; margin-bottom: 0.4rem; }
+    .org-subtitle { font-size: 1.05rem; color: var(--text-muted); font-weight: 500; margin-bottom: 1.5rem; }
+
+    /* Highlight Summary Badges */
+    .quick-specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.85rem; margin-bottom: 1.8rem; }
+    .spec-item { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.85rem 1rem; }
+    .spec-item-label { font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; }
+    .spec-item-val { font-size: 1rem; font-weight: 800; color: #0f172a; margin-top: 0.2rem; }
+    .spec-item.deadline { border-color: #fecdd3; background: #fff1f2; }
+    .spec-item.deadline .spec-item-val { color: var(--rose); }
+
+    /* Social Community Bar */
+    .community-card { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; padding: 1.1rem 1.4rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .community-text { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; font-weight: 700; color: #334155; }
+    .social-buttons { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .btn-social { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 1rem; border-radius: 6px; color: #fff; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: opacity 0.2s; }
+    .btn-social:hover { opacity: 0.9; }
+    .btn-wa { background: #25D366; }
+    .btn-fb { background: #1877F2; }
+    .btn-yt { background: #FF0000; }
+    .btn-share { background: #475569; cursor: pointer; border: none; }
+
+    /* Tables */
+    .section-title { font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 2rem 0 0.85rem 0; display: flex; align-items: center; gap: 0.5rem; border-left: 4px solid var(--primary); padding-left: 0.6rem; }
+    .details-table { width: 100%; border-collapse: collapse; margin-bottom: 1.25rem; }
+    .details-table th, .details-table td { padding: 0.9rem 1.1rem; border: 1px solid var(--border-color); text-align: left; font-size: 0.92rem; }
+    .details-table th { background: #f8fafc; color: #475569; width: 30%; font-weight: 700; }
+    .details-table td { color: #1e293b; }
+
+    /* Action Links */
+    .action-links-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 1.25rem; margin: 2rem 0; }
+    .action-links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+    .btn-apply-primary { background: var(--primary); color: #fff; text-decoration: none; padding: 0.95rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: background 0.2s; }
+    .btn-apply-primary:hover { background: var(--primary-hover); }
+    .btn-pdf-secondary { background: #ffffff; border: 1px solid var(--border-color); color: var(--rose); text-decoration: none; padding: 0.95rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem; transition: background 0.2s; }
+    .btn-pdf-secondary:hover { background: #fff1f2; border-color: #fecdd3; }
+
+    /* Related Jobs Grid */
+    .related-section { margin-top: 3rem; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; margin-top: 1rem; }
+    .related-card { background: #ffffff; border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s; text-decoration: none; color: inherit; }
+    .related-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+    .related-card h4 { font-size: 0.98rem; font-weight: 700; color: #0f172a; margin-bottom: 0.4rem; }
+    .related-card p { font-size: 0.82rem; color: var(--text-muted); }
+    .related-card .related-date { font-size: 0.78rem; color: var(--rose); font-weight: 700; margin-top: 0.8rem; }
+
+    /* Comments & Query Section */
+    .comments-wrapper { background: #ffffff; border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin-top: 2.5rem; }
+    .comments-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.85rem; }
+    .comment-input-area { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
+    .comment-input-area input, .comment-input-area textarea { width: 100%; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.8rem 1rem; font-size: 0.9rem; outline: none; background: #f8fafc; }
+    .comment-input-area input:focus, .comment-input-area textarea:focus { border-color: var(--primary); background: #ffffff; }
+    .btn-submit-comment { align-self: flex-start; background: #0f172a; color: #ffffff; padding: 0.65rem 1.4rem; border-radius: 6px; font-weight: 700; font-size: 0.88rem; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .btn-submit-comment:hover { background: var(--primary); }
+
+    .comment-list { display: flex; flex-direction: column; gap: 1rem; }
+    .comment-bubble { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem 1.2rem; }
+    .comment-author { font-size: 0.88rem; font-weight: 700; color: #0f172a; display: flex; justify-content: space-between; margin-bottom: 0.35rem; }
+    .comment-date { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
+    .comment-body { font-size: 0.88rem; color: #334155; }
+
+    #loadingBox { text-align: center; padding: 4rem 1rem; color: var(--text-muted); font-size: 1.05rem; }
+
+    @media (max-width: 768px) {
+      .job-headline { font-size: 1.4rem; }
+      .action-links-grid { grid-template-columns: 1fr; }
+      .community-card { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
   <!-- Top Header Navigation -->
-  <header class="top-header">
-    <div class="header-inner">
-      <a href="index.html" class="brand-link">
-        <div class="brand-badge-icon">
-          <i class="fa-solid fa-graduation-cap"></i>
-        </div>
-        <div class="brand-text">
-          <h2>NE ACADEMIC HUB</h2>
-          <p>Institutional Career & Reading Dossier</p>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand-group">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <div>
+          <span class="brand-title">NE ACADEMIC HUB</span>
+          <span class="brand-sub">Career & Institutional Portal</span>
         </div>
       </a>
-      <div style="display: flex; gap: 0.6rem;">
-        <button class="btn-portal-back" onclick="window.print()"><i class="fa-solid fa-print"></i> Print</button>
-        <a href="index.html" class="btn-portal-back"><i class="fa-solid fa-arrow-left"></i> All Categories</a>
-      </div>
+      <a href="index.html" class="nav-btn-back"><i class="fa-solid fa-arrow-left"></i> All Notifications</a>
     </div>
   </header>
 
-  <!-- Dual-Pane Workspace -->
-  <main class="workspace-wrapper">
+  <div class="page-wrapper">
     
-    <!-- Left: Live Active Registry -->
-    <aside class="stream-panel">
-      <div class="stream-header">
-        <div class="stream-header-label"><i class="fa-solid fa-satellite-dish"></i> Live Opportunities</div>
-        <p>Select any post to load its breakdown instantly.</p>
-      </div>
-      <div class="stream-feed" id="streamContainer">
-        <div style="padding: 2.5rem; text-align: center; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.82rem;">
-          <i class="fa-solid fa-circle-notch fa-spin fa-2x" style="color: var(--primary); margin-bottom: 0.8rem;"></i>
-          <div>Syncing verified notices...</div>
-        </div>
-      </div>
-    </aside>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>&rsaquo;</span>
+      <a href="index.html#section-career">Careers</a>
+      <span>&rsaquo;</span>
+      <span id="crumbTitle" style="color: #64748b;">Loading Notice...</span>
+    </div>
 
-    <!-- Right: Detailed Dossier Panel -->
-    <section class="dossier-panel" id="dossierDisplay">
+    <!-- Loading State -->
+    <div id="loadingBox">
+      <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary); margin-bottom: 0.8rem;"></i>
+      <p>Retrieving notification details...</p>
+    </div>
+
+    <!-- Main Job Detail Card -->
+    <main class="job-card" id="mainPostContent" style="display: none;">
       
-      <!-- Top Tool Bar -->
-      <div class="dossier-topbar">
-        <div class="dossier-token"><i class="fa-solid fa-shield-halved"></i> <span id="valDossierId">REC-IND-2026</span></div>
-        <div class="dossier-tools">
-          <button class="btn-tool wa" onclick="shareDossier('wa')"><i class="fa-brands fa-whatsapp"></i> Broadcast</button>
-          <button class="btn-tool" onclick="shareDossier('tg')"><i class="fa-brands fa-telegram"></i> Telegram</button>
-          <button class="btn-tool" onclick="shareDossier('copy')"><i class="fa-regular fa-copy"></i> Copy Feed</button>
+      <span class="authority-badge" id="valCategory">Recruitment</span>
+      <h1 class="job-headline" id="valTitle">Designation Summary</h1>
+      <p class="org-subtitle" id="valOrg">Hiring Department</p>
+
+      <!-- Quick Summary Matrix -->
+      <div class="quick-specs-grid">
+        <div class="spec-item">
+          <div class="spec-item-label">Total Vacancies</div>
+          <div class="spec-item-val" id="valVacancies">--</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-item-label">Pay Scale / Band</div>
+          <div class="spec-item-val" id="valPayScale">--</div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-item-label">Age Ceiling</div>
+          <div class="spec-item-val" id="valAgeLimit">--</div>
+        </div>
+        <div class="spec-item deadline">
+          <div class="spec-item-label">Closing Deadline</div>
+          <div class="spec-item-val" id="valDeadline">--</div>
         </div>
       </div>
 
-      <!-- Department & Title -->
-      <div class="authority-name" id="valOrg">Hiring Department</div>
-      <h1 class="job-title" id="valTitle">Designation & Summary</h1>
-
-      <!-- Bento-Matrix Quick Parameters -->
-      <div class="bento-grid">
-        <div class="bento-card">
-          <div class="bento-label">Vacancies Declared</div>
-          <div class="bento-value" id="valVacancies">--</div>
+      <!-- Social Community & Share Bar -->
+      <div class="community-card">
+        <div class="community-text">
+          <i class="fa-solid fa-users" style="color: var(--primary);"></i> Join Our Communities for Daily Alerts:
         </div>
-        <div class="bento-card">
-          <div class="bento-label">Pay Level / Band</div>
-          <div class="bento-value" id="valPayScale">--</div>
-        </div>
-        <div class="bento-card">
-          <div class="bento-label">Age Ceiling</div>
-          <div class="bento-value" id="valAgeLimit">--</div>
-        </div>
-        <div class="bento-card">
-          <div class="bento-label">Application Deadline</div>
-          <div class="bento-value deadline" id="valDeadline">--</div>
+        <div class="social-buttons">
+          <a href="https://whatsapp.com/channel/0029Va..." target="_blank" rel="noopener noreferrer" class="btn-social btn-wa">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="btn-social btn-fb">
+            <i class="fa-brands fa-facebook-f"></i> Facebook
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="btn-social btn-yt">
+            <i class="fa-brands fa-youtube"></i> YouTube
+          </a>
+          <button class="btn-social btn-share" onclick="sharePost()">
+            <i class="fa-solid fa-share-nodes"></i> Share
+          </button>
         </div>
       </div>
 
-      <!-- Candidate Scanner / Dynamic Fee Engine -->
-      <div class="scanner-box">
-        <div class="scanner-header">
-          <h3><i class="fa-solid fa-calculator" style="color: var(--primary);"></i> Candidate Eligibility & Fee Calculator</h3>
-          <span>LIVE EVALUATION</span>
+      <!-- Eligibility Table -->
+      <div class="section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Criteria</div>
+      <table class="details-table">
+        <tr><th>Designation</th><td id="valPostName">--</td></tr>
+        <tr><th>Educational Qualification</th><td id="valQualification">--</td></tr>
+        <tr><th>Experience Required</th><td id="valExperience">--</td></tr>
+        <tr><th>Age Limits</th><td id="valAgeDetailed">Standard Category Relaxations Apply</td></tr>
+        <tr><th>Posting Location</th><td id="valLocation">Assam / Northeast India</td></tr>
+      </table>
+
+      <!-- Fees Table -->
+      <div class="section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</div>
+      <table class="details-table">
+        <tr><th>General / OBC / EWS</th><td id="valFeeGen">--</td></tr>
+        <tr><th>SC / ST / PwD / Female</th><td id="valFeeReserved">Nil / Exempted</td></tr>
+        <tr><th>Payment Mode</th><td>Online (Net Banking / Debit Card) or Offline Challan</td></tr>
+      </table>
+
+      <!-- Important Dates -->
+      <div class="section-title"><i class="fa-regular fa-calendar-check"></i> Important Timeline</div>
+      <table class="details-table">
+        <tr><th>Notification Opening Date</th><td id="valStartDate">--</td></tr>
+        <tr><th>Last Date to Submit</th><td id="valEndDate" style="color: var(--rose); font-weight: 700;">--</td></tr>
+      </table>
+
+      <!-- Action Download Box -->
+      <div class="action-links-box">
+        <h3 style="font-size: 1.05rem; color: #166534; display: flex; align-items: center; gap: 0.5rem;">
+          <i class="fa-solid fa-circle-check"></i> Verified Official Links:
+        </h3>
+        <div class="action-links-grid">
+          <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="btn-apply-primary">
+            <i class="fa-solid fa-paper-plane"></i> Apply Online Now &rarr;
+          </a>
+          <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-pdf-secondary">
+            <i class="fa-solid fa-file-pdf"></i> Download Official Notice (PDF)
+          </a>
         </div>
-        <div class="scanner-controls">
-          <div class="scanner-field">
-            <label>RESERVATION CATEGORY</label>
-            <select id="candidateCategory" onchange="evaluateCandidate()">
-              <option value="GEN">General / Unreserved</option>
-              <option value="OBC">OBC / MOBC</option>
-              <option value="SC">Scheduled Caste (SC)</option>
-              <option value="ST">Scheduled Tribe (ST)</option>
-              <option value="PWD">PwD / Divyangjan</option>
-            </select>
-          </div>
-          <div class="scanner-field">
-            <label>YOUR AGE (IN YEARS)</label>
-            <input type="number" id="candidateAge" value="25" min="18" max="65" oninput="evaluateCandidate()" />
-          </div>
-          <div class="scanner-field">
-            <label>APPLICATION CHANNEL</label>
-            <input type="text" id="valChannel" value="Online Portal" readonly />
-          </div>
-          <div class="scanner-footer">
-            <div class="scanner-fee-text">
-              APPLICATION FEE: <strong id="valComputedFee">₹0/-</strong>
+      </div>
+
+      <!-- Related Jobs Grid -->
+      <section class="related-section">
+        <div class="section-title"><i class="fa-solid fa-briefcase"></i> Other Open Job Opportunities</div>
+        <div class="related-grid" id="relatedJobsContainer"></div>
+      </section>
+
+      <!-- Candidate Questions & Comment Section -->
+      <section class="comments-wrapper">
+        <div class="comments-header">
+          <h3 style="font-size: 1.15rem; font-weight: 800; color: #0f172a;">
+            <i class="fa-regular fa-comments"></i> Questions & Discussion Forum
+          </h3>
+          <span style="font-size: 0.8rem; color: var(--text-muted);" id="commentCount">2 Queries</span>
+        </div>
+
+        <div class="comment-input-area">
+          <input type="text" id="commentAuthor" placeholder="Your Name or Designation..." />
+          <textarea id="commentText" rows="3" placeholder="Have a doubt regarding eligibility, syllabus, or fee payment? Post your query here..."></textarea>
+          <button class="btn-submit-comment" onclick="postComment()">
+            <i class="fa-solid fa-paper-plane"></i> Post Query
+          </button>
+        </div>
+
+        <div class="comment-list" id="commentList">
+          <div class="comment-bubble">
+            <div class="comment-author">
+              <span>Bikram Das <span style="font-size: 0.72rem; color: #0284c7; background: #e0f2fe; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
+              <span class="comment-date">October 2026</span>
             </div>
-            <div id="statusBadge" class="scanner-status eligible">
-              <i class="fa-solid fa-circle-check"></i> ELIGIBLE AGE CRITERIA
+            <div class="comment-body">Is final year MLISc students eligible to apply for the library trainee apprenticeship position?</div>
+          </div>
+          <div class="comment-bubble">
+            <div class="comment-author">
+              <span>Portal Administrator <span style="font-size: 0.72rem; color: #166534; background: #dcfce7; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Official</span></span>
+              <span class="comment-date">October 2026</span>
             </div>
+            <div class="comment-body">Candidates must possess the provisional degree or mark sheet on or before the closing date. Please check page 3 of the downloaded official PDF advertisement.</div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Specification Parameters Table -->
-      <div class="specs-block">
-        <div class="specs-block-title"><i class="fa-solid fa-table-cells-large"></i> Official Notification Parameters</div>
-        <table class="specs-table">
-          <tr><th>Official Designation</th><td id="valPostName">--</td></tr>
-          <tr><th>Academic Qualification</th><td id="valQualification">--</td></tr>
-          <tr><th>Prior Experience</th><td id="valExperience">--</td></tr>
-          <tr><th>Application Opening Date</th><td id="valStartDate">--</td></tr>
-          <tr><th>Posting Station</th><td id="valLocation">--</td></tr>
-          <tr><th>Evaluation Procedure</th><td id="valSelection">Written Examination / Document Scrutiny / Interview</td></tr>
-        </table>
-      </div>
+    </main>
 
-      <!-- Action Links Grid -->
-      <div class="actions-grid">
-        <a id="btnApplyPortal" href="#" target="_blank" rel="noopener noreferrer" class="btn-action-primary">
-          <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Application Gateway &rarr;
-        </a>
-        <a id="btnDownloadPdf" href="#" target="_blank" rel="noopener noreferrer" class="btn-action-secondary">
-          <i class="fa-solid fa-file-pdf" style="color: var(--rose);"></i> Download Official Notice (PDF)
-        </a>
-      </div>
-
-    </section>
-
-  </main>
+  </div>
 
   <script src="portal-data.js"></script>
   <script>
-    let activeDossier = null;
-    let allRecords = [];
+    const urlParams = new URLSearchParams(window.location.search);
+    const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
+    let currentPost = null;
 
-    async function initDossier() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
+    async function loadPostDetails() {
+      const csvUrl = SHEETS_CONFIG.careers;
+      const rows = await fetchCSV(csvUrl);
+      const allItems = (rows && rows.length > 0) ? rows : careerData;
 
-      // Fetch live records from Google Sheet or fallback
-      const csvData = await fetchCSV(SHEETS_CONFIG.careers);
-      allRecords = (csvData && csvData.length > 0) ? csvData : careerData;
+      if (allItems) {
+        currentPost = allItems.find(r => (r.id || '').trim().toLowerCase() === requestedId) || allItems[0];
+      }
 
-      // Render Left Registry Stream
-      renderStream(allRecords, requestedId);
+      if (currentPost) {
+        const titleStr = currentPost.title || currentPost.post_name;
+        document.title = `${titleStr} | NE Academic Hub`;
+        document.getElementById('crumbTitle').innerText = titleStr;
 
-      // Select post
-      const selected = allRecords.find(item => (item.id || '').trim().toLowerCase() === requestedId) || allRecords[0];
-      if (selected) {
-        renderDossierView(selected);
+        document.getElementById('valCategory').innerText = currentPost.category || "Recruitment Notice";
+        document.getElementById('valTitle').innerText = titleStr;
+        document.getElementById('valOrg').innerText = currentPost.organization || "Public Sector Authority";
+        
+        document.getElementById('valVacancies').innerText = currentPost.vacancies || "Refer Notice";
+        document.getElementById('valPayScale').innerText = (currentPost.pay_scale || "Govt Rules").split('(')[0].trim();
+        document.getElementById('valAgeLimit').innerText = currentPost.age_limit || "Category Bounds";
+        document.getElementById('valDeadline').innerText = currentPost.last_date || currentPost.deadline || "Open";
+
+        document.getElementById('valPostName').innerText = currentPost.post_name || titleStr;
+        document.getElementById('valQualification').innerText = currentPost.qualification || "Refer to detailed advertisement";
+        document.getElementById('valExperience').innerText = currentPost.experience || "Freshers Eligible / Not Specified";
+        document.getElementById('valAgeDetailed').innerText = currentPost.age_limit || "Category relaxations apply";
+        document.getElementById('valLocation').innerText = currentPost.job_location || "Northeast India / All India";
+
+        document.getElementById('valFeeGen').innerText = currentPost.fee_gen_obc || "₹500/-";
+        document.getElementById('valFeeReserved').innerText = currentPost.fee_sc_st || "Nil / Exempted";
+
+        document.getElementById('valStartDate').innerText = currentPost.start_date || "Active";
+        document.getElementById('valEndDate').innerText = currentPost.last_date || "Check official notice";
+
+        document.getElementById('btnApply').href = cleanUrl(currentPost.apply_link || currentPost.link);
+        document.getElementById('btnPdf').href = cleanUrl(currentPost.notification_link || currentPost.link);
+
+        // Render Related Jobs (excluding current post)
+        renderRelatedJobs(allItems.filter(i => (i.id || '').trim().toLowerCase() !== (currentPost.id || '').trim().toLowerCase()));
+
+        document.getElementById('loadingBox').style.display = 'none';
+        document.getElementById('mainPostContent').style.display = 'block';
       }
     }
 
-    function renderStream(items, currentId) {
-      const container = document.getElementById('streamContainer');
+    function renderRelatedJobs(items) {
+      const container = document.getElementById('relatedJobsContainer');
       if (!container) return;
 
-      container.innerHTML = items.map(item => {
-        const id = (item.id || '').trim().toLowerCase();
-        const isActive = id === (currentId || '').trim().toLowerCase();
-        return `
-          <div class="stream-card ${isActive ? 'active' : ''}" onclick="selectItem('${id}', event)">
-            <span class="stream-badge">${item.category || 'Recruitment'}</span>
-            <h4>${item.title || item.post_name}</h4>
-            <div class="stream-meta">
-              <span><i class="fa-regular fa-building"></i> ${(item.organization || 'Govt').slice(0, 18)}...</span>
-              <span><i class="fa-regular fa-clock"></i> ${item.last_date || item.deadline || 'Open'}</span>
-            </div>
+      container.innerHTML = items.slice(0, 3).map(j => `
+        <a href="post.html?id=${j.id}" class="related-card">
+          <div>
+            <span style="font-size: 0.72rem; color: #0284c7; font-weight: 700;">${j.category || 'Recruitment'}</span>
+            <h4>${j.title || j.post_name}</h4>
+            <p>${(j.organization || 'Public Sector').slice(0, 32)}</p>
           </div>
-        `;
-      }).join('');
+          <div class="related-date"><i class="fa-regular fa-clock"></i> Closes: ${j.last_date || 'Active'}</div>
+        </a>
+      `).join('');
     }
 
-    function selectItem(id, evt) {
-      const target = allRecords.find(item => (item.id || '').trim().toLowerCase() === id);
-      if (target) {
-        const newUrl = new URL(window.location);
-        newUrl.searchParams.set('id', id);
-        window.history.pushState({}, '', newUrl);
-
-        document.querySelectorAll('.stream-card').forEach(el => el.classList.remove('active'));
-        if (evt && evt.currentTarget) evt.currentTarget.classList.add('active');
-
-        renderDossierView(target);
-      }
+    function sharePost() {
+      if (!currentPost) return;
+      const text = `📢 *Recruitment Notice: ${currentPost.title}*\n🏢 Authority: ${currentPost.organization}\n📅 Last Date: ${currentPost.last_date}\n\n👉 Full Details & Online Application:\n${window.location.href}`;
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
 
-    function renderDossierView(post) {
-      activeDossier = post;
-      const titleStr = post.title || post.post_name;
-      document.title = `${titleStr} | NE Academic Hub`;
+    function postComment() {
+      const author = document.getElementById('commentAuthor').value.trim() || "Candidate";
+      const text = document.getElementById('commentText').value.trim();
+      if (!text) { alert("Please type your question before submitting."); return; }
 
-      document.getElementById('valDossierId').innerText = (post.id || 'GOV-REC-2026').toUpperCase();
-      document.getElementById('valOrg').innerText = post.organization || "Public Sector Authority";
-      document.getElementById('valTitle').innerText = titleStr;
-      document.getElementById('valVacancies').innerText = post.vacancies || "Refer Notice";
-      document.getElementById('valPayScale').innerText = (post.pay_scale || "Govt Rules").split('(')[0].trim();
-      document.getElementById('valAgeLimit').innerText = post.age_limit || "Category Bounds";
-      document.getElementById('valDeadline').innerText = post.last_date || post.deadline || "Active";
-
-      document.getElementById('valPostName').innerText = post.post_name || titleStr;
-      document.getElementById('valQualification').innerText = post.qualification || "Refer to detailed notice";
-      document.getElementById('valExperience').innerText = post.experience || "Freshers / Not Specified";
-      document.getElementById('valStartDate').innerText = post.start_date || "Active";
-      document.getElementById('valLocation').innerText = post.job_location || "Northeast India / All India";
-
-      // Links
-      document.getElementById('btnApplyPortal').href = cleanUrl(post.apply_link || post.link);
-      document.getElementById('btnDownloadPdf').href = cleanUrl(post.notification_link || post.link);
-
-      evaluateCandidate();
+      const list = document.getElementById('commentList');
+      const item = document.createElement('div');
+      item.className = 'comment-bubble';
+      item.innerHTML = `
+        <div class="comment-author">
+          <span>${author} <span style="font-size: 0.72rem; color: #0284c7; background: #e0f2fe; padding: 2px 6px; border-radius: 4px; margin-left: 4px;">Candidate</span></span>
+          <span class="comment-date">Just now</span>
+        </div>
+        <div class="comment-body">${text}</div>
+      `;
+      list.prepend(item);
+      document.getElementById('commentText').value = "";
+      alert("Your query has been posted successfully.");
     }
 
-    function evaluateCandidate() {
-      if (!activeDossier) return;
-      const category = document.getElementById('candidateCategory').value;
-      const age = parseInt(document.getElementById('candidateAge').value, 10) || 0;
-
-      // Fee Breakdown
-      let fee = activeDossier.fee_gen_obc || "₹500/-";
-      if (['SC', 'ST', 'PWD'].includes(category)) {
-        fee = activeDossier.fee_sc_st || "Nil / Exempted";
-      }
-      document.getElementById('valComputedFee').innerText = fee;
-
-      // Age Bounds with Govt Relaxation
-      const maxAgeMatch = (activeDossier.age_limit || '').match(/\d+/g);
-      const baseMaxAge = maxAgeMatch ? parseInt(maxAgeMatch[maxAgeMatch.length - 1], 10) : 40;
-      
-      let relaxation = 0;
-      if (category === 'OBC') relaxation = 3;
-      if (['SC', 'ST'].includes(category)) relaxation = 5;
-      if (category === 'PWD') relaxation = 10;
-
-      const totalAllowedAge = baseMaxAge + relaxation;
-      const badge = document.getElementById('statusBadge');
-
-      if (age <= totalAllowedAge && age >= 18) {
-        badge.className = "scanner-status eligible";
-        badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> ELIGIBLE (${category} MAX: ${totalAllowedAge} YRS)`;
-      } else {
-        badge.className = "scanner-status ineligible";
-        badge.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> OVER AGE LIMIT (${category} MAX: ${totalAllowedAge} YRS)`;
-      }
-    }
-
-    function shareDossier(platform) {
-      if (!activeDossier) return;
-      const url = window.location.href;
-      const text = 
-`⚡ *NORTHEAST RECRUITMENT NOTIFICATION*
-━━━━━━━━━━━━━━━━━━━━━━━━━
-🏛️ *${activeDossier.organization}*
-📌 Post: *${activeDossier.title || activeDossier.post_name}*
-👥 Vacancies: ${activeDossier.vacancies || '01'}
-💰 Pay Band: ${activeDossier.pay_scale || 'Level 6'}
-📅 Last Date: *${activeDossier.last_date || 'Check Notice'}*
-
-🔗 *Inspect Full Details & Apply Online:*
-${url}`;
-
-      if (platform === 'wa') {
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
-      } else if (platform === 'tg') {
-        window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
-      } else {
-        navigator.clipboard.writeText(text).then(() => alert("Notification copied to clipboard!"));
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', initDossier);
+    document.addEventListener('DOMContentLoaded', loadPostDetails);
   </script>
 </body>
 </html>
