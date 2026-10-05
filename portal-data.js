@@ -16,7 +16,7 @@ const SHEETS_CONFIG = {
 // URL cleaner utility
 function cleanUrl(url) {
   if (!url) return "#";
-  const trimmed = url.trim();
+  const trimmed = String(url).trim();
   if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
   return "https://" + trimmed;
 }
@@ -172,7 +172,8 @@ function renderPaginationControls(totalItems, currentPage, containerId, onPageCh
 function checkIsNew(dateStr) {
   if (!dateStr) return false;
   try {
-    const parts = dateStr.trim().split('-');
+    const cleanStr = String(dateStr).trim();
+    const parts = cleanStr.split('-');
     let postDate;
     if (parts[0].length === 4) {
       postDate = new Date(`${parts[0]}-${parts[1]}-${parts[2]}`);
@@ -206,10 +207,14 @@ function renderCareers(items, page = pageState.career) {
       ? `<span class="badge-new-pulse"><span class="badge-new-dot"></span> NEW</span>` 
       : '';
 
+    const safeTitle = (c.title || "Recruitment Notice").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    const safeOrg = (c.organization || "Public Sector").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    const safeDate = (c.deadline || c.date || "Active").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
     return `
       <div class="portal-card">
         <div>
-          <div class="card-meta-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+          <div class="card-meta-top">
             <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
               <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${c.category || "Notice"}</span>
               ${newBadgeHtml}
@@ -227,12 +232,12 @@ function renderCareers(items, page = pageState.career) {
             Official Notification &rarr;
           </a>
           <button class="btn-card-icon btn-icon-wa" 
-                  onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${targetUrl}', 'whatsapp')" 
+                  onclick="triggerSocialShare('${encodeURIComponent(c.title || '')}', '${encodeURIComponent(c.organization || '')}', '${encodeURIComponent(c.deadline || c.date || '')}', '${encodeURIComponent(targetUrl)}', 'whatsapp')" 
                   title="Share to WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
           </button>
           <button class="btn-card-icon btn-icon-copy" 
-                  onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${targetUrl}', 'copy')" 
+                  onclick="triggerSocialShare('${encodeURIComponent(c.title || '')}', '${encodeURIComponent(c.organization || '')}', '${encodeURIComponent(c.deadline || c.date || '')}', '${encodeURIComponent(targetUrl)}', 'copy')" 
                   title="Copy Link">
             <i class="fa-regular fa-copy"></i>
           </button>
@@ -261,23 +266,26 @@ function renderEbooks(items, page = pageState.ebooks) {
   const start = (page - 1) * ITEMS_PER_PAGE;
   const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
 
-  container.innerHTML = pageItems.map(b => `
-    <div class="portal-card">
-      <div>
-        <div class="card-meta-top">
-          <span class="badge-cat"><i class="fa-solid fa-book-bookmark"></i> ${b.category || "Textbook"}</span>
-          <span class="date-badge">${b.date || "2026"}</span>
+  container.innerHTML = pageItems.map(b => {
+    const safeTitle = (b.title || "E-Book").replace(/'/g, "\\'");
+    return `
+      <div class="portal-card">
+        <div>
+          <div class="card-meta-top">
+            <span class="badge-cat"><i class="fa-solid fa-book-bookmark"></i> ${b.category || "Textbook"}</span>
+            <span class="date-badge">${b.date || "2026"}</span>
+          </div>
+          <h3>${b.title}</h3>
+          <p class="card-subtext"><strong>Board / Publisher:</strong> ${b.organization || "Official"}</p>
         </div>
-        <h3>${b.title}</h3>
-        <p class="card-subtext"><strong>Board / Publisher:</strong> ${b.organization || "Official"}</p>
+        <div class="card-action-bar" style="margin-top: 1rem;">
+          <button onclick="openViewerModal('${safeTitle}', '${b.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
+            <i class="fa-regular fa-eye"></i> Open Resource &rarr;
+          </button>
+        </div>
       </div>
-      <div class="card-action-bar" style="margin-top: 1rem;">
-        <button onclick="openViewerModal('${b.title.replace(/'/g, "\\'")}', '${b.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
-          <i class="fa-regular fa-eye"></i> Open Resource &rarr;
-        </button>
-      </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   renderPaginationControls(items.length, page, "ebooksPagination", "changeEbooksPage");
 }
@@ -295,23 +303,26 @@ function renderPYQ(items, page = pageState.pyq) {
   const start = (page - 1) * ITEMS_PER_PAGE;
   const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
 
-  container.innerHTML = pageItems.map(p => `
-    <div class="portal-card">
-      <div>
-        <div class="card-meta-top">
-          <span class="badge-cat"><i class="fa-solid fa-file-pdf"></i> Question Paper</span>
-          <span class="date-badge">${p.date || "Latest"}</span>
+  container.innerHTML = pageItems.map(p => {
+    const safeTitle = (p.title || "Question Paper").replace(/'/g, "\\'");
+    return `
+      <div class="portal-card">
+        <div>
+          <div class="card-meta-top">
+            <span class="badge-cat"><i class="fa-solid fa-file-pdf"></i> Question Paper</span>
+            <span class="date-badge">${p.date || "Latest"}</span>
+          </div>
+          <h3>${p.title}</h3>
+          <p class="card-subtext"><strong>Source:</strong> ${p.organization || "Education Board"}</p>
         </div>
-        <h3>${p.title}</h3>
-        <p class="card-subtext"><strong>Source:</strong> ${p.organization || "Education Board"}</p>
+        <div class="card-action-bar" style="margin-top: 1rem;">
+          <button onclick="openViewerModal('${safeTitle}', '${p.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
+            <i class="fa-regular fa-eye"></i> View Paper &rarr;
+          </button>
+        </div>
       </div>
-      <div class="card-action-bar" style="margin-top: 1rem;">
-        <button onclick="openViewerModal('${p.title.replace(/'/g, "\\'")}', '${p.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
-          <i class="fa-regular fa-eye"></i> View Paper &rarr;
-        </button>
-      </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   renderPaginationControls(items.length, page, "pyqPagination", "changePYQPage");
 }
@@ -393,22 +404,25 @@ function renderMedia(items, page = pageState.media) {
   const start = (page - 1) * ITEMS_PER_PAGE;
   const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
 
-  container.innerHTML = pageItems.map(m => `
-    <div class="portal-card">
-      <div>
-        <div class="card-meta-top">
-          <span class="badge-cat"><i class="fa-brands fa-youtube"></i> Video Class</span>
+  container.innerHTML = pageItems.map(m => {
+    const safeTitle = (m.title || "Lecture").replace(/'/g, "\\'");
+    return `
+      <div class="portal-card">
+        <div>
+          <div class="card-meta-top">
+            <span class="badge-cat"><i class="fa-brands fa-youtube"></i> Video Class</span>
+          </div>
+          <h3>${m.title}</h3>
+          <p class="card-subtext"><strong>Instructor / Channel:</strong> ${m.organization || "Education Stream"}</p>
         </div>
-        <h3>${m.title}</h3>
-        <p class="card-subtext"><strong>Instructor / Channel:</strong> ${m.organization || "Education Stream"}</p>
+        <div class="card-action-bar" style="margin-top: 1rem;">
+          <button onclick="openViewerModal('${safeTitle}', '${m.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
+            <i class="fa-solid fa-play"></i> Watch Lecture &rarr;
+          </button>
+        </div>
       </div>
-      <div class="card-action-bar" style="margin-top: 1rem;">
-        <button onclick="openViewerModal('${m.title.replace(/'/g, "\\'")}', '${m.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
-          <i class="fa-solid fa-play"></i> Watch Lecture &rarr;
-        </button>
-      </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
   renderPaginationControls(items.length, page, "mediaPagination", "changeMediaPage");
 }
@@ -493,7 +507,7 @@ function toggleTheme() {
 }
 
 /* ==============================================================
-   GENERIC CSV FETCHER HELPER
+   CSV FETCHER HELPER
    ============================================================== */
 
 async function fetchCSV(url) {
@@ -542,7 +556,7 @@ async function syncAllSheets() {
     renderTicker(careerData);
   }
 
-  // 2. Sync E-Books Sheet (if provided)
+  // 2. Sync E-Books Sheet
   const ebooksParsed = await fetchCSV(SHEETS_CONFIG.ebooks);
   if (ebooksParsed && ebooksParsed.length > 0) {
     ebooksData = ebooksParsed.map(b => ({
@@ -556,7 +570,7 @@ async function syncAllSheets() {
     renderEbooks(ebooksData, 1);
   }
 
-  // 3. Sync PYQ Sheet (if provided)
+  // 3. Sync PYQ Sheet
   const pyqParsed = await fetchCSV(SHEETS_CONFIG.pyq);
   if (pyqParsed && pyqParsed.length > 0) {
     pyqData = pyqParsed.map(p => ({
@@ -568,7 +582,7 @@ async function syncAllSheets() {
     renderPYQ(pyqData, 1);
   }
 
-  // 4. Sync Journals Sheet (if provided)
+  // 4. Sync Journals Sheet
   const journalsParsed = await fetchCSV(SHEETS_CONFIG.journals);
   if (journalsParsed && journalsParsed.length > 0) {
     journalsData = journalsParsed.map(jn => ({
@@ -581,7 +595,7 @@ async function syncAllSheets() {
     renderJournals(journalsData, 1);
   }
 
-  // 5. Sync Results Sheet (if provided)
+  // 5. Sync Results Sheet
   const resultsParsed = await fetchCSV(SHEETS_CONFIG.results);
   if (resultsParsed && resultsParsed.length > 0) {
     resultsData = resultsParsed.map(r => ({
@@ -592,7 +606,7 @@ async function syncAllSheets() {
     renderResults(resultsData, 1);
   }
 
-  // 6. Sync Media Sheet (if provided)
+  // 6. Sync Media Sheet
   const mediaParsed = await fetchCSV(SHEETS_CONFIG.media);
   if (mediaParsed && mediaParsed.length > 0) {
     mediaData = mediaParsed.map(m => ({
@@ -662,10 +676,15 @@ window.addEventListener("click", (e) => {
 });
 
 /* ==============================================================
-   SOCIAL SHARE
+   SAFE SOCIAL SHARE HANDLER
    ============================================================== */
 
-function shareCardToSocial(title, org, date, link, platform) {
+function triggerSocialShare(encTitle, encOrg, encDate, encLink, platform) {
+  const title = decodeURIComponent(encTitle);
+  const org = decodeURIComponent(encOrg);
+  const date = decodeURIComponent(encDate);
+  const link = decodeURIComponent(encLink);
+
   const fullLink = link.startsWith("http") ? link : `${window.location.origin}${window.location.pathname.replace('index.html', '')}${link}`;
   const shareText = 
 `📢 *NE Academic Hub Update*
@@ -701,7 +720,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (icon) icon.className = 'fa-solid fa-sun';
   }
 
-  // Render initial cards immediately
+  // Render initial fallback cards immediately
   renderCareers(careerData, 1);
   renderEbooks(ebooksData, 1);
   renderPYQ(pyqData, 1);
