@@ -1,16 +1,16 @@
 /* ==============================================================
-   NORTHEAST ACADEMIC & CAREER HUB - MULTI-SHEET ENGINE
+   NORTHEAST ACADEMIC & CAREER HUB - MULTI-SHEET ENGINE v4.2
    ============================================================== */
 
 // 1. Separate Google Sheet CSV Endpoints for each section
 // Publish each sheet/tab: File -> Share -> Publish to web -> CSV
 const SHEETS_CONFIG = {
   careers: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRGWGj6X65GeWTNB4DP0Yz8j0v_Zm-ZwcyvY9IjGRXH8_aXPdDUqeUgJD4ks6EFJl4Q98RQYT0JxYMB/pub?output=csv",
-  ebooks:  "", // Paste your E-Books Sheet CSV URL here (or leave empty to use fallback)
-  pyq:     "", // Paste your PYQ Sheet CSV URL here
-  journals:"", // Paste your Journals Sheet CSV URL here
-  results: "", // Paste your Results Sheet CSV URL here
-  media:   ""  // Paste your Media Sheet CSV URL here
+  ebooks:  "", // Paste your E-Books Sheet CSV URL here
+  pyq:      "", // Paste your PYQ Sheet CSV URL here
+  journals: "", // Paste your Journals Sheet CSV URL here
+  results:  "", // Paste your Results Sheet CSV URL here
+  media:    ""  // Paste your Media Sheet CSV URL here
 };
 
 // URL cleaner utility
@@ -21,16 +21,16 @@ function cleanUrl(url) {
   return "https://" + trimmed;
 }
 
-// 2. Base Fallback Datasets (used when a sheet URL is empty or fails)
+// 2. Base Datasets & Fallbacks
 let careerData = [
   {
     id: "nml-lia-2026",
-    title: "Library Trainee & Apprenticeship Program",
-    organization: "Gauhati University / KKHL",
+    title: "National Medical Library Recruitment 2026",
+    organization: "DGHS, Ministry of Health & Family Welfare",
     category: "Library & Apprentice",
-    date: "2026-10-01",
-    deadline: "2026-10-31",
-    link: "https://kkhl.gauhati.ac.in/"
+    date: "2026-09-25",
+    deadline: "2026-11-09",
+    link: "https://dghs.gov.in/"
   },
   {
     id: "apsc-cce-2026",
@@ -166,7 +166,29 @@ function renderPaginationControls(totalItems, currentPage, containerId, onPageCh
 }
 
 /* ==============================================================
-   RENDER FUNCTIONS (6 POSTS PER PAGE)
+   NEW BADGE EVALUATION LOGIC
+   ============================================================== */
+
+function checkIsNew(dateStr) {
+  if (!dateStr) return false;
+  try {
+    const parts = dateStr.trim().split('-');
+    let postDate;
+    if (parts[0].length === 4) {
+      postDate = new Date(`${parts[0]}-${parts[1]}-${parts[2]}`);
+    } else {
+      postDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+    }
+    const diffDays = (new Date() - postDate) / (1000 * 60 * 60 * 24);
+    // Returns true if notice is posted within the last 15 days
+    return diffDays >= -1 && diffDays <= 15;
+  } catch (e) {
+    return false;
+  }
+}
+
+/* ==============================================================
+   RENDER CAREERS (WITH "NEW" BADGE & ACTION ROW)
    ============================================================== */
 
 function renderCareers(items, page = pageState.career) {
@@ -178,31 +200,40 @@ function renderCareers(items, page = pageState.career) {
   const pageItems = items.slice(start, start + ITEMS_PER_PAGE);
 
   container.innerHTML = pageItems.map(c => {
-    // If post has an ID, send them to your detailed post.html; otherwise fallback to external link
     const targetUrl = c.id ? `post.html?id=${encodeURIComponent(c.id)}` : cleanUrl(c.link);
+    const isRecent = checkIsNew(c.date || c.start_date || c.deadline);
+    const newBadgeHtml = isRecent 
+      ? `<span class="badge-new-pulse"><span class="badge-new-dot"></span> NEW</span>` 
+      : '';
 
     return `
       <div class="portal-card">
-        <div class="card-meta-top">
-          <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${c.category || "Notice"}</span>
-          <span class="date-badge">${c.date || "Active"}</span>
+        <div>
+          <div class="card-meta-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${c.category || "Notice"}</span>
+              ${newBadgeHtml}
+            </div>
+            <span class="date-badge"><i class="fa-regular fa-calendar"></i> ${c.date || "Active"}</span>
+          </div>
+
+          <h3>${c.title}</h3>
+          <p class="card-subtext"><strong>Organization:</strong> ${c.organization || "Public Sector"}</p>
+          ${c.deadline ? `<p class="card-deadline" style="color: #e11d48; font-weight: 700; margin-top: 0.4rem;"><i class="fa-regular fa-clock"></i> Deadline: <strong>${c.deadline}</strong></p>` : ''}
         </div>
-        <h3>${c.title}</h3>
-        <p class="card-subtext"><strong>Organization:</strong> ${c.organization || "Public Sector"}</p>
-        ${c.deadline ? `<p class="card-deadline" style="color: #e11d48; margin-top: 0.4rem;"><i class="fa-regular fa-clock"></i> Deadline: <strong>${c.deadline}</strong></p>` : ''}
-        
-        <div class="card-action-bar" style="display: flex; gap: 0.5rem; align-items: center; margin-top: 1rem;">
-          <a href="${targetUrl}" class="btn-card-primary" style="flex: 1; text-align: center; text-decoration: none;">
+
+        <div class="card-action-row">
+          <a href="${targetUrl}" class="btn-card-primary">
             Official Notification &rarr;
           </a>
-          <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${targetUrl}', 'whatsapp')" 
-                  title="Share to WhatsApp" 
-                  style="background: #25D366; color: white; border: none; border-radius: 6px; padding: 0.65rem 0.85rem; cursor: pointer;">
+          <button class="btn-card-icon btn-icon-wa" 
+                  onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${targetUrl}', 'whatsapp')" 
+                  title="Share to WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
           </button>
-          <button onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${targetUrl}', 'copy')" 
-                  title="Copy formatted post" 
-                  style="background: #e2e8f0; color: #334155; border: none; border-radius: 6px; padding: 0.65rem 0.85rem; cursor: pointer;">
+          <button class="btn-card-icon btn-icon-copy" 
+                  onclick="shareCardToSocial('${c.title.replace(/'/g, "\\'")}', '${(c.organization || '').replace(/'/g, "\\'")}', '${c.deadline || c.date}', '${targetUrl}', 'copy')" 
+                  title="Copy Link">
             <i class="fa-regular fa-copy"></i>
           </button>
         </div>
@@ -218,6 +249,10 @@ function changeCareerPage(p) {
   document.getElementById("section-career")?.scrollIntoView({ behavior: 'smooth' });
 }
 
+/* ==============================================================
+   RENDER OTHER SECTIONS
+   ============================================================== */
+
 function renderEbooks(items, page = pageState.ebooks) {
   pageState.ebooks = page;
   const container = document.getElementById("ebooksGrid");
@@ -228,13 +263,15 @@ function renderEbooks(items, page = pageState.ebooks) {
 
   container.innerHTML = pageItems.map(b => `
     <div class="portal-card">
-      <div class="card-meta-top">
-        <span class="badge-cat"><i class="fa-solid fa-book-bookmark"></i> ${b.category || "Textbook"}</span>
-        <span class="date-badge">${b.date || "2026"}</span>
+      <div>
+        <div class="card-meta-top">
+          <span class="badge-cat"><i class="fa-solid fa-book-bookmark"></i> ${b.category || "Textbook"}</span>
+          <span class="date-badge">${b.date || "2026"}</span>
+        </div>
+        <h3>${b.title}</h3>
+        <p class="card-subtext"><strong>Board / Publisher:</strong> ${b.organization || "Official"}</p>
       </div>
-      <h3>${b.title}</h3>
-      <p class="card-subtext"><strong>Board / Publisher:</strong> ${b.organization || "Official"}</p>
-      <div class="card-action-bar">
+      <div class="card-action-bar" style="margin-top: 1rem;">
         <button onclick="openViewerModal('${b.title.replace(/'/g, "\\'")}', '${b.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
           <i class="fa-regular fa-eye"></i> Open Resource &rarr;
         </button>
@@ -260,13 +297,15 @@ function renderPYQ(items, page = pageState.pyq) {
 
   container.innerHTML = pageItems.map(p => `
     <div class="portal-card">
-      <div class="card-meta-top">
-        <span class="badge-cat"><i class="fa-solid fa-file-pdf"></i> Question Paper</span>
-        <span class="date-badge">${p.date || "Latest"}</span>
+      <div>
+        <div class="card-meta-top">
+          <span class="badge-cat"><i class="fa-solid fa-file-pdf"></i> Question Paper</span>
+          <span class="date-badge">${p.date || "Latest"}</span>
+        </div>
+        <h3>${p.title}</h3>
+        <p class="card-subtext"><strong>Source:</strong> ${p.organization || "Education Board"}</p>
       </div>
-      <h3>${p.title}</h3>
-      <p class="card-subtext"><strong>Source:</strong> ${p.organization || "Education Board"}</p>
-      <div class="card-action-bar">
+      <div class="card-action-bar" style="margin-top: 1rem;">
         <button onclick="openViewerModal('${p.title.replace(/'/g, "\\'")}', '${p.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
           <i class="fa-regular fa-eye"></i> View Paper &rarr;
         </button>
@@ -292,15 +331,17 @@ function renderJournals(items, page = pageState.journals) {
 
   container.innerHTML = pageItems.map(jn => `
     <div class="portal-card">
-      <div class="card-meta-top">
-        <span class="badge-cat" style="background:#ecfdf5;color:#059669;"><i class="fa-solid fa-award"></i> ${jn.indexing || "UGC-CARE Listed"}</span>
-        <span class="date-badge">CFP</span>
+      <div>
+        <div class="card-meta-top">
+          <span class="badge-cat" style="background:#ecfdf5;color:#059669;"><i class="fa-solid fa-award"></i> ${jn.indexing || "UGC-CARE Listed"}</span>
+          <span class="date-badge">CFP</span>
+        </div>
+        <h3>${jn.title}</h3>
+        <p class="card-subtext"><strong>Publisher:</strong> ${jn.organization || "University / Journal"}</p>
+        <p class="card-subtext"><strong style="color: #e11d48;"><i class="fa-regular fa-clock"></i> Submit By:</strong> ${jn.deadline || "Open"}</p>
       </div>
-      <h3>${jn.title}</h3>
-      <p class="card-subtext"><strong>Publisher:</strong> ${jn.organization || "University / Journal"}</p>
-      <p class="card-subtext"><strong style="color: #e11d48;"><i class="fa-regular fa-clock"></i> Submit By:</strong> ${jn.deadline || "Open"}</p>
-      <div class="card-action-bar">
-        <a href="${cleanUrl(jn.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Submission Guidelines &rarr;</a>
+      <div class="card-action-bar" style="margin-top: 1rem;">
+        <a href="${cleanUrl(jn.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary" style="display:block; text-align:center;">Submission Guidelines &rarr;</a>
       </div>
     </div>
   `).join("");
@@ -323,13 +364,15 @@ function renderResults(items, page = pageState.results) {
 
   container.innerHTML = pageItems.map(r => `
     <div class="portal-card">
-      <div class="card-meta-top">
-        <span class="badge-cat"><i class="fa-solid fa-square-poll-vertical"></i> Portal Gateway</span>
+      <div>
+        <div class="card-meta-top">
+          <span class="badge-cat"><i class="fa-solid fa-square-poll-vertical"></i> Portal Gateway</span>
+        </div>
+        <h3>${r.title}</h3>
+        <p class="card-subtext"><strong>Authority:</strong> ${r.organization || "Official Board"}</p>
       </div>
-      <h3>${r.title}</h3>
-      <p class="card-subtext"><strong>Authority:</strong> ${r.organization || "Official Board"}</p>
-      <div class="card-action-bar">
-        <a href="${cleanUrl(r.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary">Check Result Now &rarr;</a>
+      <div class="card-action-bar" style="margin-top: 1rem;">
+        <a href="${cleanUrl(r.link)}" target="_blank" rel="noopener noreferrer" class="btn-card-primary" style="display:block; text-align:center;">Check Result Now &rarr;</a>
       </div>
     </div>
   `).join("");
@@ -352,12 +395,14 @@ function renderMedia(items, page = pageState.media) {
 
   container.innerHTML = pageItems.map(m => `
     <div class="portal-card">
-      <div class="card-meta-top">
-        <span class="badge-cat"><i class="fa-brands fa-youtube"></i> Lecture Video</span>
+      <div>
+        <div class="card-meta-top">
+          <span class="badge-cat"><i class="fa-brands fa-youtube"></i> Video Class</span>
+        </div>
+        <h3>${m.title}</h3>
+        <p class="card-subtext"><strong>Instructor / Channel:</strong> ${m.organization || "Education Stream"}</p>
       </div>
-      <h3>${m.title}</h3>
-      <p class="card-subtext"><strong>Instructor / Channel:</strong> ${m.organization || "Education Stream"}</p>
-      <div class="card-action-bar">
+      <div class="card-action-bar" style="margin-top: 1rem;">
         <button onclick="openViewerModal('${m.title.replace(/'/g, "\\'")}', '${m.link}')" class="btn-card-primary" style="cursor: pointer; width: 100%; text-align: center;">
           <i class="fa-solid fa-play"></i> Watch Lecture &rarr;
         </button>
@@ -621,6 +666,7 @@ window.addEventListener("click", (e) => {
    ============================================================== */
 
 function shareCardToSocial(title, org, date, link, platform) {
+  const fullLink = link.startsWith("http") ? link : `${window.location.origin}${window.location.pathname.replace('index.html', '')}${link}`;
   const shareText = 
 `📢 *NE Academic Hub Update*
 
@@ -629,17 +675,17 @@ function shareCardToSocial(title, org, date, link, platform) {
 📅 Date/Deadline: ${date || "Check Details"}
 
 🔗 Read Details & Apply:
-${link.startsWith("http") ? link : window.location.origin + window.location.pathname.replace('index.html', '') + link}`;
+${fullLink}`;
 
   const encodedMsg = encodeURIComponent(shareText);
 
   if (platform === 'whatsapp') {
     window.open(`https://api.whatsapp.com/send?text=${encodedMsg}`, '_blank');
   } else if (platform === 'telegram') {
-    window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodedMsg}`, '_blank');
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(fullLink)}&text=${encodedMsg}`, '_blank');
   } else {
     navigator.clipboard.writeText(shareText).then(() => {
-      alert("Formatted update copied to clipboard!");
+      alert("Post details & link copied to clipboard!");
     });
   }
 }
@@ -655,7 +701,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (icon) icon.className = 'fa-solid fa-sun';
   }
 
-  // Render initial fallback cards immediately
+  // Render initial cards immediately
   renderCareers(careerData, 1);
   renderEbooks(ebooksData, 1);
   renderPYQ(pyqData, 1);
@@ -664,6 +710,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderMedia(mediaData, 1);
   renderTicker(careerData);
 
-  // Sync with live Google Sheets
+  // Sync live Google Sheets data
   syncAllSheets();
 });
