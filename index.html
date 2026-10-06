@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Open Graph / WhatsApp Preview Meta -->
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="NE Academic Hub" />
-<meta property="og:title" content="NE Academic Hub | Northeast India Academic & Career Portal" />
-<meta property="og:description" content="Verified employment notifications, state board materials, institutional repository resources, and competitive exam updates across Northeast India." />
-<meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/" />
-<meta name="theme-color" content="#0f172a" />
   <title>NE Academic Hub | Northeast India Academic & Career Portal</title>
-  
+
+  <!-- Open Graph & Social Media Preview Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="NE Academic Hub" />
+  <meta property="og:title" content="NE Academic Hub | Northeast India Academic & Career Portal" />
+  <meta property="og:description" content="Verified employment notifications, state board materials, institutional repository resources, and competitive exam updates across Northeast India." />
+  <meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="description" content="Verified employment notifications, state board materials, institutional repository resources, and competitive exam updates across Northeast India." />
+
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     /* ==============================================================
-       NE ACADEMIC HUB - HOME PAGE CONSOLIDATED STYLESHEET
+       NE ACADEMIC HUB - COMPLETE EMBEDDED STYLESYSTEM
        ============================================================== */
     :root {
       --primary: #0284c7;
@@ -37,15 +40,25 @@
       --font-mono: 'JetBrains Mono', monospace;
     }
 
+    /* DARK MODE PALETTE */
+    body.dark-mode {
+      --bg-main: #070b13;
+      --card-bg: #0f172a;
+      --border-color: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary-light: rgba(2, 132, 199, 0.15);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
-    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
 
     /* 1. TICKER STRIP */
     .ticker-wrapper {
       background-color: #070b13;
       display: flex;
       align-items: center;
-      height: 42px;
+      height: 40px;
       overflow: hidden;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
@@ -57,7 +70,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 0 16px;
+      padding: 0 14px;
       font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 0.5px;
@@ -84,20 +97,20 @@
     .ticker-wrapper:hover .ticker-slider { animation-play-state: paused; }
     @keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    .ticker-node { display: inline-flex; align-items: center; gap: 8px; padding: 0 24px; font-size: 0.82rem; }
+    .ticker-node { display: inline-flex; align-items: center; gap: 8px; padding: 0 20px; font-size: 0.82rem; }
     .pill-new { background: var(--accent); color: #fff; padding: 1px 6px; border-radius: 3px; font-size: 0.65rem; font-weight: 800; }
-    .ticker-date { color: var(--text-muted); font-size: 0.75rem; }
+    .ticker-date { color: #94a3b8; font-size: 0.75rem; }
     .ticker-anchor { color: #f1f5f9; text-decoration: none; font-weight: 500; }
     .ticker-anchor:hover { color: #38bdf8; text-decoration: underline; }
 
-    /* 2. TOP NAV */
+    /* 2. TOP NAV (RESPONSIVE) */
     .top-nav {
-      background-color: var(--primary-dark);
+      background-color: #0f172a;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 0.85rem 1.5rem;
+      padding: 0.8rem 1.5rem;
     }
 
     .nav-container {
@@ -108,16 +121,18 @@
       align-items: center;
     }
 
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand-icon { font-size: 1.7rem; color: #38bdf8; }
-    .brand-title { display: block; font-size: 1.15rem; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
-    .brand-subtitle { display: block; font-size: 0.72rem; color: #94a3b8; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-icon { font-size: 1.6rem; color: #38bdf8; }
+    .brand-title { display: block; font-size: 1.1rem; font-weight: 800; color: #fff; letter-spacing: 0.5px; }
+    .brand-subtitle { display: block; font-size: 0.7rem; color: #94a3b8; }
 
-    .nav-links { display: flex; align-items: center; gap: 1rem; }
+    .nav-links { display: flex; align-items: center; gap: 1.1rem; }
     .nav-links a { color: #cbd5e1; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: color 0.2s ease; display: inline-flex; align-items: center; gap: 0.35rem; }
     .nav-links a:hover { color: #38bdf8; }
 
-    .theme-toggle {
+    .nav-controls { display: flex; align-items: center; gap: 0.6rem; }
+
+    .theme-toggle-btn {
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       color: #f1f5f9;
@@ -128,15 +143,30 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      font-size: 0.95rem;
       transition: all 0.2s;
     }
-    .theme-toggle:hover { background: var(--primary); border-color: var(--primary); }
+    .theme-toggle-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
 
-    /* 3. HERO DASHBOARD WITH MOVING GRADIENT */
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    /* 3. HERO & SEARCH DASHBOARD */
     .hero-dashboard {
-      background: linear-gradient(180deg, var(--primary-dark) 0%, #17243c 100%);
+      background: linear-gradient(180deg, #0f172a 0%, #17243c 100%);
       color: #fff;
-      padding: 3.8rem 1.5rem 3.2rem 1.5rem;
+      padding: 3.5rem 1.25rem 3rem 1.25rem;
       text-align: center;
     }
 
@@ -150,13 +180,12 @@
       font-size: 0.78rem;
       font-weight: 600;
       display: inline-block;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
 
-    /* Fluid Moving Aurora Gradient on Hero Title */
     .hero-dashboard h1 {
       font-family: var(--font-serif);
-      font-size: 2.6rem;
+      font-size: 2.5rem;
       font-weight: 700;
       line-height: 1.25;
       margin-bottom: 0.8rem;
@@ -164,15 +193,15 @@
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: movingAuroraHero 6s linear infinite;
+      animation: movingAurora 6s linear infinite;
     }
 
-    @keyframes movingAuroraHero {
+    @keyframes movingAurora {
       0% { background-position: 0% 50%; }
       100% { background-position: 200% 50%; }
     }
 
-    .hero-dashboard p { color: #cbd5e1; font-size: 1.05rem; margin-bottom: 2rem; }
+    .hero-dashboard p { color: #cbd5e1; font-size: 1rem; margin-bottom: 2rem; }
 
     .search-panel {
       background: #ffffff;
@@ -183,77 +212,197 @@
       margin: 0 auto;
     }
 
+    body.dark-mode .search-panel { background: #1e293b; }
+
     .search-input-group { display: flex; align-items: center; padding: 0 14px; }
     .search-icon { color: var(--text-muted); font-size: 1.1rem; margin-right: 12px; }
     .search-input-group input { width: 100%; border: none; outline: none; padding: 12px 0; font-size: 0.95rem; color: var(--text-main); background: transparent; }
+    body.dark-mode .search-input-group input { color: #fff; }
 
     /* 4. INSTANT ALERTS CARD */
     .alerts-card-wrap {
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       border-radius: 14px;
-      padding: 1.6rem 2rem;
-      margin: 2.5rem auto 0 auto;
+      padding: 1.5rem 1.8rem;
+      margin: 2rem auto 0 auto;
       max-width: 1280px;
       box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
     }
 
     .alerts-tag {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: var(--primary);
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
 
     .alerts-title {
       font-family: var(--font-serif);
       font-size: 1.45rem;
       font-weight: 700;
-      color: var(--primary-dark);
+      color: var(--text-main);
       margin-bottom: 0.35rem;
     }
 
-    .alerts-desc {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      margin-bottom: 1rem;
-    }
-
-    .alerts-links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
+    .alerts-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+    .alerts-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .alerts-btn {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.45rem 0.95rem;
+      padding: 0.5rem 1rem;
       border-radius: 6px;
       font-size: 0.85rem;
       font-weight: 700;
       text-decoration: none;
       color: #fff;
     }
-
     .alerts-btn.wa { background: #25d366; }
     .alerts-btn.tg { background: #0088cc; }
     .alerts-btn:hover { opacity: 0.92; }
 
-    /* 5. MAIN DIRECTORY LAYOUT */
-    .portal-body { max-width: 1280px; margin: 2.5rem auto; padding: 0 1.5rem; }
+    /* ==============================================================
+       5. SOCIAL MEDIA HUB IN THE MIDDLE (DANCING NEON BORDERS)
+       ============================================================== */
+    .middle-social-hub {
+      max-width: 1280px;
+      margin: 2.2rem auto 0 auto;
+    }
+
+    .social-list-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .social-moving-card {
+      position: relative;
+      border-radius: 14px;
+      padding: 2px;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      background: var(--border-color);
+    }
+
+    .social-moving-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+
+    .social-moving-card::before {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 300%;
+      height: 300%;
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 90deg,
+        var(--glow-color, #0284c7) 180deg,
+        var(--glow-accent, #38bdf8) 220deg,
+        transparent 280deg,
+        transparent 360deg
+      );
+      animation: rotateDancingBorder 3.5s linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes rotateDancingBorder {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .social-card-inner {
+      position: relative;
+      z-index: 2;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 0.95rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-main);
+    }
+
+    .social-card-lead {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .social-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .social-title-text {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: block;
+    }
+
+    .social-sub-text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    .social-arrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .theme-wa { --glow-color: #25d366; --glow-accent: #86efac; }
+    .theme-wa .social-card-icon { background: #25d366; }
+    .theme-wa .social-arrow-badge { background: #25d366; }
+
+    .theme-fb { --glow-color: #1877f2; --glow-accent: #93c5fd; }
+    .theme-fb .social-card-icon { background: #1877f2; }
+    .theme-fb .social-arrow-badge { background: #1877f2; }
+
+    .theme-yt { --glow-color: #ff0000; --glow-accent: #fca5a5; }
+    .theme-yt .social-card-icon { background: #ff0000; }
+    .theme-yt .social-arrow-badge { background: #ff0000; }
+
+    .theme-share { --glow-color: #0284c7; --glow-accent: #38bdf8; }
+    .theme-share .social-card-icon { background: #0f172a; }
+    .theme-share .social-arrow-badge { background: #0f172a; }
+
+    /* 6. DIRECTORY SECTIONS */
+    .portal-body { max-width: 1280px; margin: 2.5rem auto; padding: 0 1.25rem; }
     .directory-section { margin-bottom: 3.8rem; }
 
     .section-title-bar {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      border-bottom: 2px solid #e2e8f0;
+      border-bottom: 2px solid var(--border-color);
       padding-bottom: 1rem;
       margin-bottom: 1.8rem;
       flex-wrap: wrap;
@@ -269,10 +418,9 @@
       font-family: var(--font-mono);
     }
 
-    /* Moving Gradient Section Titles */
     .title-details h2 {
       font-family: var(--font-serif);
-      font-size: 1.75rem;
+      font-size: 1.7rem;
       font-weight: 700;
       margin-top: 4px;
       display: flex;
@@ -282,21 +430,23 @@
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      animation: movingAuroraTitle 7s linear infinite;
+      animation: movingAurora 7s linear infinite;
     }
 
-    @keyframes movingAuroraTitle {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
+    body.dark-mode .title-details h2 {
+      background: linear-gradient(90deg, #f8fafc 0%, #38bdf8 40%, #818cf8 75%, #f8fafc 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .title-details p { color: var(--text-muted); font-size: 0.92rem; margin-top: 0.2rem; }
 
     .filter-controls { display: flex; gap: 6px; flex-wrap: wrap; }
     .pill-filter {
-      background: #e2e8f0;
+      background: var(--border-color);
       border: none;
-      color: #334155;
+      color: var(--text-main);
       padding: 6px 14px;
       border-radius: 6px;
       font-size: 0.8rem;
@@ -304,10 +454,10 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .pill-filter:hover { background: #cbd5e1; }
+    .pill-filter:hover { opacity: 0.85; }
     .pill-filter.active { background: var(--primary); color: #fff; }
 
-    /* 6. ELEVATED PORTAL CARDS & PULSING "NEW" BADGE */
+    /* 7. PORTAL CARDS & ACTION ROW */
     .grid-layout {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
@@ -352,7 +502,6 @@
       text-transform: uppercase;
     }
 
-    /* Pulsing "NEW" Indicator */
     .badge-new-pulse {
       display: inline-flex;
       align-items: center;
@@ -381,14 +530,13 @@
       font-family: var(--font-serif);
       font-size: 1.25rem;
       font-weight: 700;
-      color: var(--primary-dark);
+      color: var(--text-main);
       line-height: 1.35;
       margin-bottom: 0.5rem;
     }
 
     .card-subtext { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.25rem; }
 
-    /* Card Action Row */
     .card-action-row {
       display: flex;
       align-items: center;
@@ -414,10 +562,7 @@
       border: none;
     }
 
-    .btn-card-primary:hover {
-      background: var(--primary-hover);
-      transform: translateY(-1px);
-    }
+    .btn-card-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
 
     .btn-card-icon {
       width: 38px;
@@ -435,10 +580,9 @@
 
     .btn-card-icon:hover { transform: translateY(-1px); }
     .btn-icon-wa { background: #25d366; color: #fff; }
-    .btn-icon-copy { background: #e2e8f0; color: #475569; }
-    .btn-icon-copy:hover { background: #cbd5e1; color: #0f172a; }
+    .btn-icon-copy { background: var(--border-color); color: var(--text-main); }
 
-    /* 7. PAGINATION TOOLBAR */
+    /* 8. PAGINATION */
     .pagination-toolbar {
       display: flex;
       align-items: center;
@@ -449,9 +593,9 @@
     }
 
     .pagination-btn {
-      border: 1px solid #cbd5e1;
-      background: #ffffff;
-      color: #334155;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-main);
       padding: 0.45rem 0.9rem;
       border-radius: 6px;
       font-size: 0.88rem;
@@ -460,11 +604,11 @@
       transition: all 0.2s ease;
     }
 
-    .pagination-btn:hover:not(:disabled) { background: #f1f5f9; border-color: #94a3b8; }
+    .pagination-btn:hover:not(:disabled) { border-color: var(--primary); }
     .pagination-btn.active { background: var(--primary); color: #ffffff; border-color: var(--primary); }
     .pagination-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    /* 8. CRYSTAL EXECUTIVE FOOTER */
+    /* 9. EXECUTIVE CRYSTAL FOOTER */
     .portal-footer {
       background: linear-gradient(180deg, #0f172a 0%, #070b13 100%);
       color: #94a3b8;
@@ -504,13 +648,9 @@
       transform: translateY(-2px);
     }
 
-    .footer-copy {
-      font-size: 0.85rem;
-      color: #64748b;
-      margin-top: 0.6rem;
-    }
+    .footer-copy { font-size: 0.85rem; color: #64748b; margin-top: 0.6rem; }
 
-    /* 9. MODAL */
+    /* 10. PREVIEW MODAL */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -524,7 +664,7 @@
     }
 
     .modal-dialog {
-      background: #ffffff;
+      background: var(--card-bg);
       width: 100%;
       max-width: 950px;
       max-height: 90vh;
@@ -540,25 +680,47 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 1.5rem;
-      background: var(--primary-dark);
+      background: #0f172a;
       color: #ffffff;
     }
 
-    .modal-close {
-      background: none;
-      border: none;
-      color: #94a3b8;
-      font-size: 1.6rem;
-      cursor: pointer;
-    }
-
+    .modal-close { background: none; border: none; color: #94a3b8; font-size: 1.6rem; cursor: pointer; }
     .modal-body-frame { flex: 1; min-height: 520px; background: #f1f5f9; }
 
-    @media (max-width: 768px) {
-      .nav-container { flex-direction: column; align-items: flex-start; gap: 12px; }
+    /* 11. MOBILE MEDIA QUERIES */
+    @media (max-width: 992px) {
+      .mobile-menu-btn { display: inline-flex; }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #0f172a;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        gap: 0.85rem;
+      }
+      .nav-links.mobile-open { display: flex; }
+      .nav-links a {
+        padding: 0.5rem 0;
+        width: 100%;
+        font-size: 0.95rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .hero-dashboard h1 { font-size: 2rem; }
       .grid-layout { grid-template-columns: 1fr; }
-      .hero-dashboard h1 { font-size: 1.9rem; }
       .section-title-bar { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 600px) {
+      .alerts-links { flex-direction: column; }
+      .alerts-btn { width: 100%; justify-content: center; }
+      .hero-dashboard { padding: 2.5rem 1rem 2rem 1rem; }
+      .hero-dashboard h1 { font-size: 1.65rem; }
+      .portal-body { padding: 0 1rem; margin: 1.5rem auto; }
+      .portal-card { padding: 1.25rem; }
     }
   </style>
 </head>
@@ -584,17 +746,26 @@
           <span class="brand-subtitle">Government Resources & Public Career Portal</span>
         </div>
       </a>
-      <nav class="nav-links">
+
+      <!-- Desktop & Mobile Collapsible Menu -->
+      <nav class="nav-links" id="mainNavLinks">
         <a href="#section-career"><i class="fa-solid fa-briefcase"></i> Careers</a>
         <a href="#section-ebooks"><i class="fa-solid fa-book-open"></i> E-Books</a>
         <a href="#section-pyq"><i class="fa-solid fa-file-signature"></i> Question Papers</a>
         <a href="#section-journals"><i class="fa-solid fa-newspaper"></i> Journals</a>
         <a href="#section-results"><i class="fa-solid fa-square-poll-vertical"></i> Results</a>
         <a href="#section-media"><i class="fa-brands fa-youtube"></i> Lectures</a>
-        <button id="themeToggleBtn" class="theme-toggle" onclick="toggleTheme()" title="Switch Theme">
+      </nav>
+
+      <!-- Nav Controls: Theme Toggle & Mobile Hamburger -->
+      <div class="nav-controls">
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleTheme()" title="Switch Dark/Light Theme">
           <i class="fa-solid fa-moon" id="themeIcon"></i>
         </button>
-      </nav>
+        <button class="mobile-menu-btn" onclick="toggleMobileNav()" title="Toggle Navigation">
+          <i class="fa-solid fa-bars" id="menuToggleIcon"></i>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -604,7 +775,7 @@
       <span class="hero-chip"><i class="fa-solid fa-bolt"></i> Unified Northeast Resource Repository</span>
       <h1>Empowering Education, Research & Employment</h1>
       <p>Direct, verified access to state board materials, competitive exam schedules, institutional repository papers, and public notices.</p>
-      
+
       <div class="search-panel">
         <div class="search-input-group">
           <i class="fa-solid fa-magnifying-glass search-icon"></i>
@@ -620,16 +791,79 @@
     <h3 class="alerts-title">Never Miss an Exam Date, Job Post, or Journal Deadline</h3>
     <p class="alerts-desc">Get daily Northeast recruitment notices, institutional repository links, and exam papers delivered directly to your inbox or WhatsApp group.</p>
     <div class="alerts-links">
-      <a href="https://whatsapp.com/channel/YOUR_CHANNEL_LINK" target="_blank" rel="noopener noreferrer" class="alerts-btn wa">
+      <a href="https://whatsapp.com/channel/0029Va..." target="_blank" rel="noopener noreferrer" class="alerts-btn wa">
         <i class="fa-brands fa-whatsapp"></i> Join WhatsApp Channel
       </a>
-      <a href="https://t.me/YOUR_TELEGRAM_LINK" target="_blank" rel="noopener noreferrer" class="alerts-btn tg">
+      <a href="https://t.me/your_telegram_channel" target="_blank" rel="noopener noreferrer" class="alerts-btn tg">
         <i class="fa-brands fa-telegram"></i> Join Telegram Channel
       </a>
     </div>
   </div>
 
-  <!-- 5. MAIN DIRECTORY -->
+  <!-- 5. SOCIAL MEDIA HUB IN THE MIDDLE (DANCING/ROTATING NEON COLOR BORDERS) -->
+  <div class="middle-social-hub">
+    <div class="social-list-stack">
+
+      <!-- 1. WhatsApp Channel -->
+      <a href="https://whatsapp.com/channel/0029Va..." target="_blank" rel="noopener noreferrer" class="social-moving-card theme-wa">
+        <div class="social-card-inner">
+          <div class="social-card-lead">
+            <div class="social-card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div>
+              <span class="social-title-text">Official WhatsApp Channel</span>
+              <span class="social-sub-text">Instant daily recruitment updates & job notifications</span>
+            </div>
+          </div>
+          <span class="social-arrow-badge">Join Now <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <!-- 2. Facebook Group -->
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-moving-card theme-fb">
+        <div class="social-card-inner">
+          <div class="social-card-lead">
+            <div class="social-card-icon"><i class="fa-brands fa-facebook-f"></i></div>
+            <div>
+              <span class="social-title-text">Facebook Aspirants Community</span>
+              <span class="social-sub-text">Connect with candidates and researchers across Northeast India</span>
+            </div>
+          </div>
+          <span class="social-arrow-badge">Join Group <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <!-- 3. YouTube Channel -->
+      <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-moving-card theme-yt">
+        <div class="social-card-inner">
+          <div class="social-card-lead">
+            <div class="social-card-icon"><i class="fa-brands fa-youtube"></i></div>
+            <div>
+              <span class="social-title-text">YouTube Video Classes & Lectures</span>
+              <span class="social-sub-text">Syllabus analysis, solved question papers & library guides</span>
+            </div>
+          </div>
+          <span class="social-arrow-badge">Subscribe <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <!-- 4. Broadcast Share -->
+      <div class="social-moving-card theme-share" onclick="sharePortalLink()">
+        <div class="social-card-inner">
+          <div class="social-card-lead">
+            <div class="social-card-icon"><i class="fa-solid fa-share-nodes"></i></div>
+            <div>
+              <span class="social-title-text">Broadcast this Academic Portal</span>
+              <span class="social-sub-text">Share directly with your study groups, friends & colleagues</span>
+            </div>
+          </div>
+          <span class="social-arrow-badge">Share <i class="fa-solid fa-share"></i></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6. MAIN DIRECTORY -->
   <main class="portal-body">
 
     <!-- Category 01: Careers -->
@@ -735,7 +969,7 @@
     </div>
   </div>
 
-  <!-- 8. CRYSTAL EXECUTIVE FOOTER -->
+  <!-- 7. CRYSTAL EXECUTIVE FOOTER -->
   <footer class="portal-footer">
     <div class="footer-nav">
       <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Portal</a>
@@ -747,6 +981,50 @@
   </footer>
 
   <!-- Script linking with cache-busting timestamp -->
-  <script src="portal-data.js?v=2026.10"></script>
+  <script src="portal-data.js?v=2026.11"></script>
+
+  <!-- Interactive Handlers for Mobile Nav, Dark Theme & Portal Broadcast -->
+  <script>
+    // 1. Mobile Menu Drawer Toggle
+    function toggleMobileNav() {
+      const links = document.getElementById('mainNavLinks');
+      const icon = document.getElementById('menuToggleIcon');
+      const isOpen = links.classList.toggle('mobile-open');
+      icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+    }
+
+    // 2. Dark/Light Mode Switcher with localStorage Memory
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      }
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    // Initialize saved theme on load
+    (function initSavedTheme() {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+        const icon = document.getElementById('themeIcon');
+        if (icon) icon.className = 'fa-solid fa-sun';
+      }
+    })();
+
+    // 3. Portal Broadcast Share Handler
+    function sharePortalLink() {
+      const text = `🌐 *NE Academic Hub | Northeast India Academic & Career Portal*\n\nAccess verified employment notifications, state board materials, and institutional research papers:\n👉 https://prakashboro1887-max.github.io/Northeast-India/`;
+      if (navigator.share) {
+        navigator.share({
+          title: 'NE Academic Hub',
+          text: text,
+          url: 'https://prakashboro1887-max.github.io/Northeast-India/'
+        }).catch(() => {});
+      } else {
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+      }
+    }
+  </script>
 </body>
 </html>
