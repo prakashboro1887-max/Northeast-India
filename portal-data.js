@@ -181,7 +181,6 @@ function checkIsNew(dateStr) {
       postDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
     }
     const diffDays = (new Date() - postDate) / (1000 * 60 * 60 * 24);
-    // Returns true if notice is posted within the last 15 days
     return diffDays >= -1 && diffDays <= 15;
   } catch (e) {
     return false;
@@ -207,14 +206,10 @@ function renderCareers(items, page = pageState.career) {
       ? `<span class="badge-new-pulse"><span class="badge-new-dot"></span> NEW</span>` 
       : '';
 
-    const safeTitle = (c.title || "Recruitment Notice").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-    const safeOrg = (c.organization || "Public Sector").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-    const safeDate = (c.deadline || c.date || "Active").replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-
     return `
       <div class="portal-card">
         <div>
-          <div class="card-meta-top">
+          <div class="card-meta-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
             <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
               <span class="badge-cat"><i class="fa-solid fa-briefcase"></i> ${c.category || "Notice"}</span>
               ${newBadgeHtml}
@@ -588,7 +583,7 @@ async function syncAllSheets() {
     journalsData = journalsParsed.map(jn => ({
       title: jn.title || "Call for Papers",
       organization: jn.organization || "University / Journal",
-      indexing: jn.category || "UGC-CARE Listed",
+      indexing: jn.category || jn.indexing || "UGC-CARE Listed",
       deadline: jn.deadline || "Open",
       link: jn.link || "#"
     }));
