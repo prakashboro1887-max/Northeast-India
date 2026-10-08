@@ -5,12 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Open Graph / WhatsApp Preview Meta -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="NE Academic Hub | Northeast India Academic & Career Portal" />
-<meta property="og:description" content="Verified recruitment notices, state board study materials, institutional repositories, and public examination updates across Northeast India." />
-<meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/" />
-  <title id="metaTitle">Recruitment Details & Updates | NE Academic Hub</title>
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="NE Academic Hub" />
+  <meta property="og:title" content="Notice Details & Official Portal | NE Academic Hub" />
+  <meta property="og:description" content="Verified recruitment notices, state board study materials, institutional repositories, and public examination updates across Northeast India." />
+  <meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/post.html" />
+  <meta name="theme-color" content="#0f172a" />
   
+  <title id="metaTitle">Notice Details & Updates | NE Academic Hub</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -25,6 +28,7 @@
       --accent: #e11d48;
       --bg-main: #f8fafc;
       --card-bg: #ffffff;
+      --border-color: #e2e8f0;
       --text-main: #0f172a;
       --text-muted: #64748b;
       --emerald: #059669;
@@ -33,8 +37,17 @@
       --font-mono: 'JetBrains Mono', monospace;
     }
 
+    body.dark-mode {
+      --bg-main: #070b13;
+      --card-bg: #0f172a;
+      --border-color: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary-light: rgba(2, 132, 199, 0.15);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
-    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.65; }
+    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.65; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
 
     /* Top Institutional Navigation */
     .site-nav {
@@ -43,6 +56,7 @@
       top: 0;
       z-index: 1000;
       padding: 0.9rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .nav-inner {
@@ -61,22 +75,14 @@
       color: #fff;
     }
 
-    .brand-icon {
-      font-size: 1.6rem;
-      color: #38bdf8;
-    }
+    .brand-icon { font-size: 1.6rem; color: #38bdf8; }
+    .brand-title { font-weight: 800; font-size: 1.15rem; color: #fff; letter-spacing: 0.5px; }
+    .brand-sub { font-size: 0.72rem; color: #94a3b8; display: block; }
 
-    .brand-title {
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: #fff;
-      letter-spacing: 0.5px;
-    }
-
-    .brand-sub {
-      font-size: 0.72rem;
-      color: #94a3b8;
-      display: block;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
     }
 
     .nav-btn-back {
@@ -90,13 +96,27 @@
       padding: 0.45rem 0.95rem;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       transition: all 0.2s ease;
     }
 
-    .nav-btn-back:hover {
-      background: rgba(255, 255, 255, 0.18);
-      color: #fff;
+    .nav-btn-back:hover { background: rgba(255, 255, 255, 0.18); color: #fff; }
+
+    .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      transition: all 0.2s;
     }
+    .theme-toggle-btn:hover { background: var(--primary); color: #fff; }
 
     /* Single Column Main Layout */
     .editorial-container {
@@ -112,18 +132,15 @@
       display: flex;
       align-items: center;
       gap: 0.45rem;
+      flex-wrap: wrap;
     }
 
-    .breadcrumb a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
+    .breadcrumb a { color: var(--primary); text-decoration: none; font-weight: 600; }
 
     /* Main Article Container */
     .article-box {
       background: var(--card-bg);
-      border: none;
+      border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 2.8rem 2.4rem;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
@@ -144,7 +161,7 @@
       margin-bottom: 1rem;
     }
 
-    /* Continuous Moving Gradient Title */
+    /* Moving Gradient Title */
     .post-main-title {
       font-family: var(--font-serif);
       font-size: 2.5rem;
@@ -157,6 +174,13 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: movingGradient 6s linear infinite;
+    }
+
+    body.dark-mode .post-main-title {
+      background: linear-gradient(90deg, #ffffff 0%, #38bdf8 35%, #818cf8 60%, #ffffff 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     @keyframes movingGradient {
@@ -172,7 +196,7 @@
       margin-bottom: 1.6rem;
     }
 
-    /* Top Summary Metrics Strip */
+    /* Floating Metrics */
     .floating-metrics-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -181,16 +205,14 @@
     }
 
     .metric-pill {
-      background: #f1f5f9;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
       border-radius: 10px;
       padding: 1rem 1.15rem;
       transition: transform 0.2s ease;
     }
 
-    .metric-pill:hover {
-      transform: translateY(-2px);
-      background: #e2e8f0;
-    }
+    .metric-pill:hover { transform: translateY(-2px); }
 
     .metric-label {
       font-size: 0.72rem;
@@ -203,20 +225,14 @@
     .metric-val {
       font-size: 1.15rem;
       font-weight: 800;
-      color: var(--primary-dark);
+      color: var(--text-main);
       margin-top: 0.25rem;
       display: block;
     }
 
-    .metric-pill.alert {
-      background: #fff1f2;
-    }
+    .metric-pill.alert { background: #fff1f2; border-color: #fecdd3; }
+    .metric-pill.alert .metric-val { color: var(--accent); }
 
-    .metric-pill.alert .metric-val {
-      color: var(--accent);
-    }
-
-    /* Moving Gradient Section Headings */
     .content-section-title {
       font-family: var(--font-serif);
       font-size: 1.45rem;
@@ -225,16 +241,10 @@
       display: flex;
       align-items: center;
       gap: 0.65rem;
-      background: linear-gradient(120deg, #0284c7, #0ea5e9, #0369a1);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: movingGradient 5s ease infinite alternate;
+      color: var(--text-main);
     }
 
-    /* ==============================================================
-       VERTICAL SOCIAL LIST WITH DANCING / MOVING COLOR BORDERS
-       ============================================================== */
+    /* Social Stack */
     .social-list-stack {
       display: flex;
       flex-direction: column;
@@ -251,15 +261,11 @@
       display: block;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       cursor: pointer;
-      background: #e2e8f0;
+      background: var(--border-color);
     }
 
-    .social-moving-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-    }
+    .social-moving-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08); }
 
-    /* The Dancing Border Conic Beam */
     .social-moving-card::before {
       content: '';
       position: absolute;
@@ -285,25 +291,19 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Inner Body Container Covering Center */
     .social-card-inner {
       position: relative;
       z-index: 2;
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 12px;
       padding: 1rem 1.4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #0f172a;
+      color: var(--text-main);
     }
 
-    .social-card-lead {
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-    }
-
+    .social-card-lead { display: flex; align-items: center; gap: 1.1rem; }
     .social-card-icon {
       width: 44px;
       height: 44px;
@@ -316,20 +316,8 @@
       flex-shrink: 0;
     }
 
-    .social-title-text {
-      font-size: 1.02rem;
-      font-weight: 800;
-      color: #0f172a;
-      display: block;
-    }
-
-    .social-sub-text {
-      font-size: 0.8rem;
-      color: #64748b;
-      display: block;
-      margin-top: 2px;
-    }
-
+    .social-title-text { font-size: 1.02rem; font-weight: 800; color: var(--text-main); display: block; }
+    .social-sub-text { font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 2px; }
     .social-arrow-badge {
       display: inline-flex;
       align-items: center;
@@ -342,80 +330,43 @@
       flex-shrink: 0;
     }
 
-    /* 1. WhatsApp Neon */
     .theme-wa { --glow-color: #25d366; --glow-accent: #86efac; }
     .theme-wa .social-card-icon { background: #25d366; }
     .theme-wa .social-arrow-badge { background: #25d366; }
 
-    /* 2. Facebook Neon */
     .theme-fb { --glow-color: #1877f2; --glow-accent: #93c5fd; }
     .theme-fb .social-card-icon { background: #1877f2; }
     .theme-fb .social-arrow-badge { background: #1877f2; }
 
-    /* 3. YouTube Neon */
     .theme-yt { --glow-color: #ff0000; --glow-accent: #fca5a5; }
     .theme-yt .social-card-icon { background: #ff0000; }
     .theme-yt .social-arrow-badge { background: #ff0000; }
 
-    /* 4. Quick Share Neon */
     .theme-share { --glow-color: #0284c7; --glow-accent: #38bdf8; }
     .theme-share .social-card-icon { background: #0f172a; }
     .theme-share .social-arrow-badge { background: #0f172a; }
 
-    /* Executive Clean Specifications Grid */
-    .spec-card-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      margin-bottom: 1.5rem;
-    }
-
+    /* Specification Grid */
+    .spec-card-grid { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.5rem; }
     .spec-card-row {
       display: grid;
       grid-template-columns: 260px 1fr;
       align-items: center;
-      background: #f8fafc;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
       padding: 0.95rem 1.4rem;
       border-radius: 8px;
       border-left: 3px solid transparent;
       transition: all 0.2s ease;
     }
 
-    .spec-card-row:hover {
-      background: #f1f5f9;
-      border-left-color: var(--primary);
-      transform: translateX(2px);
-    }
+    .spec-card-row:hover { border-left-color: var(--primary); transform: translateX(2px); }
+    .spec-card-key { font-size: 0.88rem; font-weight: 700; color: var(--text-muted); display: flex; align-items: center; gap: 0.6rem; }
+    .spec-card-key i { color: var(--primary); font-size: 0.85rem; width: 16px; }
+    .spec-card-value { font-size: 0.96rem; font-weight: 600; color: var(--text-main); }
 
-    .spec-card-key {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: #475569;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .spec-card-key i {
-      color: var(--primary);
-      font-size: 0.85rem;
-      width: 16px;
-    }
-
-    .spec-card-value {
-      font-size: 0.96rem;
-      font-weight: 600;
-      color: var(--primary-dark);
-    }
-
-    /* Separate Individual Action Cards (Below Sections) */
-    .links-stack-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-      margin: 1.5rem 0 2.5rem 0;
-    }
-
+    /* Action Links */
+    .links-stack-list { display: flex; flex-direction: column; gap: 0.9rem; margin: 1.5rem 0 2.5rem 0; }
     .link-item-card {
       display: flex;
       align-items: center;
@@ -428,17 +379,8 @@
       gap: 1rem;
     }
 
-    .link-item-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
-    }
-
-    .link-item-info {
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-    }
-
+    .link-item-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06); }
+    .link-item-info { display: flex; align-items: center; gap: 1.1rem; }
     .link-icon-box {
       width: 44px;
       height: 44px;
@@ -449,20 +391,8 @@
       font-size: 1.25rem;
     }
 
-    .link-item-title {
-      font-size: 1.02rem;
-      font-weight: 700;
-      display: block;
-      color: #0f172a;
-    }
-
-    .link-item-desc {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: block;
-      margin-top: 0.15rem;
-    }
-
+    .link-item-title { font-size: 1.02rem; font-weight: 700; display: block; color: var(--text-main); }
+    .link-item-desc { font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 0.15rem; }
     .btn-link-action {
       display: inline-flex;
       align-items: center;
@@ -474,66 +404,27 @@
       color: #fff;
     }
 
-    /* Distinct Card Colors */
-    .card-apply {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-    }
-    .card-apply .link-icon-box {
-      background: #dcfce7;
-      color: var(--emerald);
-    }
-    .card-apply .btn-link-action {
-      background: var(--emerald);
-    }
-    .card-apply:hover .btn-link-action {
-      background: #047857;
-    }
+    .card-apply { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .card-apply .link-icon-box { background: #dcfce7; color: var(--emerald); }
+    .card-apply .btn-link-action { background: var(--emerald); }
+    .card-apply:hover .btn-link-action { background: #047857; }
 
-    .card-pdf {
-      background: #fff1f2;
-      border: 1px solid #fecdd3;
-    }
-    .card-pdf .link-icon-box {
-      background: #ffe4e6;
-      color: var(--accent);
-    }
-    .card-pdf .btn-link-action {
-      background: var(--accent);
-    }
-    .card-pdf:hover .btn-link-action {
-      background: #be123c;
-    }
+    .card-pdf { background: #fff1f2; border: 1px solid #fecdd3; }
+    .card-pdf .link-icon-box { background: #ffe4e6; color: var(--accent); }
+    .card-pdf .btn-link-action { background: var(--accent); }
+    .card-pdf:hover .btn-link-action { background: #be123c; }
 
-    .card-site {
-      background: #f0f9ff;
-      border: 1px solid #bae6fd;
-    }
-    .card-site .link-icon-box {
-      background: #e0f2fe;
-      color: var(--primary);
-    }
-    .card-site .btn-link-action {
-      background: var(--primary);
-    }
-    .card-site:hover .btn-link-action {
-      background: var(--primary-hover);
-    }
+    .card-site { background: #f0f9ff; border: 1px solid #bae6fd; }
+    .card-site .link-icon-box { background: #e0f2fe; color: var(--primary); }
+    .card-site .btn-link-action { background: var(--primary); }
+    .card-site:hover .btn-link-action { background: var(--primary-hover); }
 
     /* Related Opportunities */
-    .related-section {
-      margin-top: 3.5rem;
-    }
-
-    .related-grid-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-top: 1.2rem;
-    }
-
+    .related-section { margin-top: 3.5rem; }
+    .related-grid-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.2rem; }
     .related-seamless-card {
-      background: #f8fafc;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 1.25rem 1.4rem;
       text-decoration: none;
@@ -544,68 +435,54 @@
       justify-content: space-between;
     }
 
-    .related-seamless-card:hover {
-      background: #f1f5f9;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
-    }
+    .related-seamless-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05); }
+    .related-seamless-card .tag { font-size: 0.72rem; color: var(--primary); font-weight: 700; text-transform: uppercase; }
+    .related-seamless-card h4 { font-family: var(--font-serif); font-size: 1.05rem; color: var(--text-main); margin: 0.4rem 0; line-height: 1.35; }
+    .related-seamless-card .cutoff { font-size: 0.78rem; color: var(--accent); font-weight: 700; margin-top: 0.5rem; }
 
-    .related-seamless-card .tag {
-      font-size: 0.72rem;
-      color: var(--primary);
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .related-seamless-card h4 {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      color: var(--primary-dark);
-      margin: 0.4rem 0;
-      line-height: 1.35;
-    }
-
-    .related-seamless-card .cutoff {
-      font-size: 0.78rem;
-      color: var(--accent);
-      font-weight: 700;
-      margin-top: 0.5rem;
-    }
-
-    /* Institutional Footer */
+    /* Crystal Executive Footer */
     .portal-footer {
-      background: var(--primary-dark);
+      background: linear-gradient(180deg, #0f172a 0%, #070b13 100%);
       color: #94a3b8;
-      padding: 3rem 1.5rem;
+      padding: 3.5rem 1.5rem 2.8rem 1.5rem;
       text-align: center;
-      font-size: 0.88rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       margin-top: 4rem;
     }
 
-    .portal-footer .footer-links {
+    .footer-nav {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1rem;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
     }
 
-    .portal-footer .footer-links a {
-      color: #cbd5e1;
-      text-decoration: none;
-      font-weight: 500;
+    .footer-nav a {
+      color: #e2e8f0 !important;
+      text-decoration: none !important;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 1.15rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
     }
 
-    .portal-footer .footer-links a:hover {
-      color: #38bdf8;
+    .footer-nav a:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #38bdf8 !important;
+      transform: translateY(-2px);
     }
 
-    #loadingScreen {
-      text-align: center;
-      padding: 6rem 1rem;
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
+    .footer-copy { font-size: 0.85rem; color: #64748b; margin-top: 0.6rem; }
+
+    #loadingScreen { text-align: center; padding: 6rem 1rem; color: var(--text-muted); font-size: 1.05rem; }
 
     @media (max-width: 768px) {
       .floating-metrics-row { grid-template-columns: repeat(2, 1fr); }
@@ -630,7 +507,12 @@
           <span class="brand-sub">Government Resources & Public Career Portal</span>
         </div>
       </a>
-      <a href="index.html" class="nav-btn-back"><i class="fa-solid fa-arrow-left"></i> All Notifications</a>
+      <div class="nav-actions">
+        <a href="index.html" class="nav-btn-back"><i class="fa-solid fa-arrow-left"></i> Directory</a>
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleTheme()" title="Switch Theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -640,7 +522,7 @@
     <div class="breadcrumb">
       <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
       <span>&rsaquo;</span>
-      <a href="index.html#section-career">Careers & Recruitment</a>
+      <a href="index.html" id="crumbSectionLink">Directory</a>
       <span>&rsaquo;</span>
       <span id="crumbPostTitle" style="color: var(--text-muted);">Loading Notice...</span>
     </div>
@@ -654,7 +536,7 @@
     <!-- Main Dossier Body -->
     <main class="article-box" id="mainDossier" style="display: none;">
       
-      <span class="category-chip" id="dispCategory"><i class="fa-solid fa-briefcase"></i> Recruitment Notice</span>
+      <span class="category-chip" id="dispCategory"><i class="fa-solid fa-briefcase"></i> Notice</span>
       
       <!-- Moving Gradient Headline -->
       <h1 class="post-main-title" id="dispTitle">Notification Headline</h1>
@@ -663,28 +545,28 @@
       <!-- Floating Stat Strip -->
       <div class="floating-metrics-row">
         <div class="metric-pill">
-          <span class="metric-label">Total Cadre</span>
+          <span class="metric-label" id="labelM1">Total Cadre</span>
           <span class="metric-val" id="dispVacancies">--</span>
         </div>
         <div class="metric-pill">
-          <span class="metric-label">Pay Level</span>
+          <span class="metric-label" id="labelM2">Pay Level / Category</span>
           <span class="metric-val" id="dispPayScale">--</span>
         </div>
         <div class="metric-pill">
-          <span class="metric-label">Age Ceiling</span>
+          <span class="metric-label" id="labelM3">Session / Age</span>
           <span class="metric-val" id="dispAgeLimit">--</span>
         </div>
         <div class="metric-pill alert">
-          <span class="metric-label">Application Cutoff</span>
+          <span class="metric-label" id="labelM4">Application Cutoff</span>
           <span class="metric-val" id="dispDeadline">--</span>
         </div>
       </div>
 
-      <!-- Vertical List: Dancing/Moving Color Border Social Stack -->
+      <!-- Vertical Social Stack (Dancing Conic Neon Borders) -->
       <div class="social-list-stack">
         
-        <!-- 1. WhatsApp Channel (Top) -->
-        <a href="https://whatsapp.com/channel/YOUR_CHANNEL_LINK" target="_blank" rel="noopener noreferrer" class="social-moving-card theme-wa">
+        <!-- WhatsApp -->
+        <a href="https://whatsapp.com/channel/0029Va..." target="_blank" rel="noopener noreferrer" class="social-moving-card theme-wa">
           <div class="social-card-inner">
             <div class="social-card-lead">
               <div class="social-card-icon"><i class="fa-brands fa-whatsapp"></i></div>
@@ -697,7 +579,7 @@
           </div>
         </a>
 
-        <!-- 2. Facebook Group (Below WhatsApp) -->
+        <!-- Facebook -->
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-moving-card theme-fb">
           <div class="social-card-inner">
             <div class="social-card-lead">
@@ -711,7 +593,7 @@
           </div>
         </a>
 
-        <!-- 3. YouTube Channel (Below Facebook) -->
+        <!-- YouTube -->
         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-moving-card theme-yt">
           <div class="social-card-inner">
             <div class="social-card-lead">
@@ -725,13 +607,13 @@
           </div>
         </a>
 
-        <!-- 4. Share Notice -->
+        <!-- Share Notice -->
         <div class="social-moving-card theme-share" onclick="shareNotice()">
           <div class="social-card-inner">
             <div class="social-card-lead">
               <div class="social-card-icon"><i class="fa-solid fa-share-nodes"></i></div>
               <div>
-                <span class="social-title-text">Broadcast this Vacancy Notice</span>
+                <span class="social-title-text">Broadcast this Notice</span>
                 <span class="social-sub-text">Share directly with study groups & friends</span>
               </div>
             </div>
@@ -741,45 +623,41 @@
 
       </div>
 
-      <!-- Section 1: Post Specifications -->
-      <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Post Eligibility & Criteria</h2>
+      <!-- Section 1: Specifications -->
+      <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Official Criteria & Overview</h2>
       <div class="spec-card-grid">
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-user-tie"></i> Designation / Cadre</div>
+          <div class="spec-card-key"><i class="fa-solid fa-user-tie"></i> Designation / Subject</div>
           <div class="spec-card-value" id="dispPostName">--</div>
         </div>
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-graduation-cap"></i> Educational Minimum</div>
+          <div class="spec-card-key"><i class="fa-solid fa-graduation-cap"></i> Board / Minimum Eligibility</div>
           <div class="spec-card-value" id="dispQualification">--</div>
         </div>
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-briefcase"></i> Qualifying Experience</div>
+          <div class="spec-card-key"><i class="fa-solid fa-briefcase"></i> Experience / Paper Details</div>
           <div class="spec-card-value" id="dispExperience">--</div>
         </div>
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-hourglass-half"></i> Age Limits & Relaxations</div>
-          <div class="spec-card-value" id="dispAgeDetailed">Category relaxations applicable as per rules</div>
+          <div class="spec-card-key"><i class="fa-solid fa-hourglass-half"></i> Term & Relaxations</div>
+          <div class="spec-card-value" id="dispAgeDetailed">Applicable as per official board norms</div>
         </div>
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-location-dot"></i> Station Allocation</div>
+          <div class="spec-card-key"><i class="fa-solid fa-location-dot"></i> Region / Station</div>
           <div class="spec-card-value" id="dispLocation">Northeast India / All India</div>
         </div>
       </div>
 
-      <!-- Section 2: Application Fee Structure -->
-      <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Application Fee Structure</h2>
+      <!-- Section 2: Financial / Submission Details -->
+      <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Submission / Fee Structure</h2>
       <div class="spec-card-grid">
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-receipt"></i> General / OBC / EWS</div>
-          <div class="spec-card-value" id="dispFeeGen">--</div>
+          <div class="spec-card-key"><i class="fa-solid fa-receipt"></i> General / Unreserved</div>
+          <div class="spec-card-value" id="dispFeeGen">Refer official notice</div>
         </div>
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-hand-holding-dollar"></i> SC / ST / PwD / Female</div>
+          <div class="spec-card-key"><i class="fa-solid fa-hand-holding-dollar"></i> Reserved / Exemptions</div>
           <div class="spec-card-value" id="dispFeeReserved">Nil / Exempted</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-regular fa-credit-card"></i> Payment Mode</div>
-          <div class="spec-card-value">Online (Net Banking / Debit Card) or Offline Challan</div>
         </div>
       </div>
 
@@ -788,44 +666,40 @@
       <div class="spec-card-grid">
         <div class="spec-card-row">
           <div class="spec-card-key"><i class="fa-regular fa-calendar-plus"></i> Notification Released</div>
-          <div class="spec-card-value" id="dispStartDate">--</div>
+          <div class="spec-card-value" id="dispStartDate">Active</div>
         </div>
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-regular fa-calendar-xmark"></i> Registration Cutoff</div>
-          <div class="spec-card-value" id="dispEndDate" style="color: var(--accent); font-weight: 800;">--</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-bullhorn"></i> Examination Schedule</div>
-          <div class="spec-card-value">To be notified on the official authority portal</div>
+          <div class="spec-card-key"><i class="fa-regular fa-calendar-xmark"></i> Registration / Last Date</div>
+          <div class="spec-card-value" id="dispEndDate" style="color: var(--accent); font-weight: 800;">Open</div>
         </div>
       </div>
 
-      <!-- Section 4: Individual Action Links (Placed at the Bottom) -->
-      <h2 class="content-section-title"><i class="fa-solid fa-link"></i> Authorized Application & Verification Gateways</h2>
+      <!-- Section 4: Individual Action Links -->
+      <h2 class="content-section-title"><i class="fa-solid fa-link"></i> Authorized Resource & Application Gateways</h2>
       <div class="links-stack-list">
         
-        <!-- Link 1: Apply Online -->
+        <!-- Link 1: Apply / Direct Access -->
         <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="link-item-card card-apply">
           <div class="link-item-info">
             <div class="link-icon-box"><i class="fa-solid fa-paper-plane"></i></div>
             <div>
-              <span class="link-item-title">Online Application Portal</span>
-              <span class="link-item-desc">Access the direct submission gateway for registrations</span>
+              <span class="link-item-title">Online Application / Direct Access Portal</span>
+              <span class="link-item-desc">Access the primary registration server or reader resource</span>
             </div>
           </div>
-          <span class="btn-link-action">Apply Online <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="btn-link-action">Access Link <i class="fa-solid fa-arrow-right"></i></span>
         </a>
 
-        <!-- Link 2: Download PDF -->
+        <!-- Link 2: Download PDF / Official Brochure -->
         <a id="btnPdf" href="#" target="_blank" rel="noopener noreferrer" class="link-item-card card-pdf">
           <div class="link-item-info">
             <div class="link-icon-box"><i class="fa-solid fa-file-pdf"></i></div>
             <div>
-              <span class="link-item-title">Official Notification (PDF)</span>
-              <span class="link-item-desc">Download and inspect the original employment gazette notice</span>
+              <span class="link-item-title">Official Document / Notification (PDF)</span>
+              <span class="link-item-desc">Download and inspect the authentic release or question paper</span>
             </div>
           </div>
-          <span class="btn-link-action">Download PDF <i class="fa-solid fa-download"></i></span>
+          <span class="btn-link-action">Download / View <i class="fa-solid fa-download"></i></span>
         </a>
 
         <!-- Link 3: Official Site -->
@@ -833,8 +707,8 @@
           <div class="link-item-info">
             <div class="link-icon-box"><i class="fa-solid fa-globe"></i></div>
             <div>
-              <span class="link-item-title">Official Department Website</span>
-              <span class="link-item-desc">Visit the hiring authority's primary institutional portal</span>
+              <span class="link-item-title">Official Institutional Website</span>
+              <span class="link-item-desc">Visit the administration's primary homepage</span>
             </div>
           </div>
           <span class="btn-link-action">Official Portal <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
@@ -842,9 +716,9 @@
 
       </div>
 
-      <!-- Bottom Horizontal Related Jobs -->
+      <!-- Bottom Horizontal Related Items -->
       <section class="related-section">
-        <h2 class="content-section-title"><i class="fa-solid fa-briefcase"></i> Other Open Job Opportunities</h2>
+        <h2 class="content-section-title"><i class="fa-solid fa-layer-group"></i> Other Verified Openings & Resources</h2>
         <div class="related-grid-row" id="relatedOpeningsGrid"></div>
       </section>
 
@@ -852,89 +726,134 @@
 
   </div>
 
-  <!-- Exact Institutional Footer -->
+  <!-- Crystal Executive Footer -->
   <footer class="portal-footer">
-    <div class="footer-links">
-      <a href="about.html">About Portal</a>
-      <a href="contact.html">Contact Support</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="disclaimer.html">Disclaimer</a>
+    <div class="footer-nav">
+      <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Portal</a>
+      <a href="contact.html"><i class="fa-solid fa-headset"></i> Contact Support</a>
+      <a href="privacy.html"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+      <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
     </div>
-    <p>&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
+    <p class="footer-copy">&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
   </footer>
 
-  <script src="portal-data.js"></script>
+  <script src="portal-data.js?v=2026.15"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
+    const requestedType = (urlParams.get('type') || 'careers').trim().toLowerCase();
     let currentRecord = null;
 
-    async function initializeDossier() {
-      const csvUrl = SHEETS_CONFIG.careers;
-      const rows = await fetchCSV(csvUrl);
-      const items = (rows && rows.length > 0) ? rows : careerData;
+    // Dark/Light Theme Handler
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      const icon = document.getElementById('themeIcon');
+      if (icon) icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
 
-      if (items) {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      const icon = document.getElementById('themeIcon');
+      if (icon) icon.className = 'fa-solid fa-sun';
+    }
+
+    async function initializeDossier() {
+      // Pick target CSV based on type parameter
+      const targetCsvUrl = (typeof SHEETS_CONFIG !== 'undefined' && SHEETS_CONFIG[requestedType]) 
+        ? SHEETS_CONFIG[requestedType] 
+        : (typeof SHEETS_CONFIG !== 'undefined' ? SHEETS_CONFIG.careers : '');
+
+      let items = null;
+      if (targetCsvUrl && targetCsvUrl.startsWith('http')) {
+        const rows = await fetchCSV(targetCsvUrl);
+        if (rows && rows.length > 0) items = rows;
+      }
+
+      // Fallback arrays if offline or CSV endpoint empty
+      if (!items) {
+        if (requestedType === 'ebooks') items = ebooksData;
+        else if (requestedType === 'pyq') items = pyqData;
+        else if (requestedType === 'journals') items = journalsData;
+        else if (requestedType === 'results') items = resultsData;
+        else if (requestedType === 'media') items = mediaData;
+        else items = careerData;
+      }
+
+      if (items && items.length > 0) {
         currentRecord = items.find(r => (r.id || '').trim().toLowerCase() === requestedId) || items[0];
       }
 
       if (currentRecord) {
-        const headline = currentRecord.title || currentRecord.post_name;
-        document.title = `${headline} | Academic & Career Hub`;
+        const headline = currentRecord.title || currentRecord.post_name || "Notification Overview";
+        document.title = `${headline} | NE Academic Hub`;
         document.getElementById('crumbPostTitle').innerText = headline;
 
-        document.getElementById('dispCategory').innerHTML = `<i class="fa-solid fa-briefcase"></i> ${currentRecord.category || "Career Notice"}`;
+        // Breadcrumb Section Link
+        const crumbLink = document.getElementById('crumbSectionLink');
+        crumbLink.innerText = requestedType.toUpperCase();
+        crumbLink.href = `index.html#section-${requestedType}`;
+
+        document.getElementById('dispCategory').innerHTML = `<i class="fa-solid fa-folder-open"></i> ${currentRecord.category || requestedType.toUpperCase()}`;
         document.getElementById('dispTitle').innerText = headline;
-        document.getElementById('dispOrg').innerText = currentRecord.organization || "Public Sector Authority";
+        document.getElementById('dispOrg').innerText = currentRecord.organization || "Public Sector / Institutional Authority";
 
-        document.getElementById('dispVacancies').innerText = currentRecord.vacancies || "Refer Notice";
-        document.getElementById('dispPayScale').innerText = (currentRecord.pay_scale || "Govt Rules").split('(')[0].trim();
-        document.getElementById('dispAgeLimit').innerText = currentRecord.age_limit || "Category Bounds";
-        document.getElementById('dispDeadline').innerText = currentRecord.last_date || currentRecord.deadline || "Open";
+        // Metrics adaptation
+        document.getElementById('dispVacancies').innerText = currentRecord.vacancies || currentRecord.category || "General";
+        document.getElementById('dispPayScale').innerText = currentRecord.pay_scale ? currentRecord.pay_scale.split('(')[0].trim() : (currentRecord.indexing || "Open Access");
+        document.getElementById('dispAgeLimit').innerText = currentRecord.age_limit || currentRecord.date || "Active";
+        document.getElementById('dispDeadline').innerText = currentRecord.last_date || currentRecord.deadline || currentRecord.date || "Open";
 
+        // Specifications
         document.getElementById('dispPostName').innerText = currentRecord.post_name || headline;
-        document.getElementById('dispQualification').innerText = currentRecord.qualification || "Refer to detailed advertisement";
-        document.getElementById('dispExperience').innerText = currentRecord.experience || "Freshers / Not Specified";
-        document.getElementById('dispAgeDetailed').innerText = currentRecord.age_limit || "Category relaxations apply";
+        document.getElementById('dispQualification').innerText = currentRecord.qualification || currentRecord.organization || "Refer to detailed advertisement";
+        document.getElementById('dispExperience').innerText = currentRecord.experience || currentRecord.description || "Freshers / General Access";
+        document.getElementById('dispAgeDetailed').innerText = currentRecord.age_limit || "Applicable as per official norms";
         document.getElementById('dispLocation').innerText = currentRecord.job_location || "Northeast India / All India";
 
-        document.getElementById('dispFeeGen').innerText = currentRecord.fee_gen_obc || "₹500/-";
+        document.getElementById('dispFeeGen').innerText = currentRecord.fee_gen_obc || "Refer official gazette";
         document.getElementById('dispFeeReserved').innerText = currentRecord.fee_sc_st || "Nil / Exempted";
 
-        document.getElementById('dispStartDate').innerText = currentRecord.start_date || "Active";
-        document.getElementById('dispEndDate').innerText = currentRecord.last_date || "Check notice";
+        document.getElementById('dispStartDate').innerText = currentRecord.start_date || currentRecord.date || "Active";
+        document.getElementById('dispEndDate').innerText = currentRecord.last_date || currentRecord.deadline || "Check Notice";
 
-        // Three Direct Action Links at Bottom
-        document.getElementById('btnApply').href = cleanUrl(currentRecord.apply_link || currentRecord.link);
-        document.getElementById('btnPdf').href = cleanUrl(currentRecord.notification_link || currentRecord.link);
-        document.getElementById('btnOfficialSite').href = cleanUrl(currentRecord.official_site || currentRecord.link);
+        // Action Gateways
+        const directLink = cleanUrl(currentRecord.apply_link || currentRecord.notification_link || currentRecord.link);
+        document.getElementById('btnApply').href = directLink;
+        document.getElementById('btnPdf').href = cleanUrl(currentRecord.notification_link || currentRecord.link || directLink);
+        document.getElementById('btnOfficialSite').href = cleanUrl(currentRecord.official_site || currentRecord.link || directLink);
 
-        // Populate Related Openings
+        // Populate Related
         populateRelated(items.filter(i => (i.id || '').trim().toLowerCase() !== (currentRecord.id || '').trim().toLowerCase()));
 
         document.getElementById('loadingScreen').style.display = 'none';
         document.getElementById('mainDossier').style.display = 'block';
+      } else {
+        document.getElementById('loadingScreen').innerHTML = `
+          <p style="color: var(--accent);"><i class="fa-solid fa-circle-exclamation"></i> Notice record could not be loaded.</p>
+          <a href="index.html" class="nav-btn-back" style="margin-top: 1rem; color: #fff; background: var(--primary);">&larr; Return to Directory</a>
+        `;
       }
     }
 
     function populateRelated(items) {
       const container = document.getElementById('relatedOpeningsGrid');
-      if (!container) return;
+      if (!container || !items) return;
 
       container.innerHTML = items.slice(0, 3).map(j => `
-        <a href="post.html?id=${j.id}" class="related-seamless-card">
+        <a href="post.html?id=${encodeURIComponent(j.id || '')}&type=${requestedType}" class="related-seamless-card">
           <div>
-            <span class="tag">${j.category || 'Recruitment'}</span>
+            <span class="tag">${j.category || requestedType.toUpperCase()}</span>
             <h4>${j.title || j.post_name}</h4>
           </div>
-          <div class="cutoff"><i class="fa-regular fa-clock"></i> Closes: ${j.last_date || 'Active'}</div>
+          <div class="cutoff"><i class="fa-regular fa-clock"></i> ${j.last_date || j.deadline || j.date || 'Active'}</div>
         </a>
       `).join('');
     }
 
     function shareNotice() {
       if (!currentRecord) return;
-      const text = `📢 *Recruitment Notice: ${currentRecord.title}*\n🏛️ Authority: ${currentRecord.organization}\n📅 Last Date: ${currentRecord.last_date}\n\n👉 Full Details, PDF & Official Link:\n${window.location.href}`;
+      const text = `📢 *Notice: ${currentRecord.title || currentRecord.post_name}*\n🏛️ Authority: ${currentRecord.organization}\n📅 Date/Deadline: ${currentRecord.last_date || currentRecord.deadline || 'Active'}\n\n👉 Official Link & Details:\n${window.location.href}`;
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
 
