@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Portal | NE Academic Hub</title>
+  <title>Contact Support | NE Academic Hub</title>
   
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="About | NE Academic Hub" />
-  <meta property="og:description" content="Open-access educational gateway unifying academic notices, repository links, and recruitment updates across Northeast India." />
-  <meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/about.html" />
+  <meta property="og:title" content="Contact Support | NE Academic Hub" />
+  <meta property="og:description" content="Reach our desk for academic notifications, content corrections, or repository indexing requests." />
+  <meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/contact.html" />
   <meta name="theme-color" content="#0f172a" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -167,18 +167,33 @@
       margin-bottom: 1.2rem;
     }
 
-    .policy-card ul {
-      margin: 0 0 1.5rem 1.4rem;
-      color: var(--text-muted);
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      margin: 1.5rem 0;
     }
 
-    .policy-card li {
-      margin-bottom: 0.65rem;
-      font-size: 0.95rem;
+    .contact-item {
+      padding: 1.4rem;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
     }
 
-    .policy-card li strong {
+    .contact-item h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
       color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-item p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
     }
 
     .portal-footer {
@@ -250,23 +265,25 @@
 
   <main class="page-wrapper">
     <article class="policy-card">
-      <span class="badge-chip"><i class="fa-solid fa-circle-info"></i> Platform Overview</span>
-      <h1>About NE Academic Hub</h1>
-      <p><strong>NE Academic Hub</strong> is an open-access educational gateway designed to unify academic notices, institutional repository links, competitive examination syllabi, and recruitment updates across Northeast India[cite: 15].</p>
+      <span class="badge-chip"><i class="fa-solid fa-headset"></i> Communications Desk</span>
+      <h1>Contact Support</h1>
+      <p>Have questions about a recruitment notice, spotted an outdated deadline, or want to contribute academic study materials? Reach out to our curation team.</p>
 
-      <h2><i class="fa-solid fa-bullseye" style="color: var(--primary);"></i> Our Mission</h2>
-      <p>Students, researchers, and job aspirants in the Northeastern states often face fragmented information scattered across dozens of individual institutional websites[cite: 15]. Our goal is to aggregate verified public announcements—from Gauhati University, SEBA, AHSEC, NEHU, and state recruitment bodies—into a fast, mobile-friendly directory[cite: 15].</p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h3><i class="fa-solid fa-envelope" style="color: var(--primary);"></i> Editorial & Indexing</h3>
+          <p>For questions on previous papers, textbook listings, or UGC-CARE journal calls:</p>
+          <p style="margin-top: 0.4rem;"><strong>contact@bodojobalert.com</strong></p>
+        </div>
+        <div class="contact-item">
+          <h3><i class="fa-brands fa-whatsapp" style="color: #25d366;"></i> Candidate Helpline</h3>
+          <p>Instant alerts and group inquiries via our official WhatsApp broadcast channel.</p>
+          <p style="margin-top: 0.4rem;"><a href="https://whatsapp.com" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 700;">Join Broadcast Channel &rarr;</a></p>
+        </div>
+      </div>
 
-      <h2><i class="fa-solid fa-layer-group" style="color: var(--primary);"></i> What We Curate</h2>
-      <ul>
-        <li><strong>Career & Apprenticeships:</strong> Library, technical, and government recruitment notices[cite: 15].</li>
-        <li><strong>Institutional Study Materials:</strong> Open-access e-books, metadata standards, and curriculum guides[cite: 15].</li>
-        <li><strong>Previous Year Question Papers (PYQ):</strong> Past board and competitive exam papers for student preparation[cite: 15].</li>
-        <li><strong>Academic Calls for Papers:</strong> Conferences, UGC-CARE indexing dates, and scholarly publications[cite: 15].</li>
-      </ul>
-
-      <h2><i class="fa-solid fa-lock" style="color: var(--primary);"></i> Open-Access Commitment</h2>
-      <p>We do not charge subscriptions or lock public government gazette notifications behind paywalls. Every syllabus, past question paper, and admission notice remains openly accessible for all candidates.</p>
+      <h2><i class="fa-solid fa-triangle-exclamation" style="color: var(--primary);"></i> Content Corrections</h2>
+      <p>If an institution has issued an addendum, corrigendum, or extended an application deadline, please send the official gazette/URL link so we can update the live listing promptly.</p>
     </article>
   </main>
 
