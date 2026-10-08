@@ -3,54 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Us - NE Academic Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>About Portal | NE Academic Hub</title>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About | NE Academic Hub" />
+  <meta property="og:description" content="Open-access educational gateway unifying academic notices, repository links, and recruitment updates across Northeast India." />
+  <meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/about.html" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
-<body>
-  <header class="top-nav">
-    <div class="nav-container">
-      <div class="brand">
-        <i class="fa-solid fa-graduation-cap brand-icon"></i>
-        <div class="brand-text">
-          <span class="brand-title">NE ACADEMIC HUB</span>
-          <span class="brand-subtitle">Government Resources & Public Career Portal</span>
-        </div>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-      </nav>
-    </div>
-  </header>
 
-  <main class="portal-body" style="max-width: 850px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7;">
-    <h1>About NE Academic Hub</h1>
-    <p style="margin-top: 1rem;">
-      <strong>NE Academic Hub</strong> is an open-access educational gateway designed to unify academic notices, institutional repository links, competitive examination syllabi, and recruitment updates across Northeast India.
-    </p>
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-dark: #0f172a;
+      --primary-light: #f0f9ff;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --font-serif: 'Bookman Old Style', 'Bookman', 'URW Bookman L', 'Georgia', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-    <h2 style="margin-top: 2rem;">Our Mission</h2>
-    <p>
-      Students, researchers, and job aspirants in the Northeastern states often face fragmented information scattered across dozens of individual institutional websites. Our goal is to aggregate verified public announcements—from Gauhati University, SEBA, AHSEC, NEHU, and state recruitment bodies—into a fast, mobile-friendly directory.
-    </p>
+    body.dark-mode {
+      --bg-main: #070b13;
+      --card-bg: #0f172a;
+      --border-color: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary-light: rgba(2, 132, 199, 0.15);
+    }
 
-    <h2 style="margin-top: 2rem;">What We Curate</h2>
-    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-      <li><strong>Career & Apprenticeships:</strong> Library, technical, and government recruitment notices.</li>
-      <li><strong>Institutional Study Materials:</strong> Open-access e-books, metadata standards, and curriculum guides.</li>
-      <li><strong>Previous Year Question Papers (PYQ):</strong> Past board and competitive exam papers for student preparation.</li>
-      <li><strong>Academic Calls for Papers:</strong> Conferences, UGC-CARE indexing dates, and scholarly publications.</li>
-    </ul>
-  </main>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
+    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.65; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
 
-  <footer class="portal-footer">
-    <div class="footer-links">
-      <a href="about.html">About Portal</a>
-      <a href="contact.html">Contact Support</a>
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="disclaimer.html">Disclaimer</a>
-    </div>
-    <p>&copy; 2026 Northeast India Academic & Career Hub.</p>
-  </footer>
-</body>
-</html>
+    .top-nav {
+      background-color: #0f172a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0.85rem 1.5rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+    .brand-icon { font-size: 1.6rem; color: #38bdf8; }
+    .brand-title { display: block; font-size: 1.1rem; font-weight: 800; letter-spacing: 0.5px; }
+    .brand-subtitle { display: block; font-size: 0.7rem; color: #94a3b8; }
+
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.2s ease;
+    }
+    .nav-btn-back:hover { color: #38bdf8; background: rgba(56, 189, 248, 0.1); border-color: #38bdf8; }
+
+    .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.08);
