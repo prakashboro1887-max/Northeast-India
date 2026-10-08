@@ -1,45 +1,17 @@
-const CACHE_NAME = "ne-superhub-v1";
-const ASSETS_TO_CACHE = [
-  "/Northeast-India/",
-  "/Northeast-India/index.html",
-  "/Northeast-India/style.css",
-  "/Northeast-India/portal-data.js",
-  "/Northeast-India/about.html",
-  "/Northeast-India/contact.html",
-  "/Northeast-India/manifest.json"
-];
-
-// Install Event: Cache Core Static Assets
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    })
-  );
+// Force unregister and clear all cached files
+self.addEventListener('install', (e) => {
   self.skipWaiting();
 });
 
-// Activate Event: Clean up outdated caches
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
     caches.keys().then((keys) => {
-      return Promise.all(
-        keys.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        })
-      );
-    })
+      return Promise.all(keys.map((key) => caches.delete(key)));
+    }).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-// Fetch Event: Cache First, Fallback to Network
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      return cachedResponse || fetch(event.request);
-    })
-  );
+// Bypass cache completely and fetch fresh from network
+self.addEventListener('fetch', (e) => {
+  e.respondWith(fetch(e.request));
 });
