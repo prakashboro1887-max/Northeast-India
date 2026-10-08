@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | NE Academic Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0f172a;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --font-serif: 'Bookman Old Style', 'Bookman', 'URW Bookman L', 'Georgia', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    body.dark-mode {
+      --bg-main: #070b13;
+      --card-bg: #0f172a;
+      --border-color: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
+    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.65; }
+
+    .site-nav { background: #0f172a; padding: 0.85rem 1.5rem; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+    .nav-btn-back { display: inline-flex; align-items: center; gap: 0.45rem; color: #cbd5e1; text-decoration: none; font-size: 0.82rem; font-weight: 600; padding: 0.45rem 0.95rem; border-radius: 6px; background: rgba(255, 255, 255, 0.08); }
+
+    .content-box { max-width: 900px; margin: 3rem auto; padding: 2.5rem; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 14px; box-shadow: 0 4px 18px rgba(15, 23, 42, 0.03); }
+    .content-box h1 { font-family: var(--font-serif); font-size: 2.2rem; color: var(--text-main); margin-bottom: 0.5rem; }
+    .content-box h2 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--primary); margin: 1.8rem 0 0.5rem 0; }
+    .content-box p { color: var(--text-muted); margin-bottom: 1rem; font-size: 0.95rem; }
+    .content-box ul { margin: 0 0 1rem 1.5rem; color: var(--text-muted); font-size: 0.95rem; }
+
+    .portal-footer { background: #0f172a; color: #94a3b8; padding: 2.5rem 1.5rem; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.85rem; }
+    .footer-nav { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .footer-nav a { color: #e2e8f0; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <i class="fa-solid fa-graduation-cap" style="color: #38bdf8; font-size: 1.4rem;"></i>
+        <span style="font-weight: 800; font-size: 1.05rem;">NE ACADEMIC HUB</span>
+      </a>
+      <a href="index.html" class="nav-btn-back"><i class="fa-solid fa-arrow-left"></i> Back to Directory</a>
+    </div>
+  </header>
+
+  <main class="content-box">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: October 2026</p>
+
+    <h2>1. Overview</h2>
+    <p>NE Academic Hub operates as an open-access public resource platform. We respect your privacy and are committed to maintaining transparent data management standards.</p>
+
+    <h2>2. Data Collection</h2>
+    <p>We do not require account registration or store sensitive personal information to access public notifications, syllabi, previous papers, or repository documents.</p>
+
+    <h2>3. Cookies and Analytics</h2>
+    <p>Standard anonymous telemetry cookies may be utilized to analyze server latency, measure traffic volume across Northeast India, and ensure seamless delivery of published records.</p>
+
+    <h2>4. External Gateways</h2>
+    <p>Our platform references authentic institutional sources, government authorities, and university websites. Once you exit through external links, the privacy terms of the respective third-party destination apply.</p>
+  </main>
+
+  <footer class="portal-footer">
+    <div class="footer-nav">
+      <a href="about.html">About Portal</a>
+      <a href="contact.html">Contact Support</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+    <p>&copy; 2026 Northeast India Academic & Career Hub.</p>
+  </footer>
+
+  <script>
+    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-mode');
+  </script>
+</body>
+</html>
