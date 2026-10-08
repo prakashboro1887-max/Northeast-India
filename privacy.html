@@ -3,68 +3,289 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy - NE Academic Hub</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Privacy Policy | NE Academic Hub</title>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Privacy Policy | NE Academic Hub" />
+  <meta property="og:description" content="Official privacy and data handling practices for NE Academic Hub visitors." />
+  <meta property="og:url" content="https://prakashboro1887-max.github.io/Northeast-India/privacy.html" />
+  <meta name="theme-color" content="#0f172a" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
-<body style="background: #f8fafc; margin: 0; font-family: 'Inter', sans-serif; color: #334155;">
 
-  <!-- TOP BAR -->
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-dark: #0f172a;
+      --primary-light: #f0f9ff;
+      --bg-main: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --font-serif: 'Bookman Old Style', 'Bookman', 'URW Bookman L', 'Georgia', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body.dark-mode {
+      --bg-main: #070b13;
+      --card-bg: #0f172a;
+      --border-color: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --primary-light: rgba(2, 132, 199, 0.15);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: var(--font-sans); }
+    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.65; transition: background-color 0.3s ease, color 0.3s ease; -webkit-font-smoothing: antialiased; }
+
+    .top-nav {
+      background-color: #0f172a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 0.85rem 1.5rem;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+    .brand-icon { font-size: 1.6rem; color: #38bdf8; }
+    .brand-title { display: block; font-size: 1.1rem; font-weight: 800; letter-spacing: 0.5px; }
+    .brand-subtitle { display: block; font-size: 0.7rem; color: #94a3b8; }
+
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+    .nav-btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.2s ease;
+    }
+    .nav-btn-back:hover { color: #38bdf8; background: rgba(56, 189, 248, 0.1); border-color: #38bdf8; }
+
+    .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .theme-toggle-btn:hover { background: var(--primary); color: #fff; }
+
+    .page-wrapper {
+      max-width: 900px;
+      margin: 3.5rem auto;
+      padding: 0 1.25rem;
+    }
+
+    .policy-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.8rem 2.5rem;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+    }
+
+    .badge-chip {
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+
+    .policy-card h1 {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #0f172a 0%, #0284c7 45%, #0369a1 80%, #0f172a 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: movingAurora 7s linear infinite;
+    }
+
+    body.dark-mode .policy-card h1 {
+      background: linear-gradient(90deg, #f8fafc 0%, #38bdf8 45%, #818cf8 80%, #f8fafc 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes movingAurora {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .policy-card h2 {
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 2rem 0 0.6rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .policy-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .policy-card ul {
+      margin: 0 0 1.5rem 1.4rem;
+      color: var(--text-muted);
+    }
+
+    .policy-card li {
+      margin-bottom: 0.65rem;
+      font-size: 0.95rem;
+    }
+
+    .portal-footer {
+      background: linear-gradient(180deg, #0f172a 0%, #070b13 100%);
+      color: #94a3b8;
+      padding: 3.5rem 1.5rem 2.8rem 1.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 5rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      color: #e2e8f0 !important;
+      text-decoration: none !important;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 1.15rem;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .footer-nav a:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: #38bdf8;
+      color: #38bdf8 !important;
+      transform: translateY(-2px);
+    }
+
+    .footer-copy { font-size: 0.85rem; color: #64748b; margin-top: 0.6rem; }
+
+    @media (max-width: 600px) {
+      .policy-card { padding: 1.8rem 1.25rem; }
+      .policy-card h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
   <header class="top-nav">
     <div class="nav-container">
-      <div class="brand">
+      <a href="index.html" class="brand">
         <i class="fa-solid fa-graduation-cap brand-icon"></i>
-        <div class="brand-text">
+        <div>
           <span class="brand-title">NE ACADEMIC HUB</span>
           <span class="brand-subtitle">Government Resources & Public Career Portal</span>
         </div>
+      </a>
+      <div class="nav-actions">
+        <a href="index.html" class="nav-btn-back"><i class="fa-solid fa-house"></i> Home</a>
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleTheme()" title="Switch Theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
       </div>
-      <nav class="nav-links">
-        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="about.html"><i class="fa-solid fa-circle-info"></i> About</a>
-        <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
-        <a href="privacy.html" style="color: #38bdf8;"><i class="fa-solid fa-shield-halved"></i> Privacy</a>
-      </nav>
     </div>
   </header>
 
-  <!-- CONTENT CONTAINER -->
-  <main style="max-width: 900px; margin: 3rem auto; padding: 2.5rem; background: #ffffff; border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); line-height: 1.8;">
-    <h1 style="color: #0f172a; margin-top: 0; font-size: 2rem;">Privacy Policy</h1>
-    <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">
-      Last Updated: 2026
-    </p>
+  <main class="page-wrapper">
+    <article class="policy-card">
+      <span class="badge-chip"><i class="fa-solid fa-shield-halved"></i> Transparency & Compliance</span>
+      <h1>Privacy Policy</h1>
+      <p>Last updated: October 2026</p>
 
-    <p>
-      At <strong>NE Academic Hub</strong>, accessible from our GitHub Pages portal, the privacy of our visitors is of paramount importance. This Privacy Policy document outlines the types of information collected and how it is utilized.
-    </p>
+      <h2><i class="fa-solid fa-file-contract" style="color: var(--primary);"></i> 1. Commitment to Privacy</h2>
+      <p>NE Academic Hub operates as a public-service resource directory. We respect the personal privacy of all visitors, researchers, and candidates who use this portal.</p>
 
-    <h2 style="color: #0f172a; font-size: 1.3rem; margin-top: 2rem;">Information We Do Not Collect</h2>
-    <p>
-      We do not run user registrations, require logins, or collect personal identifying information (such as bank details, personal telephone numbers, or confidential identity documents).
-    </p>
+      <h2><i class="fa-solid fa-database" style="color: var(--primary);"></i> 2. Information We Do Not Collect</h2>
+      <p>We do not request candidate registrations, store personal identification details, or collect banking information. Access to our open e-books, Previous Year Question Papers (PYQs), and recruitment announcements is completely open access.</p>
 
-    <h2 style="color: #0f172a; font-size: 1.3rem; margin-top: 2rem;">Log Files & Browser Data</h2>
-    <p>
-      Like most web servers, GitHub Pages may automatically log anonymous standard traffic data, such as internet protocol (IP) addresses, browser types, Internet Service Providers (ISPs), date/time stamps, and referring pages. This data is not linked to personally identifiable information.
-    </p>
+      <h2><i class="fa-solid fa-chart-line" style="color: var(--primary);"></i> 3. Standard Analytics & Cookies</h2>
+      <p>Our platform uses standard anonymous telemetry (such as page views and browser device type) via Google Analytics to monitor server latency and identify high-demand study materials in Northeast India.</p>
 
-    <h2 style="color: #0f172a; font-size: 1.3rem; margin-top: 2rem;">Cookies & Local Storage</h2>
-    <p>
-      Our portal utilizes browser local storage solely to retain your UI preferences (such as light or dark theme selections) and Service Workers to enable rapid offline caching of educational pages. We do not store tracking cookies for behavioral surveillance.
-    </p>
-
-    <h2 style="color: #0f172a; font-size: 1.3rem; margin-top: 2rem;">Third-Party Links & External Platforms</h2>
-    <p>
-      Our portal references external links to educational boards, universities, and public repositories. We encourage you to review the privacy documentation of any external sites you visit through our directory.
-    </p>
+      <h2><i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--primary);"></i> 4. External Outbound Links</h2>
+      <p>Our job postings contain links redirecting users to primary official servers (e.g., Gauhati University, APSC, SEBA, and Central Government portals). We are not responsible for the privacy practices of external domains once you depart our site.</p>
+    </article>
   </main>
 
-  <footer class="portal-footer" style="text-align: center; padding: 2rem 1rem; color: #64748b; font-size: 0.9rem;">
-    <p>&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
+  <footer class="portal-footer">
+    <div class="footer-nav">
+      <a href="about.html"><i class="fa-solid fa-circle-info"></i> About Portal</a>
+      <a href="contact.html"><i class="fa-solid fa-headset"></i> Contact Support</a>
+      <a href="privacy.html"><i class="fa-solid fa-shield-halved"></i> Privacy Policy</a>
+      <a href="disclaimer.html"><i class="fa-solid fa-triangle-exclamation"></i> Disclaimer</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
   </footer>
+
+  <script>
+    function toggleTheme() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      const icon = document.getElementById('themeIcon');
+      if (icon) icon.className = isDark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      const icon = document.getElementById('themeIcon');
+      if (icon) icon.className = 'fa-solid fa-sun';
+    }
+  </script>
 </body>
 </html>
