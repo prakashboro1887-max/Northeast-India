@@ -196,6 +196,27 @@
       margin-bottom: 1.6rem;
     }
 
+    /* Video Embed Box for Media */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      background: #000;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
     /* Floating Metrics */
     .floating-metrics-row {
       display: grid;
@@ -542,6 +563,11 @@
       <h1 class="post-main-title" id="dispTitle">Notification Headline</h1>
       <div class="org-subtitle" id="dispOrg">Hiring Department / Public Authority</div>
 
+      <!-- Embedded Video (Only displayed if Media/Class) -->
+      <div id="videoContainer" class="video-wrapper" style="display: none;">
+        <iframe id="videoPlayerFrame" src="" allowfullscreen allow="autoplay"></iframe>
+      </div>
+
       <!-- Floating Stat Strip -->
       <div class="floating-metrics-row">
         <div class="metric-pill">
@@ -624,40 +650,42 @@
       </div>
 
       <!-- Section 1: Specifications -->
-      <h2 class="content-section-title"><i class="fa-solid fa-id-card"></i> Official Criteria & Overview</h2>
+      <h2 class="content-section-title" id="headingSpec"><i class="fa-solid fa-id-card"></i> Official Criteria & Overview</h2>
       <div class="spec-card-grid">
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-user-tie"></i> Designation / Subject</div>
+          <div class="spec-card-key" id="keySpec1"><i class="fa-solid fa-user-tie"></i> Designation / Subject</div>
           <div class="spec-card-value" id="dispPostName">--</div>
         </div>
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-graduation-cap"></i> Board / Minimum Eligibility</div>
+          <div class="spec-card-key" id="keySpec2"><i class="fa-solid fa-graduation-cap"></i> Board / Minimum Eligibility</div>
           <div class="spec-card-value" id="dispQualification">--</div>
         </div>
         <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-briefcase"></i> Experience / Paper Details</div>
+          <div class="spec-card-key" id="keySpec3"><i class="fa-solid fa-briefcase"></i> Experience / Paper Details</div>
           <div class="spec-card-value" id="dispExperience">--</div>
         </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-hourglass-half"></i> Term & Relaxations</div>
+        <div class="spec-card-row" id="rowSpec4">
+          <div class="spec-card-key" id="keySpec4"><i class="fa-solid fa-hourglass-half"></i> Term & Relaxations</div>
           <div class="spec-card-value" id="dispAgeDetailed">Applicable as per official board norms</div>
         </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-location-dot"></i> Region / Station</div>
+        <div class="spec-card-row" id="rowSpec5">
+          <div class="spec-card-key" id="keySpec5"><i class="fa-solid fa-location-dot"></i> Region / Station</div>
           <div class="spec-card-value" id="dispLocation">Northeast India / All India</div>
         </div>
       </div>
 
-      <!-- Section 2: Financial / Submission Details -->
-      <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Submission / Fee Structure</h2>
-      <div class="spec-card-grid">
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-receipt"></i> General / Unreserved</div>
-          <div class="spec-card-value" id="dispFeeGen">Refer official notice</div>
-        </div>
-        <div class="spec-card-row">
-          <div class="spec-card-key"><i class="fa-solid fa-hand-holding-dollar"></i> Reserved / Exemptions</div>
-          <div class="spec-card-value" id="dispFeeReserved">Nil / Exempted</div>
+      <!-- Section 2: Financial / Submission Details (Hidden for E-books/PYQs/Media) -->
+      <div id="sectionFees">
+        <h2 class="content-section-title"><i class="fa-solid fa-indian-rupee-sign"></i> Submission / Fee Structure</h2>
+        <div class="spec-card-grid">
+          <div class="spec-card-row">
+            <div class="spec-card-key"><i class="fa-solid fa-receipt"></i> General / Unreserved</div>
+            <div class="spec-card-value" id="dispFeeGen">Refer official notice</div>
+          </div>
+          <div class="spec-card-row">
+            <div class="spec-card-key"><i class="fa-solid fa-hand-holding-dollar"></i> Reserved / Exemptions</div>
+            <div class="spec-card-value" id="dispFeeReserved">Nil / Exempted</div>
+          </div>
         </div>
       </div>
 
@@ -681,13 +709,13 @@
         <!-- Link 1: Apply / Direct Access -->
         <a id="btnApply" href="#" target="_blank" rel="noopener noreferrer" class="link-item-card card-apply">
           <div class="link-item-info">
-            <div class="link-icon-box"><i class="fa-solid fa-paper-plane"></i></div>
+            <div class="link-icon-box" id="iconAction1"><i class="fa-solid fa-paper-plane"></i></div>
             <div>
-              <span class="link-item-title">Online Application / Direct Access Portal</span>
-              <span class="link-item-desc">Access the primary registration server or reader resource</span>
+              <span class="link-item-title" id="titleAction1">Online Application / Direct Access Portal</span>
+              <span class="link-item-desc" id="descAction1">Access the primary registration server or reader resource</span>
             </div>
           </div>
-          <span class="btn-link-action">Access Link <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="btn-link-action" id="badgeAction1">Access Link <i class="fa-solid fa-arrow-right"></i></span>
         </a>
 
         <!-- Link 2: Download PDF / Official Brochure -->
@@ -695,11 +723,11 @@
           <div class="link-item-info">
             <div class="link-icon-box"><i class="fa-solid fa-file-pdf"></i></div>
             <div>
-              <span class="link-item-title">Official Document / Notification (PDF)</span>
-              <span class="link-item-desc">Download and inspect the authentic release or question paper</span>
+              <span class="link-item-title" id="titleAction2">Official Document / Notification (PDF)</span>
+              <span class="link-item-desc" id="descAction2">Download and inspect the authentic release or question paper</span>
             </div>
           </div>
-          <span class="btn-link-action">Download / View <i class="fa-solid fa-download"></i></span>
+          <span class="btn-link-action" id="badgeAction2">Download / View <i class="fa-solid fa-download"></i></span>
         </a>
 
         <!-- Link 3: Official Site -->
@@ -737,7 +765,7 @@
     <p class="footer-copy">&copy; 2026 Northeast India Academic & Career Hub. Open Access Educational Resource.</p>
   </footer>
 
-  <script src="portal-data.js?v=2026.15"></script>
+  <script src="portal-data.js?v=2026.16"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const requestedId = (urlParams.get('id') || '').trim().toLowerCase();
@@ -772,12 +800,12 @@
 
       // Fallback arrays if offline or CSV endpoint empty
       if (!items) {
-        if (requestedType === 'ebooks') items = ebooksData;
-        else if (requestedType === 'pyq') items = pyqData;
-        else if (requestedType === 'journals') items = journalsData;
-        else if (requestedType === 'results') items = resultsData;
-        else if (requestedType === 'media') items = mediaData;
-        else items = careerData;
+        if (requestedType === 'ebooks') items = typeof ebooksData !== 'undefined' ? ebooksData : [];
+        else if (requestedType === 'pyq') items = typeof pyqData !== 'undefined' ? pyqData : [];
+        else if (requestedType === 'journals') items = typeof journalsData !== 'undefined' ? journalsData : [];
+        else if (requestedType === 'results') items = typeof resultsData !== 'undefined' ? resultsData : [];
+        else if (requestedType === 'media') items = typeof mediaData !== 'undefined' ? mediaData : [];
+        else items = typeof careerData !== 'undefined' ? careerData : [];
       }
 
       if (items && items.length > 0) {
@@ -798,32 +826,200 @@
         document.getElementById('dispTitle').innerText = headline;
         document.getElementById('dispOrg').innerText = currentRecord.organization || "Public Sector / Institutional Authority";
 
-        // Metrics adaptation
-        document.getElementById('dispVacancies').innerText = currentRecord.vacancies || currentRecord.category || "General";
-        document.getElementById('dispPayScale').innerText = currentRecord.pay_scale ? currentRecord.pay_scale.split('(')[0].trim() : (currentRecord.indexing || "Open Access");
-        document.getElementById('dispAgeLimit').innerText = currentRecord.age_limit || currentRecord.date || "Active";
-        document.getElementById('dispDeadline').innerText = currentRecord.last_date || currentRecord.deadline || currentRecord.date || "Open";
+        // ==========================================
+        // DYNAMIC SECTION STYLING & FIELD ADAPTATION
+        // ==========================================
+        const feeSection = document.getElementById('sectionFees');
+        const videoWrapper = document.getElementById('videoContainer');
+        const videoFrame = document.getElementById('videoPlayerFrame');
 
-        // Specifications
-        document.getElementById('dispPostName').innerText = currentRecord.post_name || headline;
-        document.getElementById('dispQualification').innerText = currentRecord.qualification || currentRecord.organization || "Refer to detailed advertisement";
-        document.getElementById('dispExperience').innerText = currentRecord.experience || currentRecord.description || "Freshers / General Access";
-        document.getElementById('dispAgeDetailed').innerText = currentRecord.age_limit || "Applicable as per official norms";
-        document.getElementById('dispLocation').innerText = currentRecord.job_location || "Northeast India / All India";
+        if (requestedType === 'ebooks') {
+          feeSection.style.display = 'none';
+          document.getElementById('labelM1').innerText = "Class / Grade";
+          document.getElementById('dispVacancies').innerText = currentRecord.category || "General";
+          document.getElementById('labelM2').innerText = "Format";
+          document.getElementById('dispPayScale').innerText = "Official PDF";
+          document.getElementById('labelM3').innerText = "Board / Council";
+          document.getElementById('dispAgeLimit').innerText = currentRecord.organization || "SEBA / AHSEC";
+          document.getElementById('labelM4').innerText = "Edition Year";
+          document.getElementById('dispDeadline').innerText = currentRecord.date || "2026";
 
-        document.getElementById('dispFeeGen').innerText = currentRecord.fee_gen_obc || "Refer official gazette";
-        document.getElementById('dispFeeReserved').innerText = currentRecord.fee_sc_st || "Nil / Exempted";
+          document.getElementById('headingSpec').innerHTML = `<i class="fa-solid fa-book-open"></i> Textbook & Curriculum Details`;
+          document.getElementById('keySpec1').innerHTML = `<i class="fa-solid fa-bookmark"></i> Subject / Title`;
+          document.getElementById('dispPostName').innerText = headline;
+          document.getElementById('keySpec2').innerHTML = `<i class="fa-solid fa-school"></i> Publishing Council`;
+          document.getElementById('dispQualification').innerText = currentRecord.organization || "Education Board";
+          document.getElementById('keySpec3').innerHTML = `<i class="fa-solid fa-language"></i> Medium / Language`;
+          document.getElementById('dispExperience').innerText = currentRecord.medium || "Bodo / Assamese / English";
+          document.getElementById('keySpec4').innerHTML = `<i class="fa-solid fa-file"></i> Document Type`;
+          document.getElementById('dispAgeDetailed').innerText = "Full Curriculum E-Book";
+          document.getElementById('rowSpec5').style.display = 'none';
 
+          document.getElementById('titleAction1').innerText = "Download Textbook (PDF)";
+          document.getElementById('descAction1').innerText = "Get official curriculum copy directly to your device";
+          document.getElementById('badgeAction1').innerHTML = `Download Now <i class="fa-solid fa-download"></i>`;
+
+        } else if (requestedType === 'pyq') {
+          feeSection.style.display = 'none';
+          document.getElementById('labelM1').innerText = "Exam Paper";
+          document.getElementById('dispVacancies').innerText = "Solved / PYQ";
+          document.getElementById('labelM2').innerText = "Target Board";
+          document.getElementById('dispPayScale').innerText = currentRecord.organization || "State Board";
+          document.getElementById('labelM3').innerText = "Session";
+          document.getElementById('dispAgeLimit').innerText = currentRecord.date || "Latest";
+          document.getElementById('labelM4').innerText = "Access";
+          document.getElementById('dispDeadline').innerText = "Free Open Access";
+
+          document.getElementById('headingSpec').innerHTML = `<i class="fa-solid fa-file-invoice"></i> Question Paper Specifications`;
+          document.getElementById('keySpec1').innerHTML = `<i class="fa-solid fa-pencil"></i> Paper Title`;
+          document.getElementById('dispPostName').innerText = headline;
+          document.getElementById('keySpec2').innerHTML = `<i class="fa-solid fa-building-columns"></i> Examining Agency`;
+          document.getElementById('dispQualification').innerText = currentRecord.organization || "Board Authority";
+          document.getElementById('keySpec3').innerHTML = `<i class="fa-solid fa-circle-check"></i> Paper Key`;
+          document.getElementById('dispExperience').innerText = "Includes marking pattern and previous questions";
+          document.getElementById('keySpec4').innerHTML = `<i class="fa-solid fa-calendar-days"></i> Examination Year`;
+          document.getElementById('dispAgeDetailed').innerText = currentRecord.date || "2026 Exam";
+          document.getElementById('rowSpec5').style.display = 'none';
+
+          document.getElementById('titleAction1').innerText = "Download Question Paper PDF";
+          document.getElementById('descAction1').innerText = "Access previous years question archive with key";
+          document.getElementById('badgeAction1').innerHTML = `View Paper <i class="fa-solid fa-file-pdf"></i>`;
+
+        } else if (requestedType === 'journals') {
+          feeSection.style.display = 'none';
+          document.getElementById('labelM1').innerText = "Index Category";
+          document.getElementById('dispVacancies').innerText = currentRecord.indexing || "UGC-CARE Listed";
+          document.getElementById('labelM2').innerText = "Review Type";
+          document.getElementById('dispPayScale').innerText = "Peer-Reviewed";
+          document.getElementById('labelM3').innerText = "Frequency";
+          document.getElementById('dispAgeLimit').innerText = "Quarterly / Biannual";
+          document.getElementById('labelM4').innerText = "Call Cutoff";
+          document.getElementById('dispDeadline').innerText = currentRecord.deadline || "Open";
+
+          document.getElementById('headingSpec').innerHTML = `<i class="fa-solid fa-graduation-cap"></i> Call for Papers Details`;
+          document.getElementById('keySpec1').innerHTML = `<i class="fa-solid fa-pen-nib"></i> Research Scope`;
+          document.getElementById('dispPostName').innerText = headline;
+          document.getElementById('keySpec2').innerHTML = `<i class="fa-solid fa-building-columns"></i> Academic Publisher`;
+          document.getElementById('dispQualification').innerText = currentRecord.organization || "University Press";
+          document.getElementById('keySpec3').innerHTML = `<i class="fa-solid fa-tag"></i> Indexing Status`;
+          document.getElementById('dispExperience').innerText = currentRecord.indexing || currentRecord.category || "UGC-CARE / Peer-Reviewed";
+          document.getElementById('keySpec4').innerHTML = `<i class="fa-solid fa-clock"></i> Submission Deadline`;
+          document.getElementById('dispAgeDetailed').innerText = currentRecord.deadline || "Open for Submissions";
+          document.getElementById('rowSpec5').style.display = 'none';
+
+          document.getElementById('titleAction1').innerText = "Submit Manuscript / Article";
+          document.getElementById('descAction1').innerText = "Direct gateway to editorial board and submission guidelines";
+          document.getElementById('badgeAction1').innerHTML = `Submit Paper <i class="fa-solid fa-paper-plane"></i>`;
+
+        } else if (requestedType === 'results') {
+          feeSection.style.display = 'none';
+          document.getElementById('labelM1').innerText = "Result Status";
+          document.getElementById('dispVacancies').innerText = "Declared Live";
+          document.getElementById('labelM2').innerText = "Authority";
+          document.getElementById('dispPayScale').innerText = currentRecord.organization || "Exam Board";
+          document.getElementById('labelM3').innerText = "Check Mode";
+          document.getElementById('dispAgeLimit').innerText = "Roll No. / DOB";
+          document.getElementById('labelM4').innerText = "Release Date";
+          document.getElementById('dispDeadline').innerText = currentRecord.date || "Active";
+
+          document.getElementById('headingSpec').innerHTML = `<i class="fa-solid fa-square-poll-vertical"></i> Scorecard & Merit Information`;
+          document.getElementById('keySpec1').innerHTML = `<i class="fa-solid fa-award"></i> Examination`;
+          document.getElementById('dispPostName').innerText = headline;
+          document.getElementById('keySpec2').innerHTML = `<i class="fa-solid fa-building"></i> Declaring Board`;
+          document.getElementById('dispQualification').innerText = currentRecord.organization || "Government Commission";
+          document.getElementById('keySpec3').innerHTML = `<i class="fa-solid fa-key"></i> Required Credentials`;
+          document.getElementById('dispExperience').innerText = "Admit Card Roll Number / Registration ID";
+          document.getElementById('keySpec4').innerHTML = `<i class="fa-solid fa-circle-info"></i> Notice`;
+          document.getElementById('dispAgeDetailed').innerText = "Scorecards available on authorized servers";
+          document.getElementById('rowSpec5').style.display = 'none';
+
+          document.getElementById('titleAction1').innerText = "Check Result / Scorecard";
+          document.getElementById('descAction1').innerText = "Official server to verify marks and rank list";
+          document.getElementById('badgeAction1').innerHTML = `Check Now <i class="fa-solid fa-arrow-up-right-from-square"></i>`;
+
+        } else if (requestedType === 'media') {
+          feeSection.style.display = 'none';
+          document.getElementById('labelM1').innerText = "Content";
+          document.getElementById('dispVacancies').innerText = "Video Workshop";
+          document.getElementById('labelM2').innerText = "Platform";
+          document.getElementById('dispPayScale').innerText = "YouTube / HD";
+          document.getElementById('labelM3').innerText = "Instructor";
+          document.getElementById('dispAgeLimit').innerText = currentRecord.organization || "Academic Stream";
+          document.getElementById('labelM4').innerText = "Access";
+          document.getElementById('dispDeadline').innerText = "Free Stream";
+
+          // YouTube Player Embed
+          const rawLink = currentRecord.link || "";
+          let videoId = "";
+          if (rawLink.includes("youtube.com/watch?v=")) {
+            videoId = rawLink.split("v=")[1]?.split("&")[0];
+          } else if (rawLink.includes("youtu.be/")) {
+            videoId = rawLink.split("youtu.be/")[1]?.split("?")[0];
+          }
+
+          if (videoId) {
+            videoFrame.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+            videoWrapper.style.display = 'block';
+          }
+
+          document.getElementById('headingSpec').innerHTML = `<i class="fa-solid fa-video"></i> Lecture & Syllabus Outline`;
+          document.getElementById('keySpec1').innerHTML = `<i class="fa-solid fa-play"></i> Class Title`;
+          document.getElementById('dispPostName').innerText = headline;
+          document.getElementById('keySpec2').innerHTML = `<i class="fa-solid fa-chalkboard-user"></i> Department / Channel`;
+          document.getElementById('dispQualification').innerText = currentRecord.organization || "DLIS Tech Workshop";
+          document.getElementById('keySpec3').innerHTML = `<i class="fa-solid fa-layer-group"></i> Key Topics Covered`;
+          document.getElementById('dispExperience').innerText = currentRecord.description || "Practical demonstration & theoretical foundations";
+          document.getElementById('rowSpec4').style.display = 'none';
+          document.getElementById('rowSpec5').style.display = 'none';
+
+          document.getElementById('titleAction1').innerText = "Watch on YouTube";
+          document.getElementById('descAction1').innerText = "Open directly in official YouTube player app";
+          document.getElementById('badgeAction1').innerHTML = `Open Video <i class="fa-brands fa-youtube"></i>`;
+
+        } else {
+          // Standard Career Recruitment Default
+          feeSection.style.display = 'block';
+          document.getElementById('labelM1').innerText = "Total Cadre";
+          document.getElementById('dispVacancies').innerText = currentRecord.vacancies || "Refer Notice";
+          document.getElementById('labelM2').innerText = "Pay Level / Category";
+          document.getElementById('dispPayScale').innerText = currentRecord.pay_scale ? currentRecord.pay_scale.split('(')[0].trim() : "Govt Pay Rules";
+          document.getElementById('labelM3').innerText = "Session / Age";
+          document.getElementById('dispAgeLimit').innerText = currentRecord.age_limit || currentRecord.date || "Active";
+          document.getElementById('labelM4').innerText = "Application Cutoff";
+          document.getElementById('dispDeadline').innerText = currentRecord.last_date || currentRecord.deadline || "Open";
+
+          document.getElementById('headingSpec').innerHTML = `<i class="fa-solid fa-id-card"></i> Official Criteria & Overview`;
+          document.getElementById('keySpec1').innerHTML = `<i class="fa-solid fa-user-tie"></i> Designation / Cadre`;
+          document.getElementById('dispPostName').innerText = currentRecord.post_name || headline;
+          document.getElementById('keySpec2').innerHTML = `<i class="fa-solid fa-graduation-cap"></i> Board / Minimum Eligibility`;
+          document.getElementById('dispQualification').innerText = currentRecord.qualification || "Refer to detailed advertisement";
+          document.getElementById('keySpec3').innerHTML = `<i class="fa-solid fa-briefcase"></i> Qualifying Experience`;
+          document.getElementById('dispExperience').innerText = currentRecord.experience || "Freshers / Not Specified";
+          document.getElementById('keySpec4').innerHTML = `<i class="fa-solid fa-hourglass-half"></i> Term & Relaxations`;
+          document.getElementById('dispAgeDetailed').innerText = currentRecord.age_limit || "Applicable as per official norms";
+          document.getElementById('rowSpec4').style.display = 'grid';
+          document.getElementById('rowSpec5').style.display = 'grid';
+          document.getElementById('dispLocation').innerText = currentRecord.job_location || "Northeast India / All India";
+
+          document.getElementById('dispFeeGen').innerText = currentRecord.fee_gen_obc || "Refer official gazette";
+          document.getElementById('dispFeeReserved').innerText = currentRecord.fee_sc_st || "Nil / Exempted";
+
+          document.getElementById('titleAction1').innerText = "Online Application Portal";
+          document.getElementById('descAction1').innerText = "Access the direct submission gateway for registrations";
+          document.getElementById('badgeAction1').innerHTML = `Apply Online <i class="fa-solid fa-arrow-right"></i>`;
+        }
+
+        // Timeline common
         document.getElementById('dispStartDate').innerText = currentRecord.start_date || currentRecord.date || "Active";
-        document.getElementById('dispEndDate').innerText = currentRecord.last_date || currentRecord.deadline || "Check Notice";
+        document.getElementById('dispEndDate').innerText = currentRecord.last_date || currentRecord.deadline || currentRecord.date || "Open";
 
-        // Action Gateways
+        // Action Gateways Links
         const directLink = cleanUrl(currentRecord.apply_link || currentRecord.notification_link || currentRecord.link);
         document.getElementById('btnApply').href = directLink;
         document.getElementById('btnPdf').href = cleanUrl(currentRecord.notification_link || currentRecord.link || directLink);
         document.getElementById('btnOfficialSite').href = cleanUrl(currentRecord.official_site || currentRecord.link || directLink);
 
-        // Populate Related
+        // Populate Related Items
         populateRelated(items.filter(i => (i.id || '').trim().toLowerCase() !== (currentRecord.id || '').trim().toLowerCase()));
 
         document.getElementById('loadingScreen').style.display = 'none';
@@ -853,7 +1049,8 @@
 
     function shareNotice() {
       if (!currentRecord) return;
-      const text = `📢 *Notice: ${currentRecord.title || currentRecord.post_name}*\n🏛️ Authority: ${currentRecord.organization}\n📅 Date/Deadline: ${currentRecord.last_date || currentRecord.deadline || 'Active'}\n\n👉 Official Link & Details:\n${window.location.href}`;
+      const typeLabel = requestedType === 'ebooks' ? 'E-Book' : (requestedType === 'pyq' ? 'Question Paper' : (requestedType === 'journals' ? 'Journal CFP' : 'Recruitment Notice'));
+      const text = `📢 *${typeLabel}: ${currentRecord.title || currentRecord.post_name}*\n🏛️ Source: ${currentRecord.organization}\n📅 Date: ${currentRecord.last_date || currentRecord.deadline || currentRecord.date || 'Active'}\n\n👉 Official Link & Details:\n${window.location.href}`;
       window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
     }
 
