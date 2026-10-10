@@ -21,9 +21,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    /* ==============================================================
-       NE ACADEMIC HUB - COMPLETE EMBEDDED STYLESYSTEM
-       ============================================================== */
     :root {
       --primary: #0284c7;
       --primary-hover: #0369a1;
@@ -40,7 +37,6 @@
       --font-mono: 'JetBrains Mono', monospace;
     }
 
-    /* DARK MODE PALETTE */
     body.dark-mode {
       --bg-main: #070b13;
       --card-bg: #0f172a;
@@ -103,7 +99,7 @@
     .ticker-anchor { color: #f1f5f9; text-decoration: none; font-weight: 500; }
     .ticker-anchor:hover { color: #38bdf8; text-decoration: underline; }
 
-    /* 2. TOP NAV (RESPONSIVE) */
+    /* 2. TOP NAV */
     .top-nav {
       background-color: #0f172a;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -224,9 +220,10 @@
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 14px;
-      padding: 1.5rem 1.8rem;
+      padding: 1.8rem 2rem;
       margin: 2rem auto 0 auto;
       max-width: 1280px;
+      text-align: center;
       box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
     }
 
@@ -237,8 +234,9 @@
       text-transform: uppercase;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.4rem;
-      margin-bottom: 0.35rem;
+      margin: 0 auto 0.45rem auto;
     }
 
     .alerts-title {
@@ -249,26 +247,9 @@
       margin-bottom: 0.35rem;
     }
 
-    .alerts-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
-    .alerts-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-    .alerts-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-decoration: none;
-      color: #fff;
-    }
-    .alerts-btn.wa { background: #25d366; }
-    .alerts-btn.tg { background: #0088cc; }
-    .alerts-btn:hover { opacity: 0.92; }
+    .alerts-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0; }
 
-    /* ==============================================================
-       5. SOCIAL MEDIA HUB IN THE MIDDLE (DANCING NEON BORDERS)
-       ============================================================== */
+    /* 5. SOCIAL MEDIA HUB */
     .middle-social-hub {
       max-width: 1280px;
       margin: 2.2rem auto 0 auto;
@@ -334,12 +315,7 @@
       color: var(--text-main);
     }
 
-    .social-card-lead {
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-    }
-
+    .social-card-lead { display: flex; align-items: center; gap: 1.1rem; }
     .social-card-icon {
       width: 44px;
       height: 44px;
@@ -352,20 +328,8 @@
       flex-shrink: 0;
     }
 
-    .social-title-text {
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text-main);
-      display: block;
-    }
-
-    .social-sub-text {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      display: block;
-      margin-top: 2px;
-    }
-
+    .social-title-text { font-size: 1rem; font-weight: 800; color: var(--text-main); display: block; }
+    .social-sub-text { font-size: 0.78rem; color: var(--text-muted); display: block; margin-top: 2px; }
     .social-arrow-badge {
       display: inline-flex;
       align-items: center;
@@ -462,6 +426,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
       gap: 1.5rem;
+      min-height: 120px;
     }
 
     .portal-card {
@@ -792,7 +757,7 @@
     <p class="alerts-desc">Get daily Northeast recruitment notices, institutional repository links, and exam papers delivered directly to your inbox or WhatsApp group.</p>
   </div>
 
-  <!-- 5. SOCIAL MEDIA HUB IN THE MIDDLE (DANCING/ROTATING NEON COLOR BORDERS) -->
+  <!-- 5. SOCIAL MEDIA HUB IN THE MIDDLE -->
   <div class="middle-social-hub">
     <div class="social-list-stack">
 
@@ -973,9 +938,9 @@
   </footer>
 
   <!-- Script linking with cache-busting timestamp -->
-  <script src="portal-data.js?v=2026.11"></script>
+  <script src="portal-data.js?v=2026.25"></script>
 
-  <!-- Interactive Handlers for Mobile Nav, Dark Theme & Portal Broadcast -->
+  <!-- Interactive Handlers -->
   <script>
     // 1. Mobile Menu Drawer Toggle
     function toggleMobileNav() {
@@ -985,7 +950,7 @@
       icon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
     }
 
-    // 2. Dark/Light Mode Switcher with localStorage Memory
+    // 2. Dark/Light Mode Switcher
     function toggleTheme() {
       const isDark = document.body.classList.toggle('dark-mode');
       const icon = document.getElementById('themeIcon');
@@ -995,7 +960,6 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     }
 
-    // Initialize saved theme on load
     (function initSavedTheme() {
       if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
