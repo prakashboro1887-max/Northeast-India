@@ -6,7 +6,7 @@
 const SHEETS_CONFIG = {
   careers:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQHg__S3YVq4KgqSTfrl1LwOyBaq-EqFes7IPXacc8uWdVHwN_WFmWLSEtDhtnfT39IvKoKsnmKhQvB/pub?output=csv",
   ebooks:   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSopclGqls2YQTFCzNjgXeSOJzaRiusJGt5Z17XtGrSMSTkQpVDZfZ6oYwL9elKmdZ8dgp8EKNAkS2f/pub?output=csv",
-  pyq:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRVyMw7MT9f1TAjERp90ROIzfFjYRyz4qHCGVk5IJiadtuBAkE63ptYkMlIdR9ecC-ib2NzaL4GRZkN/pub?gid=0&single=true&output=csv",
+  pyq:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRVyMw7MT9f1TAjERp90ROIzfFjYRyz4qHCGVk5IJiadtuBAkE63ptYkMlIdR9ecC-ib2NzaL4GRZkN/pub?output=csv",
   journals: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRKxkxXDdMAdqcpbNro5JUrPpfHmM0ab1z4qt93AUDFiy7oeO_1ip_cuQyzKcLG5sgziZFOoEg_4xpk/pub?gid=0&single=true&output=csv",
   results:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSZWlu7rveeuTK-X9kWsspWYTFSaznOFPuGT9KNN6cO2B7t5RFz5fSmT8vW41lZSA06ndiMRxthxnhZ/pub?gid=0&single=true&output=csv",
   media:    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQGjXLC7R2RF8GYIguShCH8pFM7ZEoRARX659libOOkKFqEtLaBn2S5eRd73Sfzo7z4NwnR3R0FzEww/pub?gid=0&single=true&output=csv"
