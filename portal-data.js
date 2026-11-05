@@ -4,7 +4,7 @@
 
 // 1. Separate Google Sheet CSV Endpoints for each section
 const SHEETS_CONFIG = {
-  careers:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRGWGj6X65GeWTNB4DP0Yz8j0v_Zm-ZwcyvY9IjGRXH8_aXPdDUqeUgJD4ks6EFJl4Q98RQYT0JxYMB/pub?output=csv",
+  careers:  "https://docs.google.com/spreadsheets/d/e/2PACX-1vQHg__S3YVq4KgqSTfrl1LwOyBaq-EqFes7IPXacc8uWdVHwN_WFmWLSEtDhtnfT39IvKoKsnmKhQvB/pub?output=csv",
   ebooks:   "https://docs.google.com/spreadsheets/d/e/2PACX-1vSopclGqls2YQTFCzNjgXeSOJzaRiusJGt5Z17XtGrSMSTkQpVDZfZ6oYwL9elKmdZ8dgp8EKNAkS2f/pub?gid=0&single=true&output=csv",
   pyq:      "https://docs.google.com/spreadsheets/d/e/2PACX-1vRVyMw7MT9f1TAjERp90ROIzfFjYRyz4qHCGVk5IJiadtuBAkE63ptYkMlIdR9ecC-ib2NzaL4GRZkN/pub?gid=0&single=true&output=csv",
   journals: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRKxkxXDdMAdqcpbNro5JUrPpfHmM0ab1z4qt93AUDFiy7oeO_1ip_cuQyzKcLG5sgziZFOoEg_4xpk/pub?gid=0&single=true&output=csv",
